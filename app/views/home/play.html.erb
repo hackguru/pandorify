@@ -1,1 +1,4 @@
-<%=@sort_common_artists.to_s%>
+<% @tracklist.each do |track| %> 
+	<%= link_to track[0].to_s, track[1].to_s %>
+	<br />
+<%end%>

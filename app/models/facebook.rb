@@ -5,6 +5,10 @@ class Facebook < ActiveRecord::Base
     @profile ||= FbGraph::User.me(self.access_token).fetch
   end
 
+  def music
+    @music ||= FbGraph::User.me(self.access_token).fetch.music
+  end
+
   class << self
     extend ActiveSupport::Memoizable
 
