@@ -52,6 +52,12 @@ class HomeController < ApplicationController
       end
     end
 
+    @tracklist.each do |track|
+      c = Curl::Easy.perform("http://tinysong.com/b/#{CGI.escape track[0].to_s.sub(" ","+")}?format=json&key=186bd60f3a33be26da02d62d334bddf4")
+      parsed_json = ActiveSupport::JSON.decode(c.body_str)
+      track << parsed_json['SongID']
+    end
+        
   	respond_to do |format|
        format.html # play.html.erb
     end
