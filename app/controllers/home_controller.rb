@@ -35,7 +35,8 @@ class HomeController < ApplicationController
     sort_common_artists  = common_artist.sort_by {|key, values| -1*values}
     
     @tracklist = Array.new  
-    sort_common_artists.take(30).each do |pair|
+    counter = 0
+    sort_common_artists.take(20).each do |pair|
       c = Curl::Easy.perform("http://ws.spotify.com/search/1/track.json?q=#{CGI.escape pair[0].to_s}")
       parsed_json = ActiveSupport::JSON.decode(c.body_str)
       parsed_json['tracks'].each do |track|
@@ -47,9 +48,12 @@ class HomeController < ApplicationController
         end
         next if check
         @tracklist << [track['name'], "http://open.spotify.com/track/" + track['href'][14..track['href'].length]]
+        counter += 1
+        break if counter == 20
         count += 1
         break if count == 2**pair[1]-1
       end
+      break if counter == 20
     end
 
     @tracklist.each do |track|
