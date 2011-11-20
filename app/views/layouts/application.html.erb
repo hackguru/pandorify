@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <title>Pandorify</title>
+  <meta property="fb:app_id" content="<%= Facebook.config[:client_id] %>">
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+	<div class="avatar">		
+	  <fb:profile-pic uid="<%= current_user.try(:identifier) %>" size="normal" facebook-logo="true"></fb:profile-pic>
+	</div>
+
+	<% if authenticated? %>
+	  <p><%= link_to "Logout", facebook_path, :method => :delete %></p>
+	<% else %>
+	  <dl>
+	    <dt>JavaScript SDK</dt>
+	    <dd><fb:login-button length="long" onlogin="location.href = '<%= facebook_path %>'" scope="<%= Facebook.config[:scope] %>"></fb:login-button></dd>
+	    <dt>Normal OAuth flow</dt>
+	    <dd><%= link_to "Start", new_facebook_path %></dd>
+	  </dl>
+	<% end %>
+
+	<fb:like-box profile_id="117513961602338" width="300" connections="6"></fb:like-box>
+
+
+	<%= yield %>
+	
+
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
+	<script>
+	  FB.init({
+	    appId: "<%= Facebook.config[:client_id] %>",
+	    cookie: true,
+	    xfbml: true,
+	    oauth: true
+	  });
+	</script>
+	<!-- <script type="text/javascript">
+	  $(function () {
+	    <% if flash[:error] %>
+	      $.gritter.add({
+	        title: "<%= flash[:error][:title] %>",
+	        text : "<%= flash[:error][:message] %>",
+	        image: "<%= flash[:error][:image] %>",
+	        time : 5000
+	      });
+	    <% elsif flash[:notice] %>
+	      $.gritter.add({
+	        title: "<%= flash[:notice][:title] %>",
+	        text : "<%= flash[:notice][:message] %>",
+	        image: "<%= flash[:notice][:image] %>",
+	        time : 3000
+	      });
+	    <% end %>
+	  });
+	</script> -->
+
+</body>
+</html>

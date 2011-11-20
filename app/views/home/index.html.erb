@@ -1,0 +1,8 @@
+<% if authenticated? %>
+	<%= form_tag("home/play/", :method => "post") do %>
+	  <%= label_tag(:friend_tokens, "Add friends:") %>
+	  <%= text_field_tag(:friend_tokens) %>
+	  <%= submit_tag("Play") %>
+	<% end %>
+<% end %>
+	
