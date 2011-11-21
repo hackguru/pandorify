@@ -34,7 +34,7 @@
     <header>
       <a href="/" class="logo">Pandorify</a>
 	  <% if authenticated? %>
-	    <%= link_to "Logout", facebook_path, :method => :delete %>
+	    <%= link_to "Logout", facebook_path, :method => :delete, :class => "logout"%>
 	  <% end %>
     </header>
 

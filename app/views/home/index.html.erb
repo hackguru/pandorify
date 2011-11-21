@@ -3,7 +3,7 @@
 	<div id="main" role="main">
 	  <div class="wrapper">
 		<%= form_tag("home/play/", :method => "post") do %>
-		  <%= label_tag(:friend_tokens, "Add your friends:") %>
+		  <h2><%= label_tag(:friend_tokens, "Add your friends:") %><h2/>
 		  <%= text_field_tag(:friend_tokens) %>
 		  <%= submit_tag "Create and play playlist", :class => "button grey play" %>
 		<% end %>
