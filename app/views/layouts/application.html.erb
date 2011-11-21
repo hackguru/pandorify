@@ -33,6 +33,9 @@
 
     <header>
       <a href="/" class="logo">Pandorify</a>
+	  <% if authenticated? %>
+	    <%= link_to "Logout", facebook_path, :method => :delete %>
+	  <% end %>
     </header>
 
 
@@ -52,25 +55,6 @@
 	    oauth: true
 	  });
 	</script>
-	<!-- <script type="text/javascript">
-	  $(function () {
-	    <% if flash[:error] %>
-	      $.gritter.add({
-	        title: "<%= flash[:error][:title] %>",
-	        text : "<%= flash[:error][:message] %>",
-	        image: "<%= flash[:error][:image] %>",
-	        time : 5000
-	      });
-	    <% elsif flash[:notice] %>
-	      $.gritter.add({
-	        title: "<%= flash[:notice][:title] %>",
-	        text : "<%= flash[:notice][:message] %>",
-	        image: "<%= flash[:notice][:image] %>",
-	        time : 3000
-	      });
-	    <% end %>
-	  });
-	</script> -->
 
 </body>
 </html>

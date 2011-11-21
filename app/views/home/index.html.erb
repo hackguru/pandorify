@@ -1,6 +1,16 @@
 
 <% if authenticated? %>
-  <p><%= link_to "Logout", facebook_path, :method => :delete %></p>
+	<div id="main" role="main">
+	  <div class="wrapper">
+		<%= form_tag("home/play/", :method => "post") do %>
+		  <%= label_tag(:friend_tokens, "Add your friends:") %>
+		  <%= text_field_tag(:friend_tokens) %>
+		  <%= submit_tag "Create and play playlist", :class => "button grey play" %>
+		<% end %>
+	  </div>
+	</div>
+
+
 <% else %>
     <div id="main" role="main">
       <div class="wrapper">
@@ -14,13 +24,4 @@
 
   </div>
 
-<% end %>
-
-
-<% if authenticated? %>
-	<%= form_tag("home/play/", :method => "post") do %>
-	  <%= label_tag(:friend_tokens, "Add friends:") %>
-	  <%= text_field_tag(:friend_tokens) %>
-	  <%= submit_tag("Play") %>
-	<% end %>
 <% end %>
