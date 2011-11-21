@@ -1,3 +1,22 @@
+
+<% if authenticated? %>
+  <p><%= link_to "Logout", facebook_path, :method => :delete %></p>
+<% else %>
+    <div id="main" role="main">
+      <div class="wrapper">
+        <h2>Discover music the social way.</h2>
+        <p><span class="strong">Pandorify</span> brings together the best of pandora and spotify. We compare the music you and your friends like on Facebook, and create <span class="strong">insanely great</span> playlists for you.</p>
+		<%= link_to "Connect with facebook", new_facebook_path, :class => "button blue" %>
+        <hr class="divider"/>
+        <a href="#" class="button grey">Take a tour</a>
+      </div>
+    </div>
+
+  </div>
+
+<% end %>
+
+
 <% if authenticated? %>
 	<%= form_tag("home/play/", :method => "post") do %>
 	  <%= label_tag(:friend_tokens, "Add friends:") %>
