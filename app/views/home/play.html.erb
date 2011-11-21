@@ -10,11 +10,12 @@
 <br />
 <br />
 
-<hr style="border: none; border-bottom: #ccc; box-shadow: 0 1px 0 #fff;"/>
+<hr style="border: none; border-bottom-color: rgba(0, 0, 0, 0.1); box-shadow: 0 1px 0 #fff;"/>
 <h2>Or: open in spotify.</h2>
+<hr style="border: none; border-bottom-color: rgba(0, 0, 0, 0.1); box-shadow: 0 1px 0 #fff;"/>
 
 <% @tracklist.each do |track| %> 
-	<%= link_to track[0].to_s, track[1].to_s %>
+	<%= link_to track[0].to_s, track[1].to_s, :class => 'track' %>
 	<br />
 <%end%>
 	</div>
