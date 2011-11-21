@@ -218,6 +218,8 @@ html {
   font-size: 26px;
   text-align: left;
   margin-bottom: 0;
+  font-weight: normal;
+  color: #222;
 }
 
 #container #main p {
