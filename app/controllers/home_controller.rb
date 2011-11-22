@@ -2,9 +2,6 @@ class HomeController < ApplicationController
   before_filter :require_authentication, :only => :play
   
   def index
-    Facebook.find(:all).each |d| do
-      d.destroy
-    end
     if authenticated?
       friend_list = current_user.profile.friends
       friend_list.each do |friend|
