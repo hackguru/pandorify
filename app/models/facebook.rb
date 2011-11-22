@@ -64,7 +64,7 @@ class Facebook < ActiveRecord::Base
       _fb_user_.save!
       friends = current_user.friends #helps perf
       current_user.friends << _fb_user_ if !friends.include? _fb_user_
-      put"HEREEE: " + _fb_user_.name + "\n"
+      puts "HEREEE: " + _fb_user_.name + "\n"
       _fb_user_    
     end
   end
