@@ -43,7 +43,7 @@ class FacebooksController < ApplicationController
   	end
   		
   	respond_to do |format|
-       format.json { render :json => @friends } #.reject {|item| !item["name"].downcase.include? params[:q].downcase }
+       format.json { render :json => @friends }
     end
     
   end
