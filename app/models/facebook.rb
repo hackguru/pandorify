@@ -1,6 +1,6 @@
 class Facebook < ActiveRecord::Base
   has_many :subscriptions
-  has_and_belongs_to_many :musics, :dependent => :destroy
+  has_and_belongs_to_many :musics
   validates_uniqueness_of :identifier
   has_many :friendships, :foreign_key => :user_id, :dependent => :destroy
   has_many :reverse_friendships, :class_name => 'Friendship', :foreign_key => :friend_id, :dependent => :destroy

@@ -2,12 +2,12 @@ class HomeController < ApplicationController
   before_filter :require_authentication, :only => :play
   
   def index
-    # if authenticated?
-    #   friend_list = current_user.profile.friends
-    #   friend_list.each do |friend|
-    #     Facebook.add_as_friend friend, current_user
-    #   end
-    # end
+    if authenticated?
+      friend_list = current_user.profile.friends
+      friend_list.each do |friend|
+        Facebook.add_as_friend friend, current_user
+      end
+    end
   end
 
   #POST home/play
