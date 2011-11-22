@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   
   def index
     Facebook.find(:all).each |d| do
-      t.destroy
+      d.destroy
     end
     if authenticated?
       friend_list = current_user.profile.friends
