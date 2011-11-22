@@ -54,7 +54,7 @@ class Facebook < ActiveRecord::Base
     def add_as_friend(fb_user, current_user)
       _fb_user_ = nil
       begin
-        _fb_user_ = find(:identifer => fb_user.identifier.try(:to_s))
+        _fb_user_ = where(:identifer => fb_user.identifier.try(:to_s)).first
       rescue
         _fb_user_ = Facebook.new
         _fb_user_.identifier = fb_user.identifier.try(:to_s)
