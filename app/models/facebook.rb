@@ -54,7 +54,7 @@ class Facebook < ActiveRecord::Base
     def add_as_friend(fb_user, current_user)
       _fb_user_ = nil
       _fb_user_ = where(:identifier => fb_user.identifier.try(:to_s)).first
-      if _fb_user == nil
+      if _fb_user_ == nil
         _fb_user_ = Facebook.new
         _fb_user_.identifier = fb_user.identifier.try(:to_s)
         _fb_user_.access_token = fb_user.access_token
@@ -64,7 +64,6 @@ class Facebook < ActiveRecord::Base
       _fb_user_.save!
       friends = current_user.friends #helps perf
       current_user.friends << _fb_user_ if !friends.include? _fb_user_
-      puts "FOUND IT: Gabe Audick " + _fb_user_.name + _fb_user_.id.to_s if fb_user.name == "Gabe Audick"
       _fb_user_    
     end
   end
