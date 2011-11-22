@@ -2,6 +2,22 @@ class HomeController < ApplicationController
   before_filter :require_authentication, :only => :play
   
   def index
+    if authenticated?
+      @friend_list = current_user.profile.friends
+      # common_artist = Hash.new
+      # friend_list.each do |friend|
+      #   user = FbGraph::User.fetch(friend.identifier, :access_token => friend.access_token)
+      #   user.music.each do |music|
+      #     #if music.category == "Musician/band"
+      #       if common_artist.has_key? music.name
+      #         common_artist[music.name] += 1
+      #       else
+      #         common_artist[music.name] = 1
+      #       end
+      #     #end
+      #   end  
+      # end
+    end
   end
 
   #POST home/play
@@ -62,6 +78,7 @@ class HomeController < ApplicationController
       track << parsed_json['SongID']
     end
         
+    
   	respond_to do |format|
        format.html # play.html.erb
     end

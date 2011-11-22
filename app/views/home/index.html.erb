@@ -1,27 +1,24 @@
+<div id="main" role="main">
+  <div class="wrapper">
 
-<% if authenticated? %>
-	<div id="main" role="main">
-	  <div class="wrapper">
+	<% if authenticated? %>
 		<%= form_tag("home/play/", :method => "post") do %>
 		  <h2><%= label_tag(:friend_tokens, "Add your friends:") %><h2/>
 		  <%= text_field_tag(:friend_tokens) %>
 		  <%= submit_tag "Create and play playlist", :class => "button grey play" %>
 		<% end %>
-	  </div>
-	</div>
 
+		<%= @friend_list.to_s %>
 
-<% else %>
-    <div id="main" role="main">
-      <div class="wrapper">
+	<% else %>
         <h2>Discover music the social way.</h2>
         <p><span class="strong">Pandorify</span> brings together the best of pandora and spotify. We compare the music you and your friends like on Facebook, and create <span class="strong">insanely great</span> playlists for you.</p>
 		<%= link_to "Connect with facebook", new_facebook_path, :class => "button blue" %>
         <hr class="divider"/>
         <a href="#" class="button grey">Take a tour</a>
       </div>
-    </div>
+
+	<% end %>
 
   </div>
-
-<% end %>
+</div>
