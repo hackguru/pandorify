@@ -63,8 +63,9 @@ class Facebook < ActiveRecord::Base
       end
       _fb_user_.name = fb_user.name
       _fb_user_.save!
+      puts "FOUND IT: Gabe Audick" if _fb_user_.name == "Gabe Audick"
       #friends = current_user.friends #helps perf
-      current_user.friends << _fb_user_ #if !friends.include? _fb_user_
+      current_user.friends == [] #<< _fb_user_ #if !friends.include? _fb_user_
       _fb_user_    
     end
   end
