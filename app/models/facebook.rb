@@ -55,6 +55,7 @@ class Facebook < ActiveRecord::Base
       _fb_user_ = nil
       begin
         _fb_user_ = where(:identifier => fb_user.identifier.try(:to_s)).first
+        puts "FOUND IT: Gabe Audick" + _fb_user_.to_s if _fb_user_.name == "Gabe Audick"
       rescue
         _fb_user_ = Facebook.new
         _fb_user_.identifier = fb_user.identifier.try(:to_s)
@@ -63,7 +64,7 @@ class Facebook < ActiveRecord::Base
       end
       _fb_user_.name = fb_user.name
       _fb_user_.save!
-      puts "FOUND IT: Gabe Audick" if _fb_user_.name == "Gabe Audick"
+      
       friends = current_user.friends #helps perf
       current_user.friends << _fb_user_ if !friends.include? _fb_user_
       _fb_user_    
