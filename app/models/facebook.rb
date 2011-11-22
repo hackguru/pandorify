@@ -52,10 +52,15 @@ class Facebook < ActiveRecord::Base
     end
     
     def add_as_friend(fb_user, current_user)
-      _fb_user_ = find_or_initialize_by_identifier(fb_user.identifier.try(:to_s))
-      _fb_user_.access_token = fb_user.access_token
+      begin
+        _fb_user_ = find_by_identifier(fb_user.identifier.try(:to_s))
+      rescue
+        _fb_user_ = Facebook.new
+        _fb_user_.identifier = fb_user.identifier.try(:to_s)
+        _fb_user_.access_token = fb_user.access_token
+        _fb_user_.is_friend_access = true
+      end
       _fb_user_.name = fb_user.name
-      _fb_user_.is_friend_access = true
       _fb_user_.save!
       friends = current_user.friends #helps perf
       current_user.friends << _fb_user_ if !friends.include? _fb_user_
