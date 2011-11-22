@@ -55,7 +55,7 @@ class Facebook < ActiveRecord::Base
       _fb_user_ = nil
       begin
         _fb_user_ = where(:identifier => fb_user.identifier.try(:to_s)).first
-        puts "FOUND IT: Gabe Audick " + _fb_user_.name if _fb_user_.name == "Gabe Audick"
+        puts "FOUND IT: Gabe Audick " + _fb_user_.name if fb_user.name == "Gabe Audick"
       rescue
         _fb_user_ = Facebook.new
         _fb_user_.identifier = fb_user.identifier.try(:to_s)
