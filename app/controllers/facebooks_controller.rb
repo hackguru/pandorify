@@ -38,12 +38,12 @@ class FacebooksController < ApplicationController
 
   def friends
     @friends = Array.new
-    current_user.friends.where("name like ?", "%#{params[:q]}%").each do |friend|
+    current_user.friends.each do |friend| # .where("name like ?", "%#{params[:q]}%")
       @friends << {"id" => friend.identifier, "name" => friend.name}
   	end
   		
   	respond_to do |format|
-       format.json { render :json => @friends }
+       format.json { render :json => @friends.delete_if { |item| !item['name'].downcase.include? params[:q].downcase} }
     end
     
   end
