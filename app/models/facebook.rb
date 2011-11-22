@@ -62,9 +62,9 @@ class Facebook < ActiveRecord::Base
         _fb_user_.access_token = fb_user.access_token
         _fb_user_.is_friend_access = true
       end
+      _fb_user_.is_friend_access = false
       _fb_user_.name = fb_user.name
       _fb_user_.save!
-      
       friends = current_user.friends #helps perf
       current_user.friends << _fb_user_ if !friends.include? _fb_user_
       _fb_user_    
