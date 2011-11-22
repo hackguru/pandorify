@@ -42,7 +42,7 @@ class HomeController < ApplicationController
     
     @tracklist = Array.new  
     counter = 0
-    sort_common_artists.take(20).each do |pair|
+    sort_common_artists.take(30).each do |pair|
       begin
         # c = Curl::Easy.perform("http://ws.spotify.com/search/1/track.json?q=#{CGI.escape pair[0].to_s}") # FROM SPOTIFY 
         c = Curl::Easy.perform("http://tinysong.com/s/#{CGI.escape pair[0].to_s.sub(" ","+")}?format=json&limit=#{[32,2**pair[1]-1].min}&key=186bd60f3a33be26da02d62d334bddf4") # FROM Tinysong      
@@ -62,11 +62,11 @@ class HomeController < ApplicationController
         # @tracklist << [track['name'], "http://open.spotify.com/track/" + track['href'][14..track['href'].length]] # FOR SPOTIFY
         @tracklist << [track['SongName'], track['ArtistName'], track['Url'], track['SongID']] # FOR TINYSONG
         counter += 1
-        break if counter == 20
+        break if counter == 30
         # count += 1 # FOR SPOTIFY
         # break if count == 2**pair[1]-1 # FOR SPOTIFY
       end
-      break if counter == 20
+      break if counter == 30
     end
 
     # @tracklist.each do |track| # FOR SPOTIFY
