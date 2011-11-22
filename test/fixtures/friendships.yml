@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  friend_id: 1
+  friendee_id: 1
+
+two:
+  friend_id: 1
+  friendee_id: 1

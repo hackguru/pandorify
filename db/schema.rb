@@ -11,13 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119065011) do
+ActiveRecord::Schema.define(:version => 20111122055727) do
 
   create_table "facebooks", :force => true do |t|
     t.string   "identifier"
     t.string   "access_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_friend_access"
+    t.string   "name"
   end
+
+  add_index "facebooks", ["identifier"], :name => "index_facebooks_on_identifier", :unique => true
+
+  create_table "facebooks_musics", :id => false, :force => true do |t|
+    t.integer "facebook_id", :null => false
+    t.integer "music_id",    :null => false
+  end
+
+  create_table "friendships", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "friend_id",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "musics", :force => true do |t|
+    t.string   "identifier"
+    t.string   "access_token"
+    t.string   "name"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "musics", ["identifier"], :name => "index_musics_on_identifier", :unique => true
 
 end

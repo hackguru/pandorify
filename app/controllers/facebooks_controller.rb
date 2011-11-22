@@ -38,12 +38,12 @@ class FacebooksController < ApplicationController
 
   def friends
     @friends = Array.new
-    current_user.profile.friends.each do |friend|
+    current_user.friends.where("name like ?", "%#{params[:q]}%").each do |friend|
       @friends << {"id" => friend.identifier, "name" => friend.name}
   	end
   		
   	respond_to do |format|
-       format.json { render :json => @friends.reject {|item| !item["name"].downcase.include? params[:q].downcase } }
+       format.json { render :json => @friends } #.reject {|item| !item["name"].downcase.include? params[:q].downcase }
     end
     
   end
