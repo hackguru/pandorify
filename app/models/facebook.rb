@@ -21,6 +21,7 @@ class Facebook < ActiveRecord::Base
     @music_activity = []
     new_data = []
     new_info = Hash.new
+    count = 3
     begin
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
@@ -33,7 +34,8 @@ class Facebook < ActiveRecord::Base
       url = new_info['paging']['next']
       new_data = new_info['data']
       @music_activity.push new_data
-    end while new_data.count
+      count -= 1
+    end while new_data.count && count
   end
 
   class << self
