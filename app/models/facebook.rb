@@ -20,7 +20,6 @@ class Facebook < ActiveRecord::Base
     url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
     @music_activity = []
     new_data = []
-    new_info = Hash.new
     count = 3
     begin
       uri = URI.parse(url)
@@ -35,7 +34,7 @@ class Facebook < ActiveRecord::Base
       new_data = new_info['data']
       @music_activity.push new_data
       count -= 1
-    end while new_data.count && count
+    end while new_data.count AND count
   end
 
   class << self
