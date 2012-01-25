@@ -23,7 +23,7 @@ class Facebook < ActiveRecord::Base
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
     http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
     request = Net::HTTP::Get.new(uri.request_uri)
-    @music_activity = http.request(request)
+    @music_activity = http.request(request).body
   end
 
   class << self
