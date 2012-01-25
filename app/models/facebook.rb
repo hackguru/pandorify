@@ -34,7 +34,7 @@ class Facebook < ActiveRecord::Base
       new_data = new_info['data']
       @music_activity.push new_data
       count -= 1
-    end while new_data.count AND count
+    end while new_data.count and count
   end
 
   class << self
