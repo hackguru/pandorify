@@ -28,8 +28,8 @@ class Facebook < ActiveRecord::Base
       http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
       http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
       request = Net::HTTP::Get.new(uri.request_uri)
-      @music_activity = http.request(request).body
-      new_info = JSON.parse(@music_activity)
+      response = http.request(request).body
+      new_info = JSON.parse(response)
       url = new_info['paging']['next']
       new_data = new_info['data']
       @music_activity.push new_data
