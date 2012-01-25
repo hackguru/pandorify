@@ -17,13 +17,23 @@ class Facebook < ActiveRecord::Base
   end
   
   def music_activity
-    uri = URI.parse("https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
-    http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
-    request = Net::HTTP::Get.new(uri.request_uri)
-    @music_activity = http.request(request).body
+    url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
+    @music_activity = []
+    new_data = []
+    new_info = Hash.new
+    begin
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
+      http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
+      request = Net::HTTP::Get.new(uri.request_uri)
+      @music_activity = http.request(request).body
+      new_info = JSON.parse(@music_activity)
+      url = new_info['paging']['next']
+      new_data = new_info['data']
+      @music_activity.push new_data
+    end while new_data.count
   end
 
   class << self
