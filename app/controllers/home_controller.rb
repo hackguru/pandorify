@@ -10,6 +10,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def new
+    if authenticated?
+      @music = current_user.music_activity
+    end    
+  end
+  
   #POST home/play
   def play
     identifiers = params[:friend_tokens].split(",")

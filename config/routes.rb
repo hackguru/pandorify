@@ -1,6 +1,7 @@
 Pandorify::Application.routes.draw do
 
   get "home/index"
+  get "home/new"
   post "home/play"
 
   # Connect Site

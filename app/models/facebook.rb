@@ -15,6 +15,16 @@ class Facebook < ActiveRecord::Base
   def music
     @music ||= FbGraph::User.me(self.access_token).fetch.music
   end
+  
+  def music_activity
+    uri = URI.parse("https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
+    http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
+    request = Net::HTTP::Get.new(uri.request_uri)
+    @music_activity = http.request(request)
+  end
 
   class << self
     extend ActiveSupport::Memoizable
