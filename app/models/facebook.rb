@@ -17,7 +17,7 @@ class Facebook < ActiveRecord::Base
   end
   
   def music_activity
-    FbGraph::User.me(self.access_token).og_actions "music.listens", options => {"limit"=>"25", "until"=>3.days.ago}
+    FbGraph::User.me(self.access_token).og_actions "music.listens", :options => {"limit"=>"25", "until"=>3.days.ago.to_s}
     # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
     # @music_activity = []
     # new_data = []
