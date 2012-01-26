@@ -3,4 +3,7 @@
 <% @music.each do |object| %>
 	<%= object.start_time %>
 <% end %>
+<% @music.next.each do |object| %>
+	<%= object.start_time %>
+<% end %>
 </pre>
