@@ -17,25 +17,26 @@ class Facebook < ActiveRecord::Base
   end
   
   def music_activity
-    url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
-    @music_activity = []
-    new_data = []
-    count = 5
-    begin
-      uri = URI.parse(url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
-      http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request).body
-      new_info = JSON.parse(response)
-      url = new_info['paging']['next']
-      new_data = new_info['data']
-      @music_activity.push new_data
-      count -= 1
-    end while new_data.count > 0 and count > 0
-    @music_activity
+    FbGraph::User.me(self.access_token).og_actions "music.listens"
+    # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
+    # @music_activity = []
+    # new_data = []
+    # count = 5
+    # begin
+    #   uri = URI.parse(url)
+    #   http = Net::HTTP.new(uri.host, uri.port)
+    #   http.use_ssl = true
+    #   http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
+    #   http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
+    #   request = Net::HTTP::Get.new(uri.request_uri)
+    #   response = http.request(request).body
+    #   new_info = JSON.parse(response)
+    #   url = new_info['paging']['next']
+    #   new_data = new_info['data']
+    #   @music_activity.push new_data
+    #   count -= 1
+    # end while new_data.count > 0 and count > 0
+    # @music_activity
   end
 
   class << self
