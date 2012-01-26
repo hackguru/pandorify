@@ -20,7 +20,7 @@ class Facebook < ActiveRecord::Base
     url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
     @music_activity = []
     new_data = []
-    count = 3
+    count = 5
     begin
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
