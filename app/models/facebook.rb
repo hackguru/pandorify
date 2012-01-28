@@ -16,7 +16,7 @@ class Facebook < ActiveRecord::Base
     @music ||= FbGraph::User.me(self.access_token).fetch.music
   end
   
-  def retrieve_music_activity (since)
+  def retrieve_music_activity (since = nil)
     FbGraph::User.me(self.access_token).og_actions "music.listens", :offset=>"0", :limit=>"100"
     # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
     # @music_activity = []
