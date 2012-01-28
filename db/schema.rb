@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111122055727) do
+ActiveRecord::Schema.define(:version => 20120128231451) do
+
+  create_table "applications", :force => true do |t|
+    t.string   "identifier"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "facebooks", :force => true do |t|
     t.string   "identifier"
