@@ -2,13 +2,11 @@
 <!-- <%= @music.to_xml.to_s %> -->
 <% @music.each do |object| %>
 	<%= object.start_time %> - <%= object.end_time %> - <%= object.publish_time %> -
-	<br/>
-	<%= object.from.name %> -
-	<br/>
-	<%= object.application.name %> -
+	<br/> <%= object.from.name %> -
+	<br/> <%= object.application.name %> -
 	<br/> <%= object.type %> -
 	<br/> <%= object.objects %> -
-	<br/> <%= object.raw_attributes %> -
+	<br/> raw = <%= object.raw_attributes %> -
 	<br/> <%= object.comments %> -
 	<br/> <%= object.likes %>
 <br/>
