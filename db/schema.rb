@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120128231451) do
+ActiveRecord::Schema.define(:version => 20120128233126) do
 
   create_table "applications", :force => true do |t|
     t.string   "identifier"
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(:version => 20120128231451) do
     t.datetime "updated_at"
   end
 
+  create_table "listens", :force => true do |t|
+    t.string   "identifier"
+    t.integer  "facebook_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "publish_time"
+    t.integer  "song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "listens", ["facebook_id"], :name => "index_listens_on_facebook_id"
+  add_index "listens", ["song_id"], :name => "index_listens_on_song_id"
+
   create_table "musics", :force => true do |t|
     t.string   "identifier"
     t.string   "access_token"
@@ -53,5 +67,13 @@ ActiveRecord::Schema.define(:version => 20120128231451) do
   end
 
   add_index "musics", ["identifier"], :name => "index_musics_on_identifier", :unique => true
+
+  create_table "songs", :force => true do |t|
+    t.string   "identifier"
+    t.string   "title"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

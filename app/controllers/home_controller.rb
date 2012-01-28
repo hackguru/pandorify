@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
   def new
     if authenticated?
-      @music = current_user.music_activity
+      @music = current_user.retrieve_music_activity
     end    
   end
   
@@ -23,7 +23,7 @@ class HomeController < ApplicationController
     common_artist = Hash.new
     friend_list.each do |friend|
       user = FbGraph::User.fetch(friend.identifier, :access_token => friend.access_token)
-      user.music.each do |music|
+      user.retrieve_music.each do |music|
         #if music.category == "Musician/band"
           if common_artist.has_key? music.name
             common_artist[music.name] += 1
@@ -34,7 +34,7 @@ class HomeController < ApplicationController
       end  
     end
     
-    current_user.music.each do |music|
+    current_user.retrieve_music.each do |music|
       #if music.category == "Musician/band"
         if common_artist.has_key? music.name
           common_artist[music.name] += 1

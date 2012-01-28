@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  identifier: MyString
+  facebook: 
+  start_time: 2012-01-28 15:31:26
+  end_time: 2012-01-28 15:31:26
+  publish_time: 2012-01-28 15:31:26
+  song: 
+
+two:
+  identifier: MyString
+  facebook: 
+  start_time: 2012-01-28 15:31:26
+  end_time: 2012-01-28 15:31:26
+  publish_time: 2012-01-28 15:31:26
+  song: 
