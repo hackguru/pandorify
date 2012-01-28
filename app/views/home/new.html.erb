@@ -1,8 +1,8 @@
 <pre>
 <!-- <%= @music.to_xml.to_s %> -->
 <% @music.each do |object| %>
-	<%= object.start_time.class.name %> - <%= object.end_time.class.name %> - <%= object.publish_time.class.name %> -
-	<br/> <%= object.from.name %> -
+	<%= object.start_time %> - <%= object.end_time %> - <%= object.publish_time %> -
+	<br/> <%= object.from.name %> - <%= object.from.identifier %>
 	<br/> <%= object.application.name %> -
 	<br/> <%= object.type %> -
 	<br/> <%= object.objects %> -
