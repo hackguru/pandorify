@@ -17,12 +17,13 @@ class Facebook < ActiveRecord::Base
   end
   
   def retrieve_music_activity (since = nil)
-    activity = []
     new_data = []
-    data = []
+    data = nil
     offset_limit = {:offset=>"0", :limit=>"100"}
     if since == nil
+      puts "Since in nil\n"
       begin
+       puts "Pulling data from facebook\n"
        data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
        data.each do |listen|
          new_data << listen
