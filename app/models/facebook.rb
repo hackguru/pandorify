@@ -17,12 +17,34 @@ class Facebook < ActiveRecord::Base
   end
   
   def retrieve_music_activity (since = nil)
-    # activity = []
-    # new_data = []
-    # if since == nil
-    #   beign
-    # end while new
-    FbGraph::User.me(self.access_token).og_actions "music.listens", :offset=>"0", :limit=>"100"
+    activity = []
+    new_data = []
+    data = []
+    offset_limit = {:offset=>"0", :limit=>"100"}
+    if since == nil
+      begin
+       data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
+       data.each do |listen|
+         new_data << listen
+       end
+       offset_limit = new_data.collection.next
+      end while data.count > 0
+    else
+      since_condition = true
+      begin
+       data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
+       data.each do |listen|
+         if listen.publish_time >= since
+           new_data << listen
+         else
+           since_condition = false
+           break
+         end
+       end
+       offset_limit = new_data.collection.next
+      end while data.count > 0 and since_condition
+    end
+    
     # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
     # @music_activity = []
     # new_data = []
