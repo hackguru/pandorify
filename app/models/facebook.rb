@@ -25,10 +25,9 @@ class Facebook < ActiveRecord::Base
        data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
        data.each do |listen|
          new_data << listen
-         puts new_data.count.to_s + " : " + listen.raw_attributes.to_s + '\n'
        end
        offset_limit = data.collection.next
-      end while data.count > 0
+      end while data.count > 0 and new_data.count < 380
     else
       since_condition = true
       begin
@@ -42,7 +41,7 @@ class Facebook < ActiveRecord::Base
          end
        end
        offset_limit = data.collection.next
-      end while data.count > 0 and since_condition
+      end while data.count > 0 and since_condition and new_data.count < 380
     end
     
     # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
