@@ -17,6 +17,7 @@ class Facebook < ActiveRecord::Base
   end
   
   def retrieve_music_activity (since = nil)
+    user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
     new_data = []
     data = nil
     offset_limit = {:offset=>"0", :limit=>"100"}
@@ -24,7 +25,7 @@ class Facebook < ActiveRecord::Base
     if since == nil
       begin
        begin
-         data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
+         data = user.og_actions "music.listens", offset_limit
        rescue
          break
        end
@@ -41,7 +42,7 @@ class Facebook < ActiveRecord::Base
     else
       begin
         begin
-          data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
+          data = user.og_actions "music.listens", offset_limit
         rescue
           break
         end
