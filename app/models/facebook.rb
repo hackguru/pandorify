@@ -42,6 +42,7 @@ class Facebook < ActiveRecord::Base
        end
        offset_limit = data.collection.next
       end while data.count > 0 and since_condition and new_data.count < 380
+      new_data
     end
     
     # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
