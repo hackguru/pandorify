@@ -20,6 +20,7 @@ class Facebook < ActiveRecord::Base
     new_data = []
     data = nil
     offset_limit = {:offset=>"0", :limit=>"100"}
+    puts "before enetring if\n"
     if since == nil
       puts "Since in nil\n"
       begin
