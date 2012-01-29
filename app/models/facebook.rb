@@ -25,7 +25,7 @@ class Facebook < ActiveRecord::Base
        data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
        data.each do |listen|
          new_data << listen
-         puts new_data.count.to_s + " : " + listen.raw_attributes.to_s+'\n'
+         puts new_data.count.to_s + " : " + listen.raw_attributes.to_s + '\n'
        end
        offset_limit = data.collection.next
       end while data.count > 0
