@@ -27,7 +27,7 @@ class Facebook < ActiveRecord::Base
          new_data << listen
        end
        offset_limit = data.collection.next
-      end while data.count > 0 and data.count < 1000
+      end while data.count > 0 and data.count < 800
     else
       since_condition = true
       begin
