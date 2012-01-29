@@ -20,6 +20,7 @@ class Facebook < ActiveRecord::Base
     new_data = []
     data = nil
     offset_limit = {:offset=>"0", :limit=>"100"}
+    since_condition = true
     if since == nil
       begin
        begin
@@ -28,12 +29,16 @@ class Facebook < ActiveRecord::Base
          break
        end
        data.each do |listen|
-         new_data << listen
+         if listen != nil
+           new_data << listen
+         else
+           since_condition = false
+           break
+         end
        end
        offset_limit = data.collection.next
-      end while data.count > 0
+      end while data.count > 0 and since_condition
     else
-      since_condition = true
       begin
         begin
           data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
@@ -41,7 +46,7 @@ class Facebook < ActiveRecord::Base
           break
         end
        data.each do |listen|
-         if listen.publish_time >= since
+         if listen.publish_time >= since and listen != nil
            new_data << listen
          else
            since_condition = false
