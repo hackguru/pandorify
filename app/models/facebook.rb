@@ -25,7 +25,7 @@ class Facebook < ActiveRecord::Base
       puts "Since in nil\n"
       begin
        puts "Pulling data from facebook\n"
-       data = FbGraph::User.me(self.access_token).og_actions "music.listens", offset_limit
+       data = FbGraph::User.me(self.access_token).og_actions "music.listens", :offset=>"0", :limit=>"100"
        data.each do |listen|
          new_data << listen
          puts listen.raw_attributes.to_s+'\n'
