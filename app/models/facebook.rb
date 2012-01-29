@@ -27,7 +27,7 @@ class Facebook < ActiveRecord::Base
          new_data << listen
        end
        offset_limit = data.collection.next
-      end while data.count > 0 and new_data.count < 380
+      end while data.count > 0 and new_data.count < 580
     else
       since_condition = true
       begin
@@ -41,9 +41,9 @@ class Facebook < ActiveRecord::Base
          end
        end
        offset_limit = data.collection.next
-      end while data.count > 0 and since_condition and new_data.count < 380
-      new_data
+      end while data.count > 0 and since_condition and new_data.count < 580
     end
+    new_data
     
     # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
     # @music_activity = []
