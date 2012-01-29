@@ -27,7 +27,7 @@ class Facebook < ActiveRecord::Base
        data.each do |listen|
          new_data << listen
        end
-       offset_limit = new_data.collection.next
+       offset_limit = data.collection.next
       end while data.count > 0
     else
       since_condition = true
@@ -41,7 +41,7 @@ class Facebook < ActiveRecord::Base
            break
          end
        end
-       offset_limit = new_data.collection.next
+       offset_limit = data.collection.next
       end while data.count > 0 and since_condition
     end
     
