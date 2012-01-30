@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120128233126) do
+ActiveRecord::Schema.define(:version => 20120130210528) do
 
   create_table "applications", :force => true do |t|
     t.string   "identifier"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120128233126) do
     t.datetime "updated_at"
     t.boolean  "is_friend_access"
     t.string   "name"
+    t.datetime "last_updated"
   end
 
   add_index "facebooks", ["identifier"], :name => "index_facebooks_on_identifier", :unique => true
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120128233126) do
     t.integer  "song_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "access_token"
   end
 
   add_index "listens", ["facebook_id"], :name => "index_listens_on_facebook_id"

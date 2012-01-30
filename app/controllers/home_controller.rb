@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
   def new
     if authenticated?
-      @music = current_user.retrieve_music_activity
+      @music = current_user.retrieve_music_activity 2.days.ago
     end    
   end
   

@@ -5,6 +5,7 @@ class Facebook < ActiveRecord::Base
   has_many :friendships, :foreign_key => :user_id, :dependent => :destroy
   has_many :reverse_friendships, :class_name => 'Friendship', :foreign_key => :friend_id, :dependent => :destroy
   has_many :friends, :through => :friendships, :source => :friend
+  has_many :listens
   
   
 
@@ -81,14 +82,34 @@ class Facebook < ActiveRecord::Base
   end
 
   def add_music_activity
-    
-  end
+    # if self.last_update == nil
+    #   music_activity = self.retrieve_music_activity
+    # else
+    #   music_activity = self.retrieve_music_activity self.last_update
+    # end
+    # music_activity.each do |object|
+    #   
+    #   new_song = Song.find_or_create_by_identifier()
+    #   new_song.title = 
+    #   new_song.url = 
+    #   new_song.save!
+    #   new_listen = Listen.find_or_create_by_identifier()
+    #   new_listen.facebook_id = self.id
+    #   new_listen.start_time = object.start_time
+    #   new_listen.end_time = object.end_time
+    #   new_listen.publish_time = object.publish_time
+    #   new_listen.song_id = new_song.id
+    #   new_listen.access_token = self.id
+    #   new_song.save!
+    #   
+    # end
+    # 
+  end           
   
   def add_friends
     friend_list = self.profile.friends
     friend_list.each do |friend|
       Facebook.add_as_friend friend, self
-      puts friend.name
     end    
   end
   
