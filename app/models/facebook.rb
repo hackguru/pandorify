@@ -52,7 +52,7 @@ class Facebook < ActiveRecord::Base
           break
         end
        data.each do |listen|
-         if listen.publish_time >= since and listen != nil
+         if listen.publish_time.utc >= since.utc and listen != nil
            new_data << listen
          else
            since_condition = false
@@ -119,9 +119,17 @@ class Facebook < ActiveRecord::Base
   
   def add_friends
     if !self.is_friend_access
-      friend_list = self.profile.friends
+      begin
+        friend_list = self.profile.friends
+      rescue
+        return
+      end
       friend_list.each do |friend|
-        Facebook.add_as_friend friend, self
+        begin
+          Facebook.add_as_friend friend, self
+        rescue
+          next
+        end
       end
     end    
   end
