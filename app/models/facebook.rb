@@ -82,10 +82,10 @@ class Facebook < ActiveRecord::Base
   end
 
   def add_music_activity
-    if self.last_update == nil
+    if self.last_updated == nil
       music_activity = self.retrieve_music_activity
     else
-      music_activity = self.retrieve_music_activity self.last_update
+      music_activity = self.retrieve_music_activity self.last_updated
     end
 
     music_activity.each do |object|
@@ -126,7 +126,7 @@ class Facebook < ActiveRecord::Base
     time_for_update = Time.now
     self.add_friends
     self.add_music_activity
-    self.last_update = time_for_update
+    self.last_updated = time_for_update
     self.save!
   end
   
