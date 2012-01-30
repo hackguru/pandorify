@@ -9,11 +9,11 @@ class Facebook < ActiveRecord::Base
   
 
   def profile
-    @profile ||= FbGraph::User.me(self.access_token).fetch
+    @profile ||= FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
   end
 
   def retrieve_music
-    @music ||= FbGraph::User.me(self.access_token).fetch.music
+    @music ||= FbGraph::User.fetch(self.identifier, :access_token => self.access_token).fetch.music
   end
   
   def retrieve_music_activity (since = nil)
@@ -82,6 +82,14 @@ class Facebook < ActiveRecord::Base
 
   def add_music_activity
     
+  end
+  
+  def add_friends
+    friend_list = self.profile.friends
+    friend_list.each do |friend|
+      Facebook.add_as_friend friend, self
+      puts friend.name
+    end    
   end
   
   class << self
