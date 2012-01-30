@@ -18,8 +18,12 @@ class Facebook < ActiveRecord::Base
   end
   
   def retrieve_music_activity (since = nil)
-    user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
     new_data = []
+    begin
+      user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
+    rescue
+      return new_data
+    end
     data = nil
     offset_limit = {:offset=>"0", :limit=>"100"}
     since_condition = true
