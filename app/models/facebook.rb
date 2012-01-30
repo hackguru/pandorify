@@ -82,35 +82,52 @@ class Facebook < ActiveRecord::Base
   end
 
   def add_music_activity
-    # if self.last_update == nil
-    #   music_activity = self.retrieve_music_activity
-    # else
-    #   music_activity = self.retrieve_music_activity self.last_update
-    # end
-    # music_activity.each do |object|
-    #   
-    #   new_song = Song.find_or_create_by_identifier()
-    #   new_song.title = 
-    #   new_song.url = 
-    #   new_song.save!
-    #   new_listen = Listen.find_or_create_by_identifier()
-    #   new_listen.facebook_id = self.id
-    #   new_listen.start_time = object.start_time
-    #   new_listen.end_time = object.end_time
-    #   new_listen.publish_time = object.publish_time
-    #   new_listen.song_id = new_song.id
-    #   new_listen.access_token = self.id
-    #   new_song.save!
-    #   
-    # end
-    # 
+    if self.last_update == nil
+      music_activity = self.retrieve_music_activity
+    else
+      music_activity = self.retrieve_music_activity self.last_update
+    end
+
+    music_activity.each do |object|
+      
+      new_application = Application.find_or_create_by_identifier(object.raw_attributes["application"]["id"])
+      new_application.name = object.raw_attributes["application"]["name"]
+      new_application.save!
+      
+      new_song = Song.find_or_create_by_identifier(object.raw_attributes["data"]["song"]["id"])
+      new_song.title = object.raw_attributes["data"]["song"]["title"]
+      new_song.url = object.raw_attributes["data"]["song"]["url"]
+      new_song.application_id = new_application 
+      new_song.save!
+      
+      new_listen = Listen.find_or_create_by_identifier(object.raw_attributes["id"])
+      new_listen.facebook_id = self.id
+      new_listen.start_time = object.start_time
+      new_listen.end_time = object.end_time
+      new_listen.publish_time = object.publish_time
+      new_listen.song_id = new_song.id
+      new_listen.access_token = object.raw_attributes["access_token"]
+      new_song.save!
+      
+    end
+    
   end           
   
   def add_friends
-    friend_list = self.profile.friends
-    friend_list.each do |friend|
-      Facebook.add_as_friend friend, self
+    if !self.is_friend_access
+      friend_list = self.profile.friends
+      friend_list.each do |friend|
+        Facebook.add_as_friend friend, self
+      end
     end    
+  end
+  
+  def update_me
+    time_for_update = Time.now
+    self.add_friends
+    self.add_music_activity
+    self.last_update = time_for_update
+    self.save!
   end
   
   class << self
@@ -166,6 +183,13 @@ class Facebook < ActiveRecord::Base
       current_user.friends << _fb_user_ if !friends.include? _fb_user_
        _fb_user_    
     end
+    
+    def update_all
+      Facebook.all.each do |user|
+        user.update_me
+      end
+    end
+    
   end
 
 end
