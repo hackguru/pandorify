@@ -101,13 +101,13 @@ class Facebook < ActiveRecord::Base
       new_song.save!
       
       new_listen = Listen.find_or_create_by_identifier(object.raw_attributes["id"])
-      new_listen.facebook_id = self.id.to_i
-      new_listen.start_time = object.start_time.to_s
-      new_listen.end_time = object.end_time.to_s
-      new_listen.publish_time = object.publish_time.to_s
-      new_listen.song_id = new_song.id.to_i
+      new_listen.facebook = self
+      new_listen.start_time = object.start_time
+      new_listen.end_time = object.end_time
+      new_listen.publish_time = object.publish_time
+      new_listen.song = new_song
       new_listen.access_token = object.raw_attributes["access_token"]
-      new_song.save!
+      new_listen.save!
       
     end
     
