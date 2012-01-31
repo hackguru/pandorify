@@ -18,11 +18,11 @@ class Song < ActiveRecord::Base
       new_artist_url = new_info['track']['artists'][0]['href'].sub("spotify:artist:","http://open.spotify.com/artist/").strip
       
       new_album = Album.find_or_create_by_url(new_album_url)
-      new_album.name = new_info['track']['album']['name']
+      new_album.name = new_info['track']['album']['name'][0..255]
       self.album = new_album
       
       new_artist = Artist.find_or_create_by_url(new_artist_url)
-      new_artist.name = new_info['track']['artists'][0]['name']
+      new_artist.name = new_info['track']['artists'][0]['name'][0..255]
       self.artist = new_artist
       
       self.save!
