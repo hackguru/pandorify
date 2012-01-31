@@ -12,9 +12,9 @@ class Song < ActiveRecord::Base
   
 
   scope :common_songs, lambda { |*args| {
-        :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count > 1",
+        :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
         :joins => "JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id AND (#{Facebook.table_name}.id = #{args.first.id} OR #{Facebook.table_name}.id = #{args.second.id})",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id HAVING COUNT(DISTINCT #{Facebook.table_name}.id) > 2",
         :order => "coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
   
