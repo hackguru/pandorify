@@ -12,7 +12,7 @@ class Song < ActiveRecord::Base
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request).body
       new_info = JSON.parse(response)
-      self.populairty = new_info['track']['popularity']
+      self.popularity = new_info['track']['popularity']
       
       new_album_url = new_info['track']['album']['href'].sub("spotify:album:","http://open.spotify.com/album/").strip
       new_artist_url = new_info['track']['artists'][0]['href'].sub("spotify:artist:","http://open.spotify.com/artist/").strip
