@@ -21,7 +21,7 @@ class Song < ActiveRecord::Base
       new_album.name = new_info['track']['album']['name']
       self.album = new_album
       
-      new_artist = Album.find_or_create_by_url(new_artist_url)
+      new_artist = Artist.find_or_create_by_url(new_artist_url)
       new_artist.name = new_info['track']['artists'][0]['name']
       self.artist = new_artist
       
