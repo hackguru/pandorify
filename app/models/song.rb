@@ -42,7 +42,11 @@ class Song < ActiveRecord::Base
   
     def update_popularity_all
       Song.all.each do |object|
-        object.update_popularity
+        begin
+          object.update_popularity
+        rescue
+          next
+        end
       end
     end
     
