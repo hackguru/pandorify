@@ -16,3 +16,7 @@ end
 task :update => :environment do
   Facebook.update_all
 end
+
+task :user_listens => :environment do
+  puts Facebook.count
+end
