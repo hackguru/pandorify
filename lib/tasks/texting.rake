@@ -24,3 +24,9 @@ end
 task :update_songs => :environment do
   Song.update_popularity_all
 end
+
+task :update_songs => :environment do
+  e = Facebook.find_by_name("Edward Mehr")
+  g = Facebook.find_by_name("Gabe Audick")
+  puts Song.common_songs(e,g).to_s
+end
