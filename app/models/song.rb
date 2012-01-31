@@ -37,7 +37,15 @@ class Song < ActiveRecord::Base
      end   
   end
   
-  def update_popularity_all
+  class << self
+    extend ActiveSupport::Memoizable
+  
+    def update_popularity_all
+      Song.all.each do |object|
+        object.update_popularity
+      end
+    end
     
   end
+  
 end

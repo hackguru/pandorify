@@ -20,3 +20,7 @@ end
 task :user_listens => :environment do
   puts Facebook.count
 end
+
+task :update_songs => :environment do
+  Song.update_popularity_all
+end
