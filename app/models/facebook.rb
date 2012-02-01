@@ -7,7 +7,6 @@ class Facebook < ActiveRecord::Base
   has_many :friends, :through => :friendships, :source => :friend
   has_many :listens
   
-  
 
   def profile
     @profile ||= FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
