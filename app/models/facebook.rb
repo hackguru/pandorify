@@ -141,6 +141,20 @@ class Facebook < ActiveRecord::Base
     self.save!
   end
   
+  def list_of_friends_with_most_in_common
+    result = []
+    self.friends.each do |fri|
+      begin
+        common_list = Song.common_songs self,fri
+        result << [fri, common_list.size]
+      rescue
+        next
+      end
+    end
+    result.sort! { |a,b| -a[1] <=> -b[1] }
+    result
+  end
+  
   class << self
     extend ActiveSupport::Memoizable
 
