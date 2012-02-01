@@ -148,7 +148,7 @@ class Facebook < ActiveRecord::Base
         common_list = Song.common_songs self,fri
         size = 0
         common_list.each do |obj|
-          size++
+          size += 1
         end
         result << [fri, size]
       rescue
