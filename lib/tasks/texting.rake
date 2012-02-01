@@ -29,8 +29,8 @@ task :run_common_song => :environment do
   e = Facebook.find_by_name("Edward Mehr")
   g = Facebook.find_by_name("Gabe Audick") 
   s = e.list_of_friends_with_most_in_common 
-  puts s.size
+  puts s.size.to_s
   s.each do |obj|
-    puts obj[0].name + " : " + obj[1]
+    puts obj[0].name + " : " + obj[1].to_s
   end
 end
