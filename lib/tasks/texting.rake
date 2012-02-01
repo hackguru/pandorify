@@ -28,5 +28,7 @@ end
 task :run_common_song => :environment do
   e = Facebook.find_by_name("Edward Mehr")
   g = Facebook.find_by_name("Gabe Audick")
-  puts Song.common_songs(e,g).to_s
+  s = Song.song_based_on_sorted_listens_for_user e
+  s1= e.listens.song_based_on_sorted_listens
+  puts s.size + " vs " + s1.size
 end
