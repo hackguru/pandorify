@@ -31,6 +31,7 @@ task :run_common_song => :environment do
   g = Facebook.find_by_name("Gabe Audick") 
   s = e.list_of_friends_with_most_in_common 
   after = Time.now
+  puts before.to_s + after.to_s
   puts (after - before).to_s
   puts s.size.to_s
   s.each do |obj|
