@@ -155,7 +155,7 @@ class Facebook < ActiveRecord::Base
         next
       end
     end
-    # result.sort! { |a,b| -a[1] <=> -b[1] }
+    result.sort! { |a,b| -a[1] <=> -b[1] }
     result
   end
   
