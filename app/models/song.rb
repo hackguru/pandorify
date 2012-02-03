@@ -82,7 +82,7 @@ class Song < ActiveRecord::Base
     end
 
     def update_tiny_song_id
-      list = Song.all(:conditions => {:tiny_song_id => nil})
+      list = Song.all(:conditions => {:tiny_song => nil})
       list.each do |obj|
         # begin
           c = Curl::Easy.perform("http://tinysong.com/b/#{CGI.escape(obj.title.to_s + ' ' + obj.album.name.to_s + ' ' + obj.artist.name.to_s)}?format=json&key=186bd60f3a33be26da02d62d334bddf4") # FROM Tinysong
