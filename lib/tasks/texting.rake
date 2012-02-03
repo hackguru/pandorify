@@ -24,7 +24,7 @@ end
 
 task :delete_recom => :environment do
   Recommendation.all.each do |rec|
-    rec.destroy!
+    rec.destroy
   end
 end
 
