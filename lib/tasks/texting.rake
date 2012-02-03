@@ -27,7 +27,7 @@ task :user_listens => :environment do
 end
 
 task :update_songs => :environment do
-  Song.update_popularity_all
+  Song.update_songs
 end
 
 task :run_common_song => :environment do

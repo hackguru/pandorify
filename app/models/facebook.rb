@@ -189,8 +189,7 @@ class Facebook < ActiveRecord::Base
           number_of_songs -= 1
         end
       end
-    end
-    
+    end    
   end
   
   class << self
@@ -250,6 +249,10 @@ class Facebook < ActiveRecord::Base
     def update_all
       Facebook.all.each do |user|
         user.update_me
+      end
+      #updating recommendations:
+      Facebook.find(:all,:conditions => ["is_friend_access = ?", false]).each do |user|
+        user.update_recommendations
       end
     end
     
