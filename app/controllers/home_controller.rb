@@ -51,7 +51,7 @@ class HomeController < ApplicationController
     sort_common_artists.take(30).each do |pair|
       begin
         # c = Curl::Easy.perform("http://ws.spotify.com/search/1/track.json?q=#{CGI.escape pair[0].to_s}") # FROM SPOTIFY 
-        c = Curl::Easy.perform("http://tinysong.com/s/#{CGI.escape pair[0].to_s.sub(" ","+")}?format=json&limit=#{[32,2**pair[1]-1].min}&key=186bd60f3a33be26da02d62d334bddf4") # FROM Tinysong      
+        c = Curl::Easy.perform("http://tinysong.com/s/#{CGI::escape pair[0].to_s.sub(" ","+")}?format=json&limit=#{[32,2**pair[1]-1].min}&key=186bd60f3a33be26da02d62d334bddf4") # FROM Tinysong      
       rescue
         next
       end
