@@ -17,6 +17,11 @@ task :update => :environment do
   Facebook.update_all
 end
 
+task :update_recom => :environment do
+  e = Facebook.find_by_name("Edward Mehr")
+  e.update_recommendations
+end
+
 task :user_listens => :environment do
   puts Facebook.count
 end
@@ -38,5 +43,3 @@ task :run_common_song => :environment do
     puts obj[0].name + " : " + obj[1].to_s
   end
 end
-
-

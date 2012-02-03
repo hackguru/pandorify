@@ -6,6 +6,10 @@ class Facebook < ActiveRecord::Base
   has_many :reverse_friendships, :class_name => 'Friendship', :foreign_key => :friend_id, :dependent => :destroy
   has_many :friends, :through => :friendships, :source => :friend
   has_many :listens
+  has_many :songs, :through => :listens, :source => :song
+  has_many :recommendations, :dependent => :destroy
+  has_many :recommendeds, :through => :recommendations, :source => :song
+  
   
 
   def profile
@@ -157,6 +161,36 @@ class Facebook < ActiveRecord::Base
     end
     result.sort! { |a,b| -a[1] <=> -b[1] }
     result
+  end
+  
+  def update_recommendations
+    list = self.list_of_friends_with_most_in_common
+    sum = 0
+    list.each do |obj|
+      break if obj[1] == 0
+      sum += obj[1]
+    end
+    
+    if sum == 0
+      return
+    end
+    
+    list.each do |obj|
+      break if obj[1] == 0      
+      number_of_songs = (obj[1]/sum).to_i
+      list_of_songs = Song.song_based_on_sorted_listens_by_user(obj[0])
+      list_of_songs.each do |song|
+        break if number_of_songs == 0
+        if self.songs.include? song
+          next
+        else
+          recom = Recommendation.create(:facebook => self, :song => song, :common_rank => obj[1])
+          recom.save!
+          number_of_songs -= 0
+        end
+      end
+    end
+    
   end
   
   class << self

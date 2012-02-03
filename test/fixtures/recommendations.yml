@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  facebook_id: 1
+  song_id: 1
+  common_rank: 1
+
+two:
+  facebook_id: 1
+  song_id: 1
+  common_rank: 1
