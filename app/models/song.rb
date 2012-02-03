@@ -82,15 +82,15 @@ class Song < ActiveRecord::Base
 
     def update_tiny_song_id
       list = Song.all(:conditions => {:tiny_song_id => nil})
-      list.each do |song|
+      list.each do |obj|
         begin
-          c = Curl::Easy.perform("http://tinysong.com/b/#{CGI.escape song.name.to_s.sub(" ","+")}?format=json&key=186bd60f3a33be26da02d62d334bddf4") # FROM Tinysong
+          c = Curl::Easy.perform("http://tinysong.com/b/#{CGI.escape obj.name.to_s.sub(" ","+")}?format=json&key=186bd60f3a33be26da02d62d334bddf4") # FROM Tinysong
         rescue
           next
         end
         parsed_json = ActiveSupport::JSON.decode(c.body_str)
-        song.tiny_song_id = parsed_json['SongID']
-        song.save!
+        obj.tiny_song_id = parsed_json['SongID']
+        obj.save!
       end
     end
     
