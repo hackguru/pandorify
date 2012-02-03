@@ -8,13 +8,13 @@ class Song < ActiveRecord::Base
   scope :song_based_on_sorted_listens_by_user,
         :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
         :joins => "LEFT JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id LEFT JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song",
         :order => "user_count DESC, coalesce(#{Song.table_name}.popularity, 0) DESC"
   
   scope :common_songs, lambda { |*args| {
         :select => "#{Song.table_name}.*",
         :joins => "JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id AND (#{Facebook.table_name}.id = #{args.first.id} OR #{Facebook.table_name}.id = #{args.second.id})",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song",
         :having => "count(DISTINCT #{Facebook.table_name}.id) > 1",
         :order => "coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
@@ -22,7 +22,7 @@ class Song < ActiveRecord::Base
   scope :not_common_songs, lambda { |*args| {
         :select => "#{Song.table_name}.*",
         :joins => "JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id AND (#{Facebook.table_name}.id = #{args.first.id} OR #{Facebook.table_name}.id = #{args.second.id})",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song",
         :having => "count(DISTINCT #{Facebook.table_name}.id) = 1",
         :order => "coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
@@ -30,7 +30,7 @@ class Song < ActiveRecord::Base
   scope :song_based_on_sorted_listens_for_user, lambda { |user| {
         :select => "#{Song.table_name}.*, count(#{Listen.table_name}.id) as listen_count",
         :joins => "JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id AND #{Facebook.table_name}.id = #{user.id}",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song",
         :order => "listen_count DESC, coalesce(#{Song.table_name}.popularity,0) DESC"  
   }}
 
