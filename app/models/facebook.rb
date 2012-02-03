@@ -171,27 +171,26 @@ class Facebook < ActiveRecord::Base
       sum += obj[1]
     end
     
-    puts sum.to_s
-    
     if sum == 0
       return
     end
     
-    # list.each do |obj|
-    #   break if obj[1] == 0      
-    #   number_of_songs = (obj[1]/sum).to_i
-    #   list_of_songs = Song.song_based_on_sorted_listens_by_user(obj[0])
-    #   list_of_songs.each do |song|
-    #     break if number_of_songs == 0
-    #     if self.songs.include? song
-    #       next
-    #     else
-    #       recom = Recommendation.create(:facebook => self, :song => song, :common_rank => obj[1])
-    #       recom.save!
-    #       number_of_songs -= 0
-    #     end
-    #   end
-    # end
+    list.each do |obj|
+      break if obj[1] == 0      
+      number_of_songs = (obj[1]/sum).to_i
+      puts 'number_of_songs : ' number_of_songs.to_s
+      # list_of_songs = Song.song_based_on_sorted_listens_by_user(obj[0])
+      # list_of_songs.each do |song|
+      #   break if number_of_songs == 0
+      #   if self.songs.include? song
+      #     next
+      #   else
+      #     recom = Recommendation.create(:facebook => self, :song => song, :common_rank => obj[1])
+      #     recom.save!
+      #     number_of_songs -= 0
+      #   end
+      # end
+    end
     
   end
   
