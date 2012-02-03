@@ -12,6 +12,12 @@ class Facebook < ActiveRecord::Base
   # has_many :commended_songs_by_me, :foreign_key => :recommended_by_id, :through => :recommendations, :source => :song
   has_many :recommendations_because_of_me, :class_name => 'Recommendation', :foreign_key => :recommended_by_id
   
+  scope :users_listen_to, lambda { |song| {
+        :select => "#{Facebook.table_name}.*, count(#{Listen.table_name}.id) as listen_count",
+        :joins => "LEFT JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id LEFT JOIN #{Song.table_name} ON #{Listen.table_name}.song_id = #{Song.table_name}.id AND #{Song.table_name}.id = #{song.id}",
+        :group => "#{Facebook.table_name}.id, #{Facebook.table_name}.identifier, #{Facebook.table_name}.access_token, #{Facebook.table_name}.created_at, #{Facebook.table_name}.updated_at, #{Facebook.table_name}.is_friend_access, #{Facebook.table_name}.name, #{Facebook.table_name}.last_updated",
+        :order => "listen_count DESC"
+  }}
 
   def profile
     @profile ||= FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
