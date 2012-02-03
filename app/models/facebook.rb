@@ -9,7 +9,7 @@ class Facebook < ActiveRecord::Base
   has_many :songs, :through => :listens, :source => :song
   has_many :recommendations, :dependent => :destroy
   has_many :recommendeds, :through => :recommendations, :source => :song
-  
+  has_many :commendeds, :foreign_key => :recommended_by_id, :thourgh => :recommendations, :source => :song
   
 
   def profile
@@ -184,7 +184,7 @@ class Facebook < ActiveRecord::Base
         if self.songs.include? song
           next
         else
-          recom = Recommendation.create(:facebook => self, :song => song, :common_rank => obj[1])
+          recom = Recommendation.create(:facebook => self, :song => song, :common_rank => obj[1], :recommend_by => obj[0])
           recom.save!
           number_of_songs -= 1
         end

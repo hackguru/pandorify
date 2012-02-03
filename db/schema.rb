@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120203055559) do
+ActiveRecord::Schema.define(:version => 20120203214011) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20120203055559) do
     t.integer  "common_rank"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recommended_by_id"
   end
 
 # Could not dump table "songs" because of following StandardError
