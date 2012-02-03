@@ -81,7 +81,7 @@ class Song < ActiveRecord::Base
     end
 
     def update_tiny_song_id
-      Song.all(:conditions => 'tiny_song_id = NULL').each do |song|
+      Song.all(:conditions => {:tiny_song_id => nil}).each do |song|
         begin
           c = Curl::Easy.perform("http://tinysong.com/b/#{CGI.escape song.name.to_s.sub(" ","+")}?format=json&key=186bd60f3a33be26da02d62d334bddf4") # FROM Tinysong
         rescue

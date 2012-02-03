@@ -43,3 +43,8 @@ task :run_common_song => :environment do
     puts obj[0].name + " : " + obj[1].to_s
   end
 end
+
+task :update_tiny_song_id => :environment do
+  Song.update_tiny_song_id
+end
+
