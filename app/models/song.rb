@@ -87,7 +87,7 @@ class Song < ActiveRecord::Base
         begin
           c = Curl::Easy.perform("http://tinysong.com/b/#{CGI.escape(obj.title.to_s + ' ' + obj.artist.name.to_s)}?format=json&key=6ac3d5b1d6d3cd0af4a54e32961edd58") # FROM Tinysong
           parsed_json = ActiveSupport::JSON.decode(c.body_str)
-          puts parsed_json.to_s
+          puts parsed_json['SongID'].to_s
           break
           #obj.tiny_song = parsed_json['SongID']
           # obj.save!          
