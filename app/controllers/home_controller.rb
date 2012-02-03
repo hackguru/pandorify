@@ -1,5 +1,3 @@
-require 'cgi'
-
 class HomeController < ApplicationController
   before_filter :require_authentication, :only => :play
   
