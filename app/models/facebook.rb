@@ -177,7 +177,7 @@ class Facebook < ActiveRecord::Base
     
     list.each do |obj|
       break if obj[1] == 0      
-      number_of_songs = (obj[1].to_f/sum.to_f).to_i
+      number_of_songs = (obj[1].to_f/sum.to_f*20).to_i
       puts 'obj1 : ' + obj[1].to_s + 'sum : ' + sum.to_s
       puts 'number_of_songs : ' + number_of_songs.to_s
       # list_of_songs = Song.song_based_on_sorted_listens_by_user(obj[0])
