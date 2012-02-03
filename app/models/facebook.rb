@@ -184,6 +184,8 @@ class Facebook < ActiveRecord::Base
         break if number_of_songs == 0
         if self.songs.include? song
           next
+        elsif self.recommendeds.include? song
+          next
         else
           recom = Recommendation.create(:facebook => self, :song => song, :common_rank => obj[1], :recommended_by => obj[0])
           recom.save!
