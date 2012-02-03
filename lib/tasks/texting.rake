@@ -22,6 +22,12 @@ task :update_recom => :environment do
   e.update_recommendations
 end
 
+task :delete_recom => :environment do
+  Recommendation.all.each do |rec|
+    rec.destroy!
+  end
+end
+
 task :user_listens => :environment do
   puts Facebook.count
 end
