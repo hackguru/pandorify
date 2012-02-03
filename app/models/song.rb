@@ -84,7 +84,9 @@ class Song < ActiveRecord::Base
       Song.all(:conditions => {:tiny_song_id => nil}).each do |song|
         begin
           c = Curl::Easy.perform("http://tinysong.com/b/#{CGI.escape song.name.to_s.sub(" ","+")}?format=json&key=186bd60f3a33be26da02d62d334bddf4") # FROM Tinysong
+          puts "C_BODY: " + c.body_str
         rescue
+          puts "JUST SKIPPED"
           next
         end
         parsed_json = ActiveSupport::JSON.decode(c.body_str)
