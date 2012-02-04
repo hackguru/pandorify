@@ -7,23 +7,15 @@
         <img class="cover" src="<%= obj.album.cover_pic_url if obj.album.cover_pic_url!=nil %>" />
 		<%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
         <a href="#" class="add" id="<%= obj.id %>"></a>
-		<div class="contextMenu" id="<%= obj.id %>">
-
-		      <ul>
-
-		        <li id="open"><img src="#" /> Open</li>
-
-		        <li id="email"><img src="#" /> Email</li>
-
-		        <li id="save"><img src="#" /> Save</li>
-
-		        <li id="close"><img src="#" /> Close</li>
-
-		      </ul>
-
-		    </div>
-      </div>
-      <div class="info">
+		<div id="my-popover">
+		  <div class="header">
+		    ...
+		  </div>
+		  <div class="content">
+		    ...
+		  </div>
+		</div>
+		<div class="info">
         <p class="song bold"><%= obj.title %></p>
         <p class="artist"><%= obj.artist.name %></p>
 		<% count = 0 %>
@@ -40,37 +32,8 @@
 	$('.album img').load(function() {
 		$(this).parent().addClass('loaded');
 	});
-	$('a.add').contextMenu($(this).attr("id"), {
-
-	      bindings: {
-
-	        'open': function(t) {
-
-	          alert('Trigger was '+t.id+'\nAction was Open');
-
-	        },
-
-	        'email': function(t) {
-
-	          alert('Trigger was '+t.id+'\nAction was Email');
-
-	        },
-
-	        'save': function(t) {
-
-	          alert('Trigger was '+t.id+'\nAction was Save');
-
-	        },
-
-	        'delete': function(t) {
-
-	          alert('Trigger was '+t.id+'\nAction was Delete');
-
-	        }
-
-	      }
-
-	    });
+	$('a.add').popover({header: '#my-popover > .header',
+	    content: '#my-popover > .content'});
 	</script>
 </div>
 <%else%>
