@@ -1,9 +1,1 @@
-$("#player").html(
-	'<object width="250" height="40">'+
-	'<param name="movie" value="http://listen.grooveshark.com/songWidget.swf">'+
-	'<param name="wmode" value="window">'+
-	'<param name="allowScriptAccess" value="always">'+
-	'<param name="flashvars" value="hostname=cowbell.grooveshark.com&amp;widgetID=<%= @id %>&amp;style=metal&amp;p=1">'+
-	'<embed src="http://listen.grooveshark.com/songWidget.swf" type="application/x-shockwave-flash" width="250" height="40" flashvars="hostname=cowbell.grooveshark.com&amp;widgetID=<%= @id %>&amp;style=metal&amp;p=0" allowscriptaccess="always" wmode="window">'+
-	'</object>'
-	);
+$("#player").html('<object width="250" height="40" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="gsSong'+<%= @id %>+'" name="gsSong'+<%= @id %>+'"><param name="movie" value="http://grooveshark.com/songWidget.swf" /><param name="wmode" value="window" /><param name="allowScriptAccess" value="always" /><param name="flashvars" value="hostname=cowbell.grooveshark.com&songIDs='+<%= @id %>+'&style=metal&p=1" /><!--[if !IE]>--><object type="application/x-shockwave-flash" data="http://grooveshark.com/songWidget.swf" width="250" height="40"><param name="wmode" value="window" /><param name="allowScriptAccess" value="always" /><param name="flashvars" value="hostname=cowbell.grooveshark.com&songIDs='+<%= @id %>+'&style=metal&p=1" /></object><!--<![endif]--></object>');
