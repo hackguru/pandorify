@@ -6,7 +6,22 @@
       <div class="album">
         <img class="cover" src="<%= obj.album.cover_pic_url if obj.album.cover_pic_url!=nil %>" />
 		<%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
-        <a href="#" class="add"></a>
+        <a href="#" class="add" id="<%= obj.id %>"></a>
+		<div class="contextMenu" id="<%= obj.id %>">
+
+		      <ul>
+
+		        <li id="open"><img src="#" /> Open</li>
+
+		        <li id="email"><img src="#" /> Email</li>
+
+		        <li id="save"><img src="#" /> Save</li>
+
+		        <li id="close"><img src="#" /> Close</li>
+
+		      </ul>
+
+		    </div>
       </div>
       <div class="info">
         <p class="song bold"><%= obj.title %></p>
@@ -25,6 +40,7 @@
 	$('.album img').load(function() {
 		$(this).parent().addClass('loaded');
 	});
+	$('a.add').contextMenu($(this).attr("id"));
 	</script>
 </div>
 <%else%>
