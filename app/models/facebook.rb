@@ -28,6 +28,17 @@ class Facebook < ActiveRecord::Base
     @music ||= FbGraph::User.fetch(self.identifier, :access_token => self.access_token).fetch.music
   end
   
+  
+  def update_pic
+    begin
+      user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
+    rescue
+      return
+    end
+    self.pic_url =user.picture
+    self.save!
+  end
+  
   def retrieve_music_activity (since = nil)
     new_data = []
     begin
@@ -149,6 +160,7 @@ class Facebook < ActiveRecord::Base
     time_for_update = Time.now
     self.add_friends
     self.add_music_activity
+    self.update_pic
     self.last_updated = time_for_update
     self.save!
   end
@@ -233,6 +245,7 @@ class Facebook < ActiveRecord::Base
       _fb_user_.access_token = fb_user.access_token.access_token #why two access_token?
       _fb_user_.name = fb_user.name
       _fb_user_.is_friend_access = false
+      _fb_user_.pic_url = fb_user.picture
       _fb_user_.save!
       _fb_user_
     end
@@ -245,6 +258,7 @@ class Facebook < ActiveRecord::Base
         _fb_user_.identifier = fb_user.identifier.try(:to_s)
         _fb_user_.access_token = fb_user.access_token
         _fb_user_.is_friend_access = true
+        _fb_user_.pic_url = fb_user.picture
       end
       if _fb_user_.access_token != fb_user.access_token.try(:to_s)
         _fb_user_.access_token = fb_user.access_token.try(:to_s)
@@ -257,6 +271,7 @@ class Facebook < ActiveRecord::Base
     end
     
     def update_all
+      #updatinf frienads and songs
       Facebook.all.each do |user|
         user.update_me
       end

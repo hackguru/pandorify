@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120203214011) do
+ActiveRecord::Schema.define(:version => 20120204014622) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20120203214011) do
     t.boolean  "is_friend_access"
     t.string   "name"
     t.datetime "last_updated"
+    t.text     "pic_url"
   end
 
   add_index "facebooks", ["identifier"], :name => "index_facebooks_on_identifier", :unique => true
