@@ -9,9 +9,8 @@
         <a href="#" class="add" id="<%= obj.id %>"></a>
 		<div id="my-popover" style="display:none">
 		  <div class="header">
-		    ...
 		  </div>
-		  <div class="content">
+		  <div class="content" id="<%= obj.id %>">
 		    ...
 		  </div>
 		</div>
@@ -35,7 +34,7 @@
 		$(this).parent().addClass('loaded');
 	});
 	$('a.add').popover({header: '#my-popover > .header',
-	    content: '#my-popover > .content'});
+	    content: '#my-popover > div[id='+$(this).attr("id")+']'});
 	</script>
 </div>
 <%else%>

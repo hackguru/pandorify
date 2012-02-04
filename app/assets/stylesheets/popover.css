@@ -19,7 +19,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: opacity 0.25s linear; }
   .popover.active {
-    opacity: 1; }
+    opacity: 1; z-index: 9;}
   .popover > .triangle {
     position: absolute;
     top: -50px;
