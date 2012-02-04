@@ -16,7 +16,7 @@ $(function() {
   });
 });
 
-$('.playlist.add a').clickfunction() {
+$('.playlist.add a').click(function() {
 	$('.playlist.add').before("<li class='playlist' style='display: none;' ><a href='#'><span class='icon'></span><%= pl.name %></a></li>");
 	$('.playlist.add').prev().slideDown("fast");
 });
