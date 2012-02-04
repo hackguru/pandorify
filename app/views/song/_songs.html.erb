@@ -33,8 +33,7 @@
 	$('.album img').load(function() {
 		$(this).parent().addClass('loaded');
 	});
-	$('a.add').popover({header: '#my-popover > .header',
-	    content: 'div[id='+$(this).attr("id")+']'});
+	$('a.add').popover({header: '#my-popover > .header', content: 'div#'+$(this).attr("id")});
 	</script>
 </div>
 <%else%>
