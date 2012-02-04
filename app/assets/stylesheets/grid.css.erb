@@ -1,0 +1,128 @@
+.grid {
+  padding: 20px 0;
+}
+
+.grid-space {
+  float: left;
+  width: 20%;
+  height: 260px;
+  text-align: center;
+}
+
+.grid-item {
+  width: 148px;
+  margin: 0 auto;
+}
+
+.album {
+  position: relative;
+  height: 148px;
+  background: url(<%= asset_path 'grid/record.png' %>) center center no-repeat;
+  margin: 0 auto;
+}
+
+.album img {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.album .play {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  margin-top: -24px;
+  left: 50%;
+  margin-left: -24px;
+  height: 47px;
+  width: 47px;
+  background: url(<%= asset_path 'grid/buttons.png' %>) 0 0 no-repeat;
+}
+
+.album .play:active {
+  background-position: -1px -64px;
+}
+
+.album .add {
+  display: inline-block;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  height: 37px;
+  width: 37px;
+  background: url(<%= asset_path 'grid/buttons.png' %>) -63px -2px no-repeat;
+}
+
+.album .add:active {
+  background-position: -63px -63px;
+}
+
+.album img,
+.grid-item .play,
+.grid-item .add {
+  opacity: 0;
+ -webkit-transition: opacity 250ms ease-in-out;
+}
+
+.grid-item:hover .play,
+.grid-item:hover .add,
+.album.loaded img {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.grid-item .info {
+  margin-top: 3px;
+}
+
+.grid-item .info p {
+  text-align: left;
+  height: 16px;
+  line-height: 18px;
+}
+
+.grid-item .song {
+  color: #3a465c;
+  font-size: 13px;
+}
+
+.grid-item .artist {
+  color: #5b6371;
+  font-size: 12px;
+}
+
+.grid-item .info .listens {
+  height: 27px;
+  line-height: 27px;
+  color: #9ea2a9;
+  font-size: 11px;
+}
+
+.grid-item .listens .icon.headphones {
+  display: inline-block;
+  height: 15px;
+  width: 14px;
+  margin-right: 4px;
+  background: url(<%= asset_path 'misc-icons.png' %>) -10px -11px no-repeat;
+  vertical-align: text-bottom;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+  .grid-space {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .grid-space {
+    width: 33.33%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .grid-space {
+    width: 50%;
+  }
+}

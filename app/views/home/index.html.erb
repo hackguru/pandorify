@@ -1,4 +1,4 @@
-<% if !authenticated? %>
+<% if authenticated? %>
 <body class="tour">
   <div class="container">
     <a class="logo_dark" href="/">Jolicloud</a>
@@ -47,8 +47,23 @@
       <div id="header-right-container">
         <div id="header-right"></div>
       </div>
-      <section class="grid">
-        
+      <section>
+        <div class="grid">
+          <div class="grid-space">
+            <div class="grid-item">
+              <div class="album">
+                <img class="cover" src="http://upload.wikimedia.org/wikipedia/en/thumb/5/51/Michaeljacksonthrilleralbum.jpg/220px-Michaeljacksonthrilleralbum.jpg" />
+                <a href="#" class="play"></a>
+                <a href="#" class="add"></a>
+              </div>
+              <div class="info">
+                <p class="song bold">We Found Love</p>
+                <p class="artist">Rihanna</p>
+                <p class="listens"><span class="icon headphones"></span>Gabe Audick & 17 others</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   <% end %>

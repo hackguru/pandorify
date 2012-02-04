@@ -89,9 +89,9 @@ nav {
 }
 
 nav section {
-  padding: 11px 0;
-  border-bottom: 1px solid #454549;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 18px 0 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 nav section:last-child {
@@ -101,9 +101,9 @@ nav section:last-child {
 
 nav h3 {
   color: #ECECEC;
-  font-size: 14px;
+  font-size: 16px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-  padding: 0 0 7px 22px;
+  padding: 0 0 6px 23px;
 }
 
 nav li a {
@@ -113,7 +113,7 @@ nav li a {
   font-size: 13px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   margin: 2px 0;
-  padding-left: 22px;
+  padding-left: 20px;
 }
 
 nav li:not(.active):hover {
@@ -134,16 +134,71 @@ nav .icon {
   width: 18px;
   height: 18px;
   background: url(<%= asset_path 'sidebar-icons.png' %>) no-repeat;
-  margin-right: 5px;
+  margin-right: 8px;
   vertical-align: text-bottom;
 }
 
 nav li.hot .icon {
   background-position: 0 2px;
 }
-
 nav li.hot.active .icon {
-  background-position: -27px 2px;
+  background-position: -28px 2px;
+}
+
+nav li.match .icon {
+  background-position: 0 -55px;
+}
+nav li.match.active .icon {
+  background-position: -28px -55px;
+}
+
+nav li.shuffle .icon {
+  background-position: 0 -111px;
+}
+nav li.shuffle.active .icon {
+  background-position: -28px -111px;
+}
+
+nav li.playlist .icon {
+  background-position: 0 -168px;
+}
+nav li.playlist.active .icon {
+  background-position: -28px -168px;
+}
+
+nav li.playlist.queue .icon {
+  background-position: 0 -224px;
+}
+nav li.playlist.queue.active .icon {
+  background-position: -28px -224px;
+}
+
+nav li.playlist.add .icon {
+  background-position: 0 -280px;
+}
+nav li.playlist.add.active .icon {
+  background-position: -28px -280px;
+}
+
+nav li.profile .icon {
+  background-position: 0 -281px;
+}
+nav li.profile.active .icon {
+  background-position: -28px -281px;
+}
+
+nav li.settings .icon {
+  background-position: 0 -337px;
+}
+nav li.settings.active .icon {
+  background-position: -28px -337px;
+}
+
+nav li.logout .icon {
+  background-position: 0 -393px;
+}
+nav li.logout.active .icon {
+  background-position: -28px -393px;
 }
 
 /* ADD: SPRITE STUFF */

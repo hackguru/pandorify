@@ -4,13 +4,15 @@ bg.png: bg-c849ce4bc094a0ffadab9d70a6d8b05b.png
 controls-sprite.png: controls-sprite-920c8539692525818bbdd569d14241f1.png
 dark-blue-bg.png: dark-blue-bg-6039056c1779a2dd1abc6acd292fea19.png
 grey-bg.png: grey-bg-1ecb68d6346ad8659c1d0dffb0b4ba9c.png
-grid/record.png: grid/record-da260f02c1dc83bb5adaea3df108de89.png
+grid/buttons.png: grid/buttons-8386d95fe4659ec4e1951bf5c6fd8c67.png
+grid/record.png: grid/record-05d49c0cb89a91398086d3fd56b70450.png
+grid/shine.png: grid/shine-550e81a721cd907f58b2b4f472b9789d.png
 logo-dark.png: logo-dark-71fa1650a1bb909c6931b68a71a2a8ea.png
 logo.png: logo-f76ca7e8c4e25a138e12802819432b9f.png
 misc-icons.png: misc-icons-52e6e5b206260716314476f8f59f79b2.png
 power.png: power-3761b88fb5d1077870b9aa86682389d3.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
-sidebar-icons.png: sidebar-icons-feab6265345874e579e1d2ad08f2e333.png
+sidebar-icons.png: sidebar-icons-f5344adeeef18e173ca8f57271b15a84.png
 topbar-bg.png: topbar-bg-5cc75f2e3b3f5b0eda2a953caba2a4a6.png
 tour.png: tour-3246309d57795d424e93f4903c9e26bf.png
 tour/intro.png: tour/intro-c524e421a1d6824f25b425658392e76a.png
@@ -18,4 +20,4 @@ jquery.tokeninput.js: jquery.tokeninput-63f600cc9a24aaeb5234244be3acec6c.js
 jquery-ui.min.js: jquery-ui.min-2b432ef5545e6620f94e7638b7574058.js
 jquery.min.js: jquery.min-bd368409099eb0579c0463d2977af8a9.js
 application.js: application-c6e09d8c7fc6b1c99e31e2016b435e2d.js
-application.css: application-edf9540251d21c87122a83b315b5ff6c.css
+application.css: application-867b4363588507bfbd67fcef4773ad27.css
