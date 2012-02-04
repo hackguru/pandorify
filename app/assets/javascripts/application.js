@@ -18,8 +18,12 @@ $(function() {
 
 $(document).ready(function(){	
 	$('.playlist.add a').click(function() {
-	$('.playlist.add').before("<li class='playlist' style='display: none;' ><a href='#'><span class='icon'></span><input type=text></input></a></li>");
+	$('.playlist.add').before("<li class='playlist' style='display: none;' ><a href='#'><span class='icon'></span><form id='new_playlist'><input type='text'/></form><input type=text></input></a></li>");
 	$('.playlist.add').prev().slideDown("fast");
+	$('#new_playlist').submit(function() {
+	  alert('Handler for .submit() called.');
+	  return false;
+	});
 	});
 });
 	
