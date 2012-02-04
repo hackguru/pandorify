@@ -40,7 +40,37 @@
 	$('.album img').load(function() {
 		$(this).parent().addClass('loaded');
 	});
-	$('a.add').contextMenu($(this).attr("id"));
+	$('a.add').contextMenu($(this).attr("id"), {
+
+	      bindings: {
+
+	        'open': function(t) {
+
+	          alert('Trigger was '+t.id+'\nAction was Open');
+
+	        },
+
+	        'email': function(t) {
+
+	          alert('Trigger was '+t.id+'\nAction was Email');
+
+	        },
+
+	        'save': function(t) {
+
+	          alert('Trigger was '+t.id+'\nAction was Save');
+
+	        },
+
+	        'delete': function(t) {
+
+	          alert('Trigger was '+t.id+'\nAction was Delete');
+
+	        }
+
+	      }
+
+	    });
 	</script>
 </div>
 <%else%>
