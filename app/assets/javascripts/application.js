@@ -15,3 +15,8 @@ $(function() {
     theme: "facebook"
   });
 });
+
+$('.playlist.add a').clickfunction() {
+	$('.playlist.add').before("<li class='playlist' style='display: none;' ><a href='#'><span class='icon'></span><%= pl.name %></a></li>");
+	$('.playlist.add').prev().slideDown("fast");
+});
