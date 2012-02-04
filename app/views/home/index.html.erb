@@ -49,6 +49,7 @@
       </div>
       <section>
         <div class="grid">
+		  <% user = Facebook.find_by_identifier(current_user.identifier) %>
 		  <% @songs.each do |obj|%>
           <div class="grid-space">
             <div class="grid-item">
@@ -60,8 +61,8 @@
               <div class="info">
                 <p class="song bold"><%= obj.title %></p>
                 <p class="artist"><%= obj.artist.name %></p>
-				<% count = current_user.users_listen_to(obj).count %>
-				<% name = current_user.users_listen_to(obj).first.name %>
+				<% count = user.find_bycurrent_user.users_listen_to(obj).count %>
+				<% name = user.users_listen_to(obj).first.name %>
                 <p class="listens"><span class="icon headphones"></span><%= name %> & <%= count-1 %> others</p>
               </div>
             </div>
