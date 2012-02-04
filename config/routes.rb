@@ -5,6 +5,11 @@ Pandorify::Application.routes.draw do
   post "home/play"
   
   get "tiny_song/get_id"
+  get "song/hot_songs"
+  get "recommendation/recommended"
+  post "playlist/add"
+  post "playlist/create"
+  post "playlist/create_and_add"
 
   # Connect Site
   resource :facebook, :except => :create do
