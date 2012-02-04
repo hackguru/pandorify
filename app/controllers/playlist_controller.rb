@@ -28,7 +28,7 @@ class PlaylistController < ApplicationController
   end
   
   def play
-    @songs = PLaylist.find(params[:id])
+    @songs = Playlist.find(params[:id])
     respond_to do |format|
        format.js
     end
