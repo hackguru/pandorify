@@ -3,10 +3,11 @@ class HomeController < ApplicationController
   
   def index
     if authenticated?
-      friend_list = current_user.profile.friends
-      friend_list.each do |friend|
-        Facebook.add_as_friend friend, current_user
-      end
+      # friend_list = current_user.profile.friends
+      # friend_list.each do |friend|
+      #   Facebook.add_as_friend friend, current_user
+      # end
+      @songs = Song.song_based_on_sorted_listens_by_friends(current_user).paginate(:page => 1 )
     end
   end
 

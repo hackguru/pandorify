@@ -52,6 +52,7 @@ class Song < ActiveRecord::Base
         :order => "listen_count DESC, coalesce(#{Song.table_name}.popularity,0) DESC"  
   }}
 
+  self.per_page = 20
   
   def update_popularity_and_duration
     if self.application.name == "Spotify"
