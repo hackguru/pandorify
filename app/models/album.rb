@@ -10,4 +10,20 @@ class Album < ActiveRecord::Base
     self.save!
   end
   
+  
+  class << self
+    extend ActiveSupport::Memoizable
+  
+    def update_all_covers
+      Album.all.each do |obj|
+        begin
+          obj.update_album_cover
+        rescue
+          next
+        end
+      end
+    end
+    
+  end
+  
 end
