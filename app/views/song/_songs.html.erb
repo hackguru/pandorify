@@ -29,8 +29,8 @@
 </div>
 <%else%>
 <ul class="list-container">
+  <% songs.each do |obj|%>
   <li class="row">
-	<% songs.each do |obj|%>
     <div class="dynamic">
       <div class="song"><%= obj.title %></div>
       <div class="artist"><%= obj.artist.name %></div>
@@ -58,7 +58,7 @@
         <a href="#" class="add"></a>
       </div>
     </div>
-	<% end %>
   </li>
+  <% end %>
 </ul>
 <%end%>
