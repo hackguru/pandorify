@@ -45,10 +45,12 @@
       <div class="friends">
         <ul class="thumbs">
 		  <% friends = current_user.friends.users_listen_to(obj) %>
-          <li><a href="/profile"><img src="<%=friends[0].pic_url %>" /></a></li>
-          <li><a href="/profile"><img src="<%=friends[1].pic_url %>" /></a></li>
-          <li><a href="/profile"><img src="<%=friends[2].pic_url %>" /></a></li>
-          <li><a href="/profile"><img src="<%=friends[3].pic_url %>" /></a></li>
+		  <% count = 0 %>
+		  <% friends.each do |fri| %>
+		      <li><a href="/profile"><img src="<%=fri.pic_url %>" /></a></li>
+			  <% count += 1%>
+			  <% break if count == 4%>
+		  <% end %>
         </ul>
       </div>
       <div class="actions">
