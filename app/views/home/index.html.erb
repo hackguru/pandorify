@@ -1,22 +1,59 @@
-<div id="main" role="main">
-  <div class="wrapper">
-
-	<% if authenticated? %>
-		<%= form_tag("home/play/", :method => "post") do %>
-		  <h2><%= label_tag(:friend_tokens, "Add your friends:") %><h2/>
-		  <%= text_field_tag(:friend_tokens) %>
-		  <%= submit_tag "Create and play playlist", :class => "button grey play" %>
-		<% end %>
-
-	<% else %>
-        <h2>Discover music the social way.</h2>
-        <p><span class="strong">Pandorify</span> brings together the best of pandora and spotify. We compare the music you and your friends like on Facebook, and create <span class="strong">insanely great</span> playlists for you.</p>
-		<%= link_to "Connect with facebook", new_facebook_path, :class => "button blue" %>
-        <hr class="divider"/>
-        <a href="#" class="button grey">Take a tour</a>
-      </div>
-
-	<% end %>
-
+<% if !authenticated? %>
+<body class="tour">
+  <div class="container">
+    <a class="logo_dark" href="/">Jolicloud</a>
+    <section class="intro">
+      <h2>Discover music the social way.</h2>
+      <p>Find new artists through your friends.</p>
+      <%= link_to "Connect with facebook", new_facebook_path, :class => "facebook" %>
+    </section>
   </div>
-</div>
+  <% else %>
+  <body class="app">
+    <header>
+      <a class="logo" href="/">Jolicloud</a>
+    </header>
+    <nav>
+      <section>
+        <h3>apps</h3>
+        <ul>
+          <li class="start"><a href="#"><span class="icon"></span>Start</a></li>
+          <li class="timeline active"><a href="#"><span class="icon">12</span>Personal Timeline</a></li>
+          <li class="apps"><a href="#"><span class="icon"></span>Apps</a></li>
+          <li class="images"><a href="#"><span class="icon"></span>Images</a></li>
+          <li class="video"><a href="#"><span class="icon"></span>Video</a></li>
+          <li class="music"><a href="#"><span class="icon"></span>Music</a></li>
+          <li class="documents"><a href="#"><span class="icon"></span>Documents</a></li>
+          <li class="links"><a href="#"><span class="icon"></span>Links</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3>playlists</h3>
+        <ul>
+          <li class="evernote"><a href="#"><span class="icon"></span>Evernote</a></li>
+          <li class="facebook"><a href="#"><span class="icon"></span>Facebook</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3>profile</h3>
+        <ul>
+          <li class="logout">
+            <a href="#"><span class="icon"></span>Add New Collection</a>
+            <%= link_to "Logout", facebook_path, :method => :delete, :class => "logout"%>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <div id="right-pane">
+      <div id="header-right-container">
+        <div id="header-right"></div>
+      </div>
+      <section class="grid">
+       asdfasdf
+      </section>
+    </div>
+
+
+
+  <% end %>

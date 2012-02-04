@@ -4,7 +4,6 @@
   <title>Pandorify</title>
   <meta name="description" content="">
   <meta name="author" content="">
-
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,38 +22,21 @@
 
   <meta property="fb:app_id" content="<%= Facebook.config[:client_id] %>">
   <%= stylesheet_link_tag    "application" %>
-  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <div id="container">
 
-    <header>
-      <a href="/" class="logo">Pandorify</a>
-	  <% if authenticated? %>
-	    <%= link_to "Logout", facebook_path, :method => :delete, :class => "logout"%>
-	  <% end %>
-    </header>
+<%= yield %>
 
-
-	<%= yield %>
-	
-    <footer>
-    </footer>
-
-  </div>
-
-	<script src="http://connect.facebook.net/en_US/all.js"></script>
-	<script>
-	  FB.init({
-	    appId: "<%= Facebook.config[:client_id] %>",
-	    cookie: true,
-	    xfbml: true,
-	    oauth: true
-	  });
-	</script>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+  FB.init({
+    appId: "<%= Facebook.config[:client_id] %>",
+    cookie: true,
+    xfbml: true,
+    oauth: true
+  });
+</script>
 
 </body>
 </html>

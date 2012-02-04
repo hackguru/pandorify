@@ -1,0 +1,203 @@
+/*
+ *= require_self
+ *= require_tree
+*/
+
+/* General */
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+textarea,
+input,
+button {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-text-stroke: 1px transparent;
+  -moz-text-stroke: 1px transparent;
+  text-stroke: 1px transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.clear {
+  clear: both;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.lobster {
+  font-family: 'Lobster', san-serif;
+}
+
+/* Layout */
+body {
+  background: url(<%= asset_path 'bg.png' %>) repeat;
+}
+
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 49px;
+  background: url(<%= asset_path 'dark-blue.png' %>) repeat-x;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  display: block;
+  float: left;
+  height: 100%;
+  width: 115px;
+  background: url(<%= asset_path 'logo.png' %>) left center no-repeat;
+  margin-left: 12px;
+  text-indent: -9999px;
+}
+
+.logo_dark {
+  display: block;
+  height: 45px;
+  width: 125px;
+  margin: 100px auto 10px;
+  background: url(<%= asset_path 'logo-dark.png' %>) center center no-repeat;
+  text-indent: -9999px;
+}
+
+/* Sidebar */
+nav {
+  position: fixed;
+  top: 49px;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  overflow-y: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+nav section {
+  padding: 11px 0;
+  border-bottom: 1px solid #454549;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+nav section:last-child {
+  border: none;
+  box-shadow: none;
+}
+
+nav h3 {
+  color: #C9C9CB;
+  font-size: 11px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6) !important;
+  padding-left: 20px;
+  padding-bottom: 2px;
+}
+
+nav li:not(.active):hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+nav li.active,
+nav li:not(.active):active {
+  background: url(<%= asset_path 'active-bg.png' %>) repeat-x;
+}
+
+nav h3,
+nav li a {
+  display: block;
+}
+
+nav .icon {
+  float: left;
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* ADD: SPRITE STUFF */
+
+/* RIGHT PANE */
+#right-pane {
+  position: fixed;
+  top: 0;
+  left: 261px;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  background: #FDFDFE;
+  box-shadow: -7px 0 3px -3px rgba(32, 32, 32, 0.03);
+  border-bottom-left-radius: 4px;
+}
+
+/* Right Pane: Header */
+#header-right-container {
+  position: fixed;
+  top: 0;
+  left: inherit !important;
+  right: inherit !important;
+  height: 49px;
+  z-index: 10;
+  background: url(<%= asset_path 'dark-blue.png' %>) repeat-x;
+}
+
+#header-right {
+  height: inherit;
+  background: url(<%= asset_path 'topbar-bg.png' %>) repeat-x;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 4px;
+  text-align: center;
+}
+
+/* Right Pane: Section */
+#right-pane > section {
+  position: fixed !important;
+  height: auto !important;
+  top: 50px;
+  left: inherit;
+  right: inherit;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 40px;
+  background: #e0e0e0;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+  background: #C9C9CB;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  -webkit-transition: all 500ms ease;
+  margin: 7px;
+}
