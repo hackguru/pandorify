@@ -25,10 +25,10 @@
       <section>
         <h3 class="lobster">playlists</h3>
         <ul>
-		  <% @playlists.each do |pl|%>
-          	<li class="playlist <%='queue' if pl.perm %>"><a href="#"><span class="icon"></span><%= pl.name %></a></li>
-		  <% end %>
-			<li class="playlist add"><a href="#"><span class="icon"></span></a></li>
+          <% @playlists.each do |pl|%>
+          <li class="playlist <%='queue' if pl.perm %>"><a href="#"><span class="icon"></span><%= pl.name %></a></li>
+          <% end %>
+          <li class="playlist add"><a href="#"><span class="icon"></span>Create playlist</a></li>
         </ul>
       </section>
       <section>
@@ -45,7 +45,14 @@
 
     <div id="right-pane">
       <div id="header-right-container">
-        <div id="header-right"></div>
+        <div id="header-right">
+          <div id="player">
+            <object width="250" height="40"><param name="movie" value="http://listen.grooveshark.com/songWidget.swf"><param name="wmode" value="window"><param name="allowScriptAccess" value="always"><param name="flashvars" value="hostname=cowbell.grooveshark.com&amp;widgetID=25084676&amp;style=metal&amp;p=0"> <embed src="http://listen.grooveshark.com/songWidget.swf" type="application/x-shockwave-flash" width="250" height="40" flashvars="hostname=cowbell.grooveshark.com&amp;widgetID=25084676&amp;style=metal&amp;p=0" allowscriptaccess="always" wmode="window"></object>
+          </div>
+          <div class="view-toggle">
+            
+          </div>
+        </div>
       </div>
       <section>
         <div class="grid">
