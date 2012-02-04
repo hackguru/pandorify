@@ -44,7 +44,7 @@
     <div class="static">
       <div class="friends">
         <ul class="thumbs">
-		  <% friends = current_user.friends.users_listen_to(obj).limit(4) %>
+		  <% friends = current_user.friends.users_listen_to(obj) %>
           <li><a href="/profile"><img src="<%=friends[0].pic_url %>" /></a></li>
           <li><a href="/profile"><img src="<%=friends[1].pic_url %>" /></a></li>
           <li><a href="/profile"><img src="<%=friends[2].pic_url %>" /></a></li>
