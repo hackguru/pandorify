@@ -15,31 +15,26 @@
     </header>
     <nav>
       <section>
-        <h3>apps</h3>
+        <h3 class="lobster">apps</h3>
         <ul>
-          <li class="start"><a href="#"><span class="icon"></span>Start</a></li>
-          <li class="timeline active"><a href="#"><span class="icon">12</span>Personal Timeline</a></li>
-          <li class="apps"><a href="#"><span class="icon"></span>Apps</a></li>
-          <li class="images"><a href="#"><span class="icon"></span>Images</a></li>
-          <li class="video"><a href="#"><span class="icon"></span>Video</a></li>
-          <li class="music"><a href="#"><span class="icon"></span>Music</a></li>
-          <li class="documents"><a href="#"><span class="icon"></span>Documents</a></li>
-          <li class="links"><a href="#"><span class="icon"></span>Links</a></li>
+          <li class="hot active"><a href="#"><span class="icon"></span>What's Hot</a></li>
+          <li class="match"><a href="#"><span class="icon"></span>Taste Match</a></li>
+          <li class="shuffle"><a href="#"><span class="icon"></span>Shuffle</a></li>
         </ul>
       </section>
       <section>
-        <h3>playlists</h3>
+        <h3 class="lobster">playlists</h3>
         <ul>
-          <li class="evernote"><a href="#"><span class="icon"></span>Evernote</a></li>
-          <li class="facebook"><a href="#"><span class="icon"></span>Facebook</a></li>
+          <li class="playlist queue"><a href="#"><span class="icon"></span>Queue</a></li>
         </ul>
       </section>
       <section>
-        <h3>profile</h3>
+        <h3 class="lobster">account</h3>
         <ul>
+          <li class="profile"><a href="#"><span class="icon"></span>Profile</a></li>
+          <li class="settings"><a href="#"><span class="icon"></span>Settings</a></li>
           <li class="logout">
-            <a href="#"><span class="icon"></span>Add New Collection</a>
-            <%= link_to "Logout", facebook_path, :method => :delete, :class => "logout"%>
+            <%= link_to content_tag(:span, nil, :class=>'icon') + "Logout", facebook_path, :method => :delete, :class => "logout" %>
           </li>
         </ul>
       </section>

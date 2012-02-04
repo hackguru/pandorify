@@ -27,10 +27,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 .clear {
   clear: both;
 }
@@ -48,7 +44,6 @@ body {
   background: url(<%= asset_path 'bg.png' %>) repeat;
 }
 
-
 /* HEADER */
 header {
   position: fixed;
@@ -56,7 +51,7 @@ header {
   left: 0;
   right: 0;
   height: 49px;
-  background: url(<%= asset_path 'dark-blue.png' %>) repeat-x;
+  background: url(<%= asset_path 'dark-blue-bg.png' %>) repeat-x;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -67,7 +62,7 @@ header {
   height: 100%;
   width: 115px;
   background: url(<%= asset_path 'logo.png' %>) left center no-repeat;
-  margin-left: 12px;
+  margin-left: 18px;
   text-indent: -9999px;
 }
 
@@ -86,7 +81,7 @@ nav {
   top: 49px;
   left: 0;
   bottom: 0;
-  width: 30px;
+  width: 233px;
   overflow-y: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
@@ -105,12 +100,20 @@ nav section:last-child {
 }
 
 nav h3 {
-  color: #C9C9CB;
-  font-size: 11px;
-  font-weight: bold;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6) !important;
-  padding-left: 20px;
-  padding-bottom: 2px;
+  color: #ECECEC;
+  font-size: 14px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  padding: 0 0 7px 22px;
+}
+
+nav li a {
+  display: block;
+  line-height: 33px;
+  color: #FFFFFF;
+  font-size: 13px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  margin: 2px 0;
+  padding-left: 22px;
 }
 
 nav li:not(.active):hover {
@@ -119,19 +122,28 @@ nav li:not(.active):hover {
 
 nav li.active,
 nav li:not(.active):active {
-  background: url(<%= asset_path 'active-bg.png' %>) repeat-x;
+  background: url(<%= asset_path 'active-bg.png' %>) 0 -5px repeat-x;
 }
 
-nav h3,
-nav li a {
-  display: block;
+nav li.active a {
+  font-weight: bolder;
 }
 
 nav .icon {
-  float: left;
-  display: block;
+  display: inline-block;
   width: 18px;
   height: 18px;
+  background: url(<%= asset_path 'sidebar-icons.png' %>) no-repeat;
+  margin-right: 5px;
+  vertical-align: text-bottom;
+}
+
+nav li.hot .icon {
+  background-position: 0 2px;
+}
+
+nav li.hot.active .icon {
+  background-position: -27px 2px;
 }
 
 /* ADD: SPRITE STUFF */
@@ -140,7 +152,7 @@ nav .icon {
 #right-pane {
   position: fixed;
   top: 0;
-  left: 261px;
+  left: 233px;
   right: 0;
   bottom: 0;
   z-index: 9;
@@ -157,7 +169,7 @@ nav .icon {
   right: inherit !important;
   height: 49px;
   z-index: 10;
-  background: url(<%= asset_path 'dark-blue.png' %>) repeat-x;
+  background: url(<%= asset_path 'dark-blue-bg.png' %>) repeat-x;
 }
 
 #header-right {
