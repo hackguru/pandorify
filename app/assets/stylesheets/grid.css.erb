@@ -14,21 +14,21 @@
   margin: 0 auto 1px;
 }
 
-.album {
+.grid-item .album {
   position: relative;
   height: 148px;
   background: url(<%= asset_path 'grid/record.png' %>) center 0 no-repeat;
   margin: 0 auto;
 }
 
-.album img {
+.grid-item .album img {
   display: inline-block;
   height: 100%;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
-.album .play {
+.grid-item .album .play {
   display: inline-block;
   position: absolute;
   top: 50%;
@@ -40,11 +40,11 @@
   background: url(<%= asset_path 'grid/buttons.png' %>) 0 0 no-repeat;
 }
 
-.album .play:active {
+.grid-item .album .play:active {
   background-position: -1px -64px;
 }
 
-.album .add {
+.grid-item .album .add {
   display: inline-block;
   position: absolute;
   bottom: 2px;
@@ -54,11 +54,11 @@
   background: url(<%= asset_path 'grid/buttons.png' %>) -63px -2px no-repeat;
 }
 
-.album .add:active {
+.grid-item .album .add:active {
   background-position: -63px -63px;
 }
 
-.album img,
+.grid-item .album img,
 .grid-item .play,
 .grid-item .add {
   opacity: 0;
@@ -67,7 +67,7 @@
 
 .grid-item:hover .play,
 .grid-item:hover .add,
-.album.loaded img {
+.grid-item .album.loaded img {
   opacity: 1;
   cursor: pointer;
 }

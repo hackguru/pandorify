@@ -1,0 +1,117 @@
+.list-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  background: url(<%= asset_path 'list/bg.png' %>) repeat;
+}
+
+.list-container .row {
+  position: relative;
+  height: 41px;
+  line-height: 42px;
+}
+
+.list-container .dynamic {
+  position: absolute;
+  left: 0;
+  right: 300px;
+}
+
+.list-container .static {
+  position: absolute;
+  right: 0;
+  width: 300px;
+  line-height: 21px;
+}
+
+.list-container li .dynamic div {
+  float: left;
+  height: 100%;
+  margin: 0;
+  text-indent: 15px;
+  color: #3a465c;
+  font-size: 14px;
+  box-shadow: 1px 0 0 #E9EAED, 2px 0 0 #fff;
+}
+
+.list-container .row .song {
+  width: 35%;
+}
+
+.list-container .row .artist {
+  width: 25%;
+}
+.list-container .row .album {
+  width: 20%;
+}
+
+.list-container .row .genre,
+.list-container .row .duration {
+  width: 10%;
+  text-align: center;
+  text-indent: 0;
+}
+
+.list-container .friends {
+  float: left;
+  width: 162px;
+  text-align: center;
+  text-indent: 0;
+  box-shadow: 1px 0 0 #E9EAED, 2px 0 0 #fff;
+}
+
+.list-container li .thumbs li {
+  display: inline-block;
+  margin: 4px 2px 0 0;
+  text-indent: 0;
+  line-height: 0;
+}
+
+.list-container li .thumbs li:last-child {
+  margin-right: 0;
+}
+
+.list-container li .thumbs img {
+  height: 33px;
+  width: 33px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 0 #fff;
+  border-radius: 3px;
+}
+
+.list-container  .actions {
+  float: left;
+  width: 100px;
+  box-shadow: none;
+  margin-right: 30px;
+  padding-top: 4px;
+}
+
+.list-container .actions a {
+  float: right;
+}
+
+.list-container .actions .play {
+  display: inline-block;
+  height: 34px;
+  width: 34px;
+  background: url(<%= asset_path 'list/buttons.png' %>) -8px -8px no-repeat;
+}
+
+.list-container .actions .play:active {
+  background-position: -8px -69px;
+}
+
+.list-container .actions .add {
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+  margin: 4px 6px 0 0;
+  background: url(<%= asset_path 'list/buttons.png' %>) -72px -11px no-repeat;
+}
+
+.list-container .actions .add:active {
+  background-position: -72px -73px;
+}

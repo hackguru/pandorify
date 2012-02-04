@@ -106,6 +106,10 @@ nav h3 {
   padding: 0 0 6px 23px;
 }
 
+nav li {
+  position: relative;
+}
+
 nav li a {
   display: block;
   line-height: 33px;
@@ -116,12 +120,67 @@ nav li a {
   padding-left: 20px;
 }
 
+nav li .delete,
+nav li .confirm {
+  display: inline-block;
+  position: absolute;
+  top: 4px;
+  right: 9px;
+  height: 20px;
+  visibility: hidden;
+  -webkit-transition: all 200ms ease-in-out;
+  z-index: 9;
+}
+
+nav li .delete {
+  opacity: 0.5;
+  width: 20px;
+  background: url(<%= asset_path 'misc-icons.png' %>) -9px -27px no-repeat;
+}
+
+nav li .delete:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+nav li .confirm {
+  display: block;
+  height: 22px;
+  line-height: 22px;
+  border-radius: 10px;
+  padding: 0 6px;
+  background: -webkit-linear-gradient(top, #f26254, #b9392f) !important;
+  color: #fff;
+  font-size: 11px;
+  font-weight: normal;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+nav li .confirm:active {
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+nav li:hover .delete,
+nav li.confirming .confirm {
+  visibility: visible;
+}
+
+nav li.confirming .confirm {
+  -webkit-transition-delay: 200ms;
+}
+
+nav li.confirming .delete {
+  visibility: hidden;
+}
+
 nav li:not(.active):hover {
   background: rgba(0, 0, 0, 0.1);
 }
 
-nav li.active,
-nav li:not(.active):active {
+nav li.active a,
+nav li:not(.active) a:active {
   background: url(<%= asset_path 'active-bg.png' %>) 0 -5px repeat-x;
 }
 
@@ -239,7 +298,11 @@ nav li.logout.active .icon {
 }
 
 #player {
-  padding-top:4px;
+  display: inline-block;
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  z-index: 2;
 }
 
 /* contailner for toggle bottons */
