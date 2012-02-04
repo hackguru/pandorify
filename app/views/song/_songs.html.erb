@@ -4,7 +4,7 @@
     <div class="grid-item">
       <div class="album">
         <img class="cover" src="<%= obj.album.cover_pic_url if obj.album.cover_pic_url!=nil %>" />
-        <a href="#" class="play"></a>
+		<%= link_to nil, song_play_path + "?id=#{obj.id}", :method => :get, :remote => true. :class => "play" %>
         <a href="#" class="add"></a>
       </div>
       <div class="info">
