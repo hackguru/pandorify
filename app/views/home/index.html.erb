@@ -62,7 +62,7 @@
                 <p class="artist"><%= obj.artist.name %></p>
 				<% count = current_user.friends.users_listen_to(obj).count %>
 				<% name = current_user.friends.users_listen_to(obj).first.name %>
-                <p class="listens"><span class="icon headphones"></span><%= name %> & <%= count-1 %> others</p>
+                <p class="listens"><span class="icon headphones"></span><%= name %> & <%= count %> others</p>
               </div>
             </div>
           </div>
