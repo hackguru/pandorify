@@ -28,6 +28,7 @@
 		  <% @playlists.each do |pl|%>
           	<li class="playlist <%='queue' if pl.perm %>"><a href="#"><span class="icon"></span><%= pl.name %></a></li>
 		  <% end %>
+			<li class="playlist"><a href="#"><span class="icon"></span></a></li>
         </ul>
       </section>
       <section>
