@@ -25,7 +25,9 @@
       <section>
         <h3 class="lobster">playlists</h3>
         <ul>
-          <li class="playlist queue"><a href="#"><span class="icon"></span>Queue</a></li>
+		  <% @playlists.each do |pl|%>
+          	<li class="playlist queue"><a href="#"><span class="icon"></span><%= pl.name %></a></li>
+		  <% end %>
         </ul>
       </section>
       <section>

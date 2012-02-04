@@ -8,6 +8,7 @@ class HomeController < ApplicationController
       #   Facebook.add_as_friend friend, current_user
       # end
       @songs = Song.song_based_on_sorted_listens_by_friends(current_user).paginate(:page => 1 )
+      @playlists = current_user.playlists      
     end
   end
 
