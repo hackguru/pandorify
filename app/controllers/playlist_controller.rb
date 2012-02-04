@@ -3,7 +3,6 @@ class PlaylistController < ApplicationController
   def create
     @playlist = Playlist.create(:name => params[:plname], :perm => false, :facebook => current_user)
     @playlist.save!
-    @playlists = current_user.playlists
     respond_to do |format|
        format.js
     end
