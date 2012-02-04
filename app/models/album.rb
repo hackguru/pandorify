@@ -7,6 +7,7 @@ class Album < ActiveRecord::Base
     link = tag[0][25..tag[0].size]
     link = link[0..link.size-2]
     self.cover_pic_url = link
+    self.save!
   end
   
 end
