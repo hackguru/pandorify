@@ -125,6 +125,14 @@ nav li:not(.active):active {
   background: url(<%= asset_path 'active-bg.png' %>) 0 -5px repeat-x;
 }
 
+nav li.playlist input {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 2px;
+  height: 20px;
+}
+
 nav li.active a {
   font-weight: bolder;
 }
@@ -159,25 +167,22 @@ nav li.shuffle.active .icon {
   background-position: -28px -111px;
 }
 
-nav li.playlist .icon {
+nav li.playlist.queue .icon {
   background-position: 0 -168px;
 }
-nav li.playlist.active .icon {
+nav li.playlist.queue.active .icon {
   background-position: -28px -168px;
 }
 
-nav li.playlist.queue .icon {
+nav li.playlist .icon {
   background-position: 0 -224px;
 }
-nav li.playlist.queue.active .icon {
+nav li.playlist.active .icon {
   background-position: -28px -224px;
 }
 
 nav li.playlist.add .icon {
-  background-position: 0 -280px;
-}
-nav li.playlist.add.active .icon {
-  background-position: -28px -280px;
+  background-position: 0 -441px;
 }
 
 nav li.profile .icon {
@@ -200,8 +205,6 @@ nav li.logout .icon {
 nav li.logout.active .icon {
   background-position: -28px -393px;
 }
-
-/* ADD: SPRITE STUFF */
 
 /* RIGHT PANE */
 #right-pane {
@@ -233,6 +236,10 @@ nav li.logout.active .icon {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
   border-top-left-radius: 4px;
   text-align: center;
+}
+
+#player {
+  padding-top:4px;
 }
 
 /* Right Pane: Section */
