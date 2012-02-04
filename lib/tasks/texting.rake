@@ -54,3 +54,10 @@ task :update_tiny_song_id => :environment do
   Song.update_tiny_song_id
 end
 
+task :updating_pic => :environment do
+  Facebook.all.each do |user|
+    user.update_pic
+  end
+end
+
+
