@@ -33,7 +33,12 @@
 	$('.album img').load(function() {
 		$(this).parent().addClass('loaded');
 	});
-	$('a.add').popover({header: '', content: '#13content_for_popup'});
+	var str = '#' + id + 'conte'
+	$('a.add').each(function(index){
+		var id = $(this).attr('id');
+		$(this).popover({header: '', content: '#'+id+'content_for_popup'});
+	});
+	
 	</script>
 </div>
 <%else%>
