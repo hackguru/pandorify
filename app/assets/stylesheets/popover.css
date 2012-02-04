@@ -32,6 +32,8 @@
     border-right: 25px solid rgba(0,0,0,0);
     border-bottom: 25px solid black; }
   .popover > .header {
+	/* I ADDED THIS LINE*/
+	display: none;
     font-weight: bold;
     margin: 0;
     padding: 3px;
