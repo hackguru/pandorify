@@ -7,7 +7,7 @@
         <img class="cover" src="<%= obj.album.cover_pic_url if obj.album.cover_pic_url!=nil %>" />
 		<%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
         <a href="#" class="add" id="<%= obj.id %>"></a>
-		<div id="my-popover">
+		<div id="my-popover" style="display:hidden">
 		  <div class="header">
 		    ...
 		  </div>
