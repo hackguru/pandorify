@@ -49,6 +49,11 @@ $(document).ready(function(){
 			$.get('/recommendation/recommended', { type: 'grid' });
 		}
 	});
+	
+	$('#side_bar li').click(function() {
+		$('#side_bar li.active').removeClass('active');
+		this.addClass('active');
+	});
 
 });
 	
