@@ -18,7 +18,7 @@ $(function() {
 
 $(document).ready(function(){	
 	$('.playlist.add a').click(function() {
-	$('.playlist.add').before("<li class='playlist' style='display: none;' ><a href='#'><span class='icon'></span><form id='new_playlist'><input type='text'/></form></a></li>");
+	$('.playlist.add').before("<li class='playlist' style='display: none;' ><a href='#'><span class='icon'></span><form id='new_playlist'  style='display: inline;'><input type='text'/></form></a></li>");
 	$('.playlist.add').prev().slideDown("fast");
 	$('#new_playlist').submit(function() {
 	  $.post('/playlist/create', { plname: $('#new_playlist input').val()});
