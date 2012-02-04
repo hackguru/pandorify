@@ -17,8 +17,8 @@
       <section>
         <h3 class="lobster">apps</h3>
         <ul>
-          <li class="hot active"><%= link_to content_tag(:span, nil, :class=>'icon') + "What's Hot", recommendation_recommended, :method => :get, :remote => true %></li>
-          <li class="match"><%= link_to content_tag(:span, nil, :class=>'icon') + "Taste Match", recommendation_recommended, :method => :get, :remote => true %></a></li>
+          <li class="hot active"><%= link_to content_tag(:span, nil, :class=>'icon') + "What's Hot", recommendation_recommended_path, :method => :get, :remote => true %></li>
+          <li class="match"><%= link_to content_tag(:span, nil, :class=>'icon') + "Taste Match", recommendation_recommended_path, :method => :get, :remote => true %></a></li>
           <li class="shuffle"><a href="#"><span class="icon"></span>Shuffle</a></li>
         </ul>
       </section>
