@@ -3,6 +3,8 @@ Pandorify::Application.routes.draw do
   get "home/index"
   get "home/new"
   post "home/play"
+  
+  get "tiny_song/get_id"
 
   # Connect Site
   resource :facebook, :except => :create do

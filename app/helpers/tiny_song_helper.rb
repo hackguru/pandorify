@@ -1,0 +1,2 @@
+module TinySongHelper
+end
