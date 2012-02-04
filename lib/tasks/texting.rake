@@ -60,4 +60,14 @@ task :updating_pic => :environment do
   end
 end
 
+task :testing_parsing => :environment do
+  require "rexml/document"
+  include REXML  # so that we don't have to prefix everything with REXML::...
+  c = Curl::Easy.perform("http://open.spotify.com/artist/1Dvfqq39HxvCJ3GvfeIFuT")
+  # parsed_json = ActiveSupport::JSON.decode(c.body_str)
+  puts c.body_str
+end
+
+
+
 
