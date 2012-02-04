@@ -248,8 +248,10 @@ class Facebook < ActiveRecord::Base
       _fb_user_.is_friend_access = false
       _fb_user_.pic_url = fb_user.picture
       _fb_user_.save!
-      queue_pl = Playlist.create(:name => 'Queue', :facebook => _fb_user_, :perm => true)
-      queue_pl.save!
+      if _fb_user_.playlists.find_by_name("Queue") == nil
+        queue_pl = Playlist.create(:name => 'Queue', :facebook => _fb_user_, :perm => true)
+        queue_pl.save!
+      end
       _fb_user_
     end
     

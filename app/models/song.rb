@@ -4,7 +4,7 @@ class Song < ActiveRecord::Base
   belongs_to :application
   belongs_to :artist
   belongs_to :album
-  has_and_belongs_to_many :playlists
+  has_and_belongs_to_many :playlists, :join_table => "songs_playlists"
 
   scope :song_based_on_sorted_listens_by_user,
         :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
