@@ -11,6 +11,7 @@ Pandorify::Application.routes.draw do
   post "playlist/create"
   post "playlist/create_and_add"
   get "playlist/play"
+  get "song/play"
 
   # Connect Site
   resource :facebook, :except => :create do
