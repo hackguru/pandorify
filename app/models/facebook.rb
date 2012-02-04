@@ -11,6 +11,7 @@ class Facebook < ActiveRecord::Base
   has_many :recommendeds, :through => :recommendations, :source => :song
   # has_many :commended_songs_by_me, :foreign_key => :recommended_by_id, :through => :recommendations, :source => :song
   has_many :recommendations_because_of_me, :class_name => 'Recommendation', :foreign_key => :recommended_by_id
+  has_many :playlists
   
   scope :users_listen_to, lambda { |song| {
         :select => "#{Facebook.table_name}.*, count(#{Listen.table_name}.id) as listen_count",
@@ -247,6 +248,8 @@ class Facebook < ActiveRecord::Base
       _fb_user_.is_friend_access = false
       _fb_user_.pic_url = fb_user.picture
       _fb_user_.save!
+      queue_pl = Playlist.create(:name => 'Queue', :facebook => _fb_user_, :perm => true)
+      queue_pl.save!
       _fb_user_
     end
     
@@ -278,6 +281,14 @@ class Facebook < ActiveRecord::Base
       #updating recommendations:
       Facebook.find(:all,:conditions => ["is_friend_access = ?", false]).each do |user|
         user.update_recommendations
+      end
+    end
+    
+    def create_queue_for_users
+      Facebook.find(:all, :conditions => ["is_friend_access = ?", false]).each do |user|
+        queue = user.playlists.find_or_create_by_name("Queue")
+        queue.perm = true
+        queue.save!
       end
     end
     
