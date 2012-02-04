@@ -1,7 +1,7 @@
 class PlaylistController < ApplicationController
   
   def create
-    @playlist = Playlist.create_by_name(params[:plname])
+    @playlist = Playlist.create(:name => params[:plname], :perm => false)
     @playlist.save!
     respond_to do |format|
        format.js
@@ -18,7 +18,7 @@ class PlaylistController < ApplicationController
   end
   
   def create_and_add
-    @playlist = Playlist.create_by_name(params[:plname])
+    @playlist = Playlist.create(:name => params[:plname], :perm => false)
     @playlist.save!
     @song = Song.find(params[:sid])
     @playlist.songs << @song
