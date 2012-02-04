@@ -67,7 +67,7 @@
 		  <% end %>
 			<script>
 			$('.album img').load(function() {
-			$(this).closest('.album').addClass('loaded');
+				$(this).parent().addClass('loaded');
 			});
 			</script?
         </div>
