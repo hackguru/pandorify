@@ -25,5 +25,30 @@ $(document).ready(function(){
 	  return false;
 	});
 	});
+	
+	$('button.detail').click(function() {
+		content = $('#song_view').attr("content");
+		content_id = $('#song_view').attr("content_id");
+		if (content == 'playlist') {
+			$.get('/playlist/play', { id: content_id , type: 'detail' });
+		}else if (content == 'hot'){
+			$.get('/song/hot_songs', { type: 'detail' });
+		}else if (content == 'recom'){
+			$.get('/recommendation/recommended', { type: 'detail' });
+		}
+	});
+
+	$('button.grid').click(function() {
+		content = $('#song_view').attr("content");
+		content_id = $('#song_view').attr("content_id");
+		if (content == 'playlist') {
+			$.get('/playlist/play', { id: content_id , type: 'grid' });
+		}else if (content == 'hot'){
+			$.get('/song/hot_songs', { type: 'grid' });
+		}else if (content == 'recom'){
+			$.get('/recommendation/recommended', { type: 'grid' });
+		}
+	});
+
 });
 	

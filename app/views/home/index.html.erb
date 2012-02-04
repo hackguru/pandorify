@@ -56,12 +56,13 @@
 			</object>
           </div>
           <div class="view-toggle">
-            <button>detail</button>
-			<button>grid</button>
+            <button class="detail">detail</button>
+			<button class="grid">grid</button>
           </div>
         </div>
       </div>
-      <section id = "song_view">
+	  <!-- type can be grid or detail and content can be hot or recom or playlist if playlist content_id is the id of the playlist -->
+      <section id = "song_view" type="grid" content="hot" content_id = "">
 	    <%= render "song/songs", :songs => @songs, :type =>'grid' %>
       </section>
     </div>
