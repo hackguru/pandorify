@@ -14,7 +14,6 @@ end
 
 gem 'fb_graph'
 gem 'curb'
-gem 'dotiw'
 
 # Gems used only for assets and not required
 # in production environments by default.

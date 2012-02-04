@@ -53,7 +53,7 @@ class Song < ActiveRecord::Base
   }}
 
   
-  def update_popularity
+  def update_popularity_and_duration
     if self.application.name == "Spotify"
       url = "http://ws.spotify.com/lookup/1/.json?uri=spotify:track:#{self.get_uri}"
       uri = URI.parse(url)
@@ -62,6 +62,7 @@ class Song < ActiveRecord::Base
       response = http.request(request).body
       new_info = JSON.parse(response)
       self.popularity = new_info['track']['popularity']
+      self.duration = new_info['track']['length'].to_f
       
       new_album_url = new_info['track']['album']['href'].sub("spotify:album:","http://open.spotify.com/album/").strip
       new_artist_url = new_info['track']['artists'][0]['href'].sub("spotify:artist:","http://open.spotify.com/artist/").strip
@@ -89,10 +90,10 @@ class Song < ActiveRecord::Base
   class << self
     extend ActiveSupport::Memoizable
   
-    def update_popularity_all
+    def update_all
       Song.all.each do |object|
         begin
-          object.update_popularity
+          object.update_popularity_and_duration
         rescue
           next
         end
@@ -114,8 +115,8 @@ class Song < ActiveRecord::Base
     end
     
     def update_songs
-      Song.update_popularity_all
-      Song.update_tiny_song_id
+      Song.update_all
+      # Song.update_tiny_song_id
     end
     
   end
