@@ -12,9 +12,9 @@
 		  </div>
 		  <div class="content" id="<%= obj.id %>content_for_popup">
 		    <a href=<%= obj.url %> >Open in Spotify! </a>
-			<% playlists = current_user.playlists %>
+			<% playlists = current_user.playlists %><br />
 			<% playlists.each do |pl|%>
-          		<%= link_to content_tag(:span, nil, :class=>'icon') + 'Add to ' + pl.name, playlist_add_path + "?plid=#{pl.id}&sid=#{obj.id}", :method => :post, :remote => true %>
+          		<%= link_to content_tag(:span, nil, :class=>'icon') + 'Add to ' + pl.name, playlist_add_path + "?plid=#{pl.id}&sid=#{obj.id}", :method => :post, :remote => true %><br />
           	<% end %>
 		  </div>
 		</div>
