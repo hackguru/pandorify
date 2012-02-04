@@ -13,8 +13,8 @@
     <header>
       <a class="logo" href="/">Jolicloud</a>
     </header>
-    <nav>
-      <section id = "side_bar">
+    <nav id = "side_bar">
+      <section>
         <h3 class="lobster">apps</h3>
         <ul>
           <li class="hot active"><%= link_to content_tag(:span, nil, :class=>'icon') + "What's Hot", song_hot_songs_path, :method => :get, :remote => true %></li>
@@ -75,39 +75,6 @@
 	  <!-- type can be grid or detail and content can be hot or recom or playlist if playlist content_id is the id of the playlist -->
       <section id = "song_view" type="grid" content="hot" content_id = "">
 	    <%= render "song/songs", :songs => @songs, :type =>'grid' %>
-      
-        <!--
-          SINA list-view.
-
-        <ul class="list-container">
-          <li class="row">
-            <div class="dynamic">
-              <div class="song">Rolling in the Deep</div>
-              <div class="artist">Adele</div>
-              <div class="album">Adele Album Name</div>
-              <div class="genre">Dubstep</div>
-              <div class="duration">4m 51s</div>
-            </div>
-            <div class="static">
-              <div class="friends">
-                <ul class="thumbs">
-                  <li><a href="/profile"><img src="http://www.picgifs.com/celebrities/b/brad-pitt/celebrities-brad-pitt-973133.jpg" /></a></li>
-                  <li><a href="/profile"><img src="http://www.picgifs.com/celebrities/b/brad-pitt/celebrities-brad-pitt-973133.jpg" /></a></li>
-                  <li><a href="/profile"><img src="http://www.picgifs.com/celebrities/b/brad-pitt/celebrities-brad-pitt-973133.jpg" /></a></li>
-                  <li><a href="/profile"><img src="http://www.picgifs.com/celebrities/b/brad-pitt/celebrities-brad-pitt-973133.jpg" /></a></li>
-                </ul>
-              </div>
-              <div class="actions">
-                <a href="#" class="play"></a>
-                <a href="#" class="add"></a>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-          END LIST VIEW
-        -->
-        
       </section>
     </div>
   <% end %>

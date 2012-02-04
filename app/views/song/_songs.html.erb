@@ -1,3 +1,4 @@
+<% if @type=='grid' %>
 <div class="grid">
   <% songs.each do |obj|%>
   <div class="grid-space">
@@ -26,3 +27,36 @@
 	});
 	</script>
 </div>
+<%else%>
+<ul class="list-container">
+  <li class="row">
+	<% songs.each do |obj|%>
+    <div class="dynamic">
+      <div class="song"><%= obj.title %></div>
+      <div class="artist"><%= obj.artist.name %></div>
+      <div class="album"><%= obj.album.name %></div>
+      <div class="genre">Dubstep</div>
+	  <% duration = obj.duration %>
+	  <% mins = (duration/60.0).to_i %>
+	  <% secs = (duration-(mins*60)).to_i %>
+      <div class="duration"><%=mins%>m <%=secs%>s</div>
+    </div>
+    <div class="static">
+      <div class="friends">
+        <ul class="thumbs">
+		  <% friends = current_user.friends.users_listen_to(obj).limit(4) %>
+          <li><a href="/profile"><img src="<%=friends[0].pic_url %>" /></a></li>
+          <li><a href="/profile"><img src="<%=friends[1].pic_url %>" /></a></li>
+          <li><a href="/profile"><img src="<%=friends[2].pic_url %>" /></a></li>
+          <li><a href="/profile"><img src="<%=friends[3].pic_url %>" /></a></li>
+        </ul>
+      </div>
+      <div class="actions">
+        <%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
+        <a href="#" class="add"></a>
+      </div>
+    </div>
+	<% end %>
+  </li>
+</ul>
+<%end%>
