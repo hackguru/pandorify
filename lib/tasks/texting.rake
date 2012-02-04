@@ -65,8 +65,7 @@ task :testing_parsing => :environment do
   include REXML  # so that we don't have to prefix everything with REXML::...
   c = Curl::Easy.perform("http://open.spotify.com/artist/1Dvfqq39HxvCJ3GvfeIFuT")
   # parsed_json = ActiveSupport::JSON.decode(c.body_str)
-  doc = Document.new c.body_str
-  doc.elements.each("html/body") { |element| puts element.attributes.to_s }
+  puts c.body_str =~ /<img id=\"cover-art\" src=\"*\">/
 end
 
 
