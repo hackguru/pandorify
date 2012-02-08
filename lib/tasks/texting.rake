@@ -15,6 +15,8 @@ end
 
 task :update => :environment do
   Facebook.update_all
+  Song.update_songs
+  Album.update_all_covers
 end
 
 task :update_recom => :environment do
@@ -71,7 +73,6 @@ task :testing_parsing => :environment do
   link = link[0..link.size-2]
   puts link
 end
-
 
 
 
