@@ -2,7 +2,7 @@ class RecommendationController < ApplicationController
 
   def recommended
     @page =  params[:page] || 1
-    @recoms = current_user.recommendations.paginate(:page => @page )
+    @recoms = current_user.recommendations.order("common_rank DESC").paginate(:page => @page )
     @type = params[:type] || "grid"
     @songs = []
     @recoms.each do |recom|
