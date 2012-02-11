@@ -279,7 +279,17 @@ class Facebook < ActiveRecord::Base
         _fb_user_.access_token = fb_user.access_token.try(:to_s)
       end
       _fb_user_.name = fb_user.name
+      pers = false
+      if _fb_user_.persisted?
+        pers = true
+      end
       _fb_user_.save!
+      
+      # getting data if the user is new
+      if !pers
+        Delayed::Job.enqueue _fb_user_
+      end
+      
       friends = current_user.friends #helps perf
       current_user.friends << _fb_user_ if !friends.include? _fb_user_
        _fb_user_    
