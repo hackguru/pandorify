@@ -257,6 +257,14 @@ class Facebook < ActiveRecord::Base
       _fb_user_.name = fb_user.name
       _fb_user_.is_friend_access = false
       _fb_user_.pic_url = fb_user.picture
+      pers = false
+      if _fb_user_.persisted?
+        pers = true
+      end
+      # getting data if the user is new
+      if !pers
+        Delayed::Job.enqueue _fb_user_
+      end
       _fb_user_.save!
       if _fb_user_.playlists.find_by_name("Queue") == nil
         queue_pl = Playlist.create(:name => 'Queue', :facebook => _fb_user_, :perm => true)
@@ -279,16 +287,7 @@ class Facebook < ActiveRecord::Base
         _fb_user_.access_token = fb_user.access_token.try(:to_s)
       end
       _fb_user_.name = fb_user.name
-      pers = false
-      if _fb_user_.persisted?
-        pers = true
-      end
       _fb_user_.save!
-      
-      # getting data if the user is new
-      if !pers
-        Delayed::Job.enqueue _fb_user_
-      end
       
       friends = current_user.friends #helps perf
       current_user.friends << _fb_user_ if !friends.include? _fb_user_
