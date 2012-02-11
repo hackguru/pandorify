@@ -13,7 +13,7 @@ task :count_listens => :environment do
   puts Listen.count
 end
 
-task :update => :environment do
+task :update_test => :environment do
   Facebook.update_all
   Song.update_songs
   Album.update_all_covers

@@ -116,26 +116,28 @@ class Facebook < ActiveRecord::Base
     end
 
     music_activity.each do |object|
+      begin
+        new_application = Application.find_or_create_by_identifier(object.raw_attributes["application"]["id"])
+        new_application.name = object.raw_attributes["application"]["name"]
+        new_application.save!
       
-      new_application = Application.find_or_create_by_identifier(object.raw_attributes["application"]["id"])
-      new_application.name = object.raw_attributes["application"]["name"]
-      new_application.save!
+        new_song = Song.find_or_create_by_identifier(object.raw_attributes["data"]["song"]["id"])
+        new_song.title = object.raw_attributes["data"]["song"]["title"]
+        new_song.url = object.raw_attributes["data"]["song"]["url"]
+        new_song.application_id = new_application 
+        new_song.save!
       
-      new_song = Song.find_or_create_by_identifier(object.raw_attributes["data"]["song"]["id"])
-      new_song.title = object.raw_attributes["data"]["song"]["title"]
-      new_song.url = object.raw_attributes["data"]["song"]["url"]
-      new_song.application_id = new_application 
-      new_song.save!
-      
-      new_listen = Listen.find_or_create_by_identifier(object.raw_attributes["id"])
-      new_listen.facebook = self
-      new_listen.start_time = object.start_time
-      new_listen.end_time = object.end_time
-      new_listen.publish_time = object.publish_time
-      new_listen.song = new_song
-      new_listen.access_token = object.raw_attributes["access_token"]
-      new_listen.save!
-      
+        new_listen = Listen.find_or_create_by_identifier(object.raw_attributes["id"])
+        new_listen.facebook = self
+        new_listen.start_time = object.start_time
+        new_listen.end_time = object.end_time
+        new_listen.publish_time = object.publish_time
+        new_listen.song = new_song
+        new_listen.access_token = object.raw_attributes["access_token"]
+        new_listen.save!
+      rescue
+        next
+      end
     end
     
   end           
