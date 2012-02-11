@@ -120,6 +120,10 @@ class Song < ActiveRecord::Base
       # Song.update_tiny_song_id
     end
     
+    def perform
+      self.update_songs
+    end
+    
   end
   
 end

@@ -215,6 +215,11 @@ class Facebook < ActiveRecord::Base
     end    
   end
   
+  def perform
+    self.update_me
+    self.update_recommendations
+  end
+  
   class << self
     extend ActiveSupport::Memoizable
 
@@ -292,6 +297,10 @@ class Facebook < ActiveRecord::Base
         queue.perm = true
         queue.save!
       end
+    end
+    
+    def perform
+      self.update_all
     end
     
   end

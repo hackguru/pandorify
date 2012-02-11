@@ -1,0 +1,16 @@
+source 'http://rubygems.org'
+gemspec
+
+platforms :ruby do
+	group :production do
+	  gem 'pg'
+	end
+	group :development, :test do
+	  gem 'sqlite3'
+	end
+end
+
+platforms :jruby do
+  gem 'jruby-openssl'
+  gem 'activerecord-jdbcsqlite3-adapter'
+end

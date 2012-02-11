@@ -24,6 +24,10 @@ class Album < ActiveRecord::Base
       end
     end
     
+    def perform
+      self.update_all_covers
+    end
+    
   end
   
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204060530) do
+ActiveRecord::Schema.define(:version => 20120211053919) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(:version => 20120204060530) do
   create_table "artists", :force => true do |t|
     t.string   "name"
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.text     "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,18 +116,8 @@ ActiveRecord::Schema.define(:version => 20120204060530) do
     t.integer  "recommended_by_id"
   end
 
-  create_table "songs", :force => true do |t|
-    t.string   "identifier"
-    t.string   "title"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "application_id"
-    t.float    "popularity"
-    t.integer  "album_id"
-    t.integer  "artist_id"
-    t.string   "tiny_song"
-  end
+# Could not dump table "songs" because of following StandardError
+#   Unknown type 'ineteger' for column 'album_id'
 
   create_table "songs_playlists", :id => false, :force => true do |t|
     t.integer "song_id"
