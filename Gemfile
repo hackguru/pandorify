@@ -12,6 +12,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+gem 'delayed_job_active_record'
+
 gem 'fb_graph'
 gem 'curb'
 gem 'will_paginate'
