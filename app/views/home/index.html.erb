@@ -71,7 +71,18 @@
           </div>
         </div>
       </div>
-      
+      <header id="toolbar" class="joli-header" style="display: block; ">
+		<nav id="menu"></nav>
+		<nav id="options"></nav>
+		<div data-template="joli/searchfield" class="joli-searchfield search" data-class="joli.searchfield" id="search" data-var="search">
+			<input data-var="input" type="text" placeholder="Search apps and friends" data-class="joli.widget" class="input">
+			<div data-var="clearinput" data-class="joli.widget" class="clearinput" style="display: none; ">
+				<a data-var="clearlink" data-event="clear" data-class="joli.clickable" class="clearlink">Clear</a>
+			</div>
+			<ul data-item="joli/sectionchooser/section" data-template="joli/sectionchooser" class="joli-sectionchooser results" data-class="joli.sectionchooser" data-var="results" style="display: none; ">
+			</ul>
+		</div>
+	</header>
 	  <!-- type can be grid or detail and content can be hot or recom or playlist if playlist content_id is the id of the playlist -->
       <section id = "song_view" type="grid" content="hot" content_id = "">
 	    <%= render "song/songs", :songs => @songs, :type =>'grid' %>

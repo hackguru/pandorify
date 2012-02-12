@@ -29,7 +29,7 @@ class PlaylistController < ApplicationController
   
   def play
     @type = params[:type] || "grid"
-    @playlist = Playlist.find(params[:id], :order => "created_at ASC" )
+    @playlist = Playlist.find(params[:id]).order("created_at DESC")
     @songs = @playlist.songs
     respond_to do |format|
        format.js
