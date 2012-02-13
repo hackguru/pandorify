@@ -186,8 +186,28 @@ class Facebook < ActiveRecord::Base
     result
   end
   
+  def list_of_people_with_most_in_common
+    result = []
+    Facebook.all.each do |user|
+      next if user.id == self.id
+      begin
+        common_list = Song.common_songs self,user
+        size = 0
+        common_list.each do |obj|
+          size += 1
+        end
+        result << [user, size]
+      rescue
+        next
+      end
+    end
+    result.sort! { |a,b| -a[1] <=> -b[1] }
+    result
+  end
+  
   def update_recommendations
-    list = self.list_of_friends_with_most_in_common
+    # list = self.list_of_friends_with_most_in_common
+    list = self.list_of_people_with_most_in_common
     sum = 0
     list.each do |obj|
       break if obj[1] == 0
