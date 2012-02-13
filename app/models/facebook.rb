@@ -44,46 +44,46 @@ class Facebook < ActiveRecord::Base
     new_data = []
     begin
       user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
+      data = nil
+      offset_limit = {:offset=>"0", :limit=>"100"}
+      since_condition = true
+      if since == nil
+        begin
+         begin
+           data = user.og_actions "music.listens", offset_limit
+         rescue
+           break
+         end
+         data.each do |listen|
+           if listen != nil
+             new_data << listen
+           else
+             since_condition = false
+             break
+           end
+         end
+         offset_limit = data.collection.next
+        end while data.count > 0 and since_condition
+      else
+        begin
+          begin
+            data = user.og_actions "music.listens", offset_limit
+          rescue
+            break
+          end
+         data.each do |listen|
+           if listen.publish_time.utc >= since.utc and listen != nil
+             new_data << listen
+           else
+             since_condition = false
+             break
+           end
+         end
+         offset_limit = data.collection.next
+        end while data.count > 0 and since_condition
+      end
     rescue
       return new_data
-    end
-    data = nil
-    offset_limit = {:offset=>"0", :limit=>"100"}
-    since_condition = true
-    if since == nil
-      begin
-       begin
-         data = user.og_actions "music.listens", offset_limit
-       rescue
-         break
-       end
-       data.each do |listen|
-         if listen != nil
-           new_data << listen
-         else
-           since_condition = false
-           break
-         end
-       end
-       offset_limit = data.collection.next
-      end while data.count > 0 and since_condition
-    else
-      begin
-        begin
-          data = user.og_actions "music.listens", offset_limit
-        rescue
-          break
-        end
-       data.each do |listen|
-         if listen.publish_time.utc >= since.utc and listen != nil
-           new_data << listen
-         else
-           since_condition = false
-           break
-         end
-       end
-       offset_limit = data.collection.next
-      end while data.count > 0 and since_condition
     end
     new_data
     
