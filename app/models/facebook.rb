@@ -31,12 +31,14 @@ class Facebook < ActiveRecord::Base
   
   
   def update_pic
-    begin
-      user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
-      self.pic_url =user.picture
-      self.save!
-    rescue
-      return
+    if self.pic_url == nil
+      begin
+        user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
+        self.pic_url =user.picture
+        self.save!
+      rescue
+        return
+      end
     end
   end
   
