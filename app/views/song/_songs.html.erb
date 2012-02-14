@@ -24,7 +24,7 @@
         <p class="song bold"><%= obj.title %></p>
         <p class="artist"><%= obj.artist.name if obj.artist!=nil and obj.artist.name != nil%></p>
 		<% count = 0 %>
-		<% current_user.friends.users_listen_to(obj).each do |o| %>
+		<% Facebook.users_listen_to(obj).each do |o| %>
 			<%  count += 1 %>
 		<% end %>
 		<% name = Facebook.users_listen_to(obj)[rand(count)].try(:name) %>
