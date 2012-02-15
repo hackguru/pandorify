@@ -1,5 +1,8 @@
+<% appended = false if local_assigns[:appended].nil? %>
 <% if type=='grid' %>
+<% if !appended %>
 <div class="grid">
+<%end%>
   <% songs.each do |obj|%>
   <div class="grid-space">
     <div class="grid-item">
@@ -43,9 +46,13 @@
 	});
 	
 	</script>
+<% if !appended %>
 </div>
+<%end%>
 <%else%>
+<% if !appended %>
 <ul class="list-container">
+<%end%>
   <% songs.each do |obj|%>
   <li class="row">
     <div class="dynamic">
@@ -77,5 +84,7 @@
     </div>
   </li>
   <% end %>
+<% if !appended %>
 </ul>
+<% end %>
 <%end%>

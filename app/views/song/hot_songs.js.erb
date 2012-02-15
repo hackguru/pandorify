@@ -1,7 +1,7 @@
 <% if @page == 1 %>
-	$('#song_view').html("<%= escape_javascript(render 'song/songs', :songs => @songs, :type =>@type) %>");
+	$('#song_view').html("<%= escape_javascript(render 'song/songs', :songs => @songs, :type =>@type, :appened => false) %>");
 <% else %>
-	$('#song_view').append("<%= escape_javascript(render 'song/songs', :songs => @songs, :type =>@type) %>");
+	$('#song_view').append("<%= escape_javascript(render 'song/songs', :songs => @songs, :type =>@type, :appened => true) %>");
 <% end %>	
 $('#song_view').attr("type","<%=@type%>");
 $('#song_view').attr("content",'hot');
