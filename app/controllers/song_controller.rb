@@ -30,13 +30,19 @@ class SongController < ApplicationController
   end
   
   def party
-    d = Facebook.find_by_name("Eddie Simmens").id
-    g = Facebook.find_by_name("Gabe Audick").id
-    e = Facebook.find_by_name("Edward Mehr").id
+    ids = params[:friend_tokens].split(",")
+    ids_string = "C"
+    i = 0
+    while i < ids.size() - 1
+      ids_string += "#{Facebook.table_name}.id = #{ids[i]} OR "
+      i += 1
+    end
+    ids_string += "#{Facebook.table_name}.id = #{ids[i]})"
+      
     @page =  params[:page] || 1
     @after = params[:after] || 2.years.ago
     @type = params[:type] || "grid"
-    @songs = Song.sort_based_on_common_song_count("(#{Facebook.table_name}.id = #{e} OR #{Facebook.table_name}.id = #{g} OR #{Facebook.table_name}.id = #{d})").paginate(:page => @page )
+    @songs = Song.sort_based_on_common_song_count(ids_string).paginate(:page => @page )
     respond_to do |format|
        format.js
     end
