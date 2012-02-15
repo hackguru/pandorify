@@ -9,7 +9,7 @@ class HomeController < ApplicationController
       # end
       # @songs = Song.song_based_on_sorted_listens_by_friends(current_user).paginate(:page => 1 )
       # @songs = Song.song_based_on_sorted_listens_by_user.paginate(:page => 1 )
-      @songs = Song.song_based_on_sorted_listens_by_user_for_pas_two_days.paginate(:page => 1 )
+      @songs = Song.song_based_on_sorted_listens_by_user_since(2.days.ago).paginate(:page => 1 )
       @playlists = current_user.playlists    
     end
   end
