@@ -20,7 +20,7 @@
           <li class="hot active"><%= link_to content_tag(:span, nil, :class=>'icon') + "What's Hot", song_hot_songs_path, :method => :get, :remote => true %></li>
           <li class="match"><%= link_to content_tag(:span, nil, :class=>'icon') + "Taste Match", recommendation_recommended_path, :method => :get, :remote => true %></a></li>
           <li class="shuffle"><a href="#"><span class="icon"></span>Shuffle</a></li>
-          <li class="party"><%= link_to content_tag(:span, nil, :class=>'icon') + "Party DJ", song_party_path+"?friend_tokens='#{Facebook.find_by_name('Eddie Simmens').id},#{Facebook.find_by_name('Gabe Audick').id},#{Facebook.find_by_name('Edward Mehr').id}'", :method => :get, :remote => true %></a></li>
+          <li class="party"><%= link_to content_tag(:span, nil, :class=>'icon') + "Party DJ", song_party_path+"?friend_tokens=#{Facebook.find_by_name('Eddie Simmens').id},#{Facebook.find_by_name('Gabe Audick').id},#{Facebook.find_by_name('Edward Mehr').id}", :method => :get, :remote => true %></a></li>
         </ul>
       </section>
       <section>
