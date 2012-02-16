@@ -5,7 +5,7 @@ class SongController < ApplicationController
     @after = params[:after] || 2.years.ago
     @type = params[:type] || "grid"
     # @songs = Song.song_based_on_sorted_listens_by_friends_after(current_user,@after).paginate(:page => @page )
-    @songs = Song.song_based_on_sorted_listens_by_user_since(2.days.ago).paginate(:page => 1 )
+    @songs = Song.song_based_on_sorted_listens_by_user_since(2.days.ago).paginate(:page => @page )
     respond_to do |format|
        format.js
        format.json{
