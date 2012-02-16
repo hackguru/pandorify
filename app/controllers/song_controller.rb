@@ -31,7 +31,7 @@ class SongController < ApplicationController
   
   def party
     ids = params[:friend_tokens].split(",")
-    ids_string = "C"
+    ids_string = "("
     i = 0
     while i < ids.size() - 1
       ids_string += "#{Facebook.table_name}.id = #{ids[i]} OR "
