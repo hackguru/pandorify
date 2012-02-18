@@ -235,6 +235,7 @@ class Facebook < ActiveRecord::Base
           recom.facebook = self
           recom.common_rank = obj[1]
           recom.recommended_by = obj[0]
+          recom.listened = false
           recom.save!
           number_of_songs -= 1
         end
