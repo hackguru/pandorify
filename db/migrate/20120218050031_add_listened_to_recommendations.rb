@@ -1,5 +1,5 @@
 class AddListenedToRecommendations < ActiveRecord::Migration
   def change
-    add_column :recommendations, :bool, :listened
+    add_column :recommendations, :boolean, :listened
   end
 end
