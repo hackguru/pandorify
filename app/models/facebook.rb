@@ -210,7 +210,7 @@ class Facebook < ActiveRecord::Base
   def update_recommendations
     
     # removing listended recommendations
-    self.recommendations.al.each do |recom|
+    self.recommendations.all.each do |recom|
       if self.songs.include? recom.song
         recom.listened = true
       end
