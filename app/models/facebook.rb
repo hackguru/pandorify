@@ -213,6 +213,7 @@ class Facebook < ActiveRecord::Base
     self.recommendations.all.each do |recom|
       if self.songs.include? recom.song
         recom.listened = true
+        recom.save!
       end
     end
     
@@ -239,7 +240,7 @@ class Facebook < ActiveRecord::Base
         # elsif self.recommendeds.include? song
           # next
         else
-          recom = Recommendation.find_or_initialize_by_song_and_facebook(:song => song, :facebook => self)
+          recom = Recommendation.find_or_initialize_by_song_id_and_facebook_id(song.id, self.id)
           if (recom.listened == true)
             next           
           end
