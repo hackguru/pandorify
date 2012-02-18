@@ -292,6 +292,7 @@ class Facebook < ActiveRecord::Base
       _fb_user_.name = fb_user.name
       _fb_user_.is_friend_access = false
       _fb_user_.pic_url = fb_user.picture
+      _fb_user_.email = fb_user.email
       pers = false
       if _fb_user_.persisted?
         pers = true

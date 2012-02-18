@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218050031) do
+ActiveRecord::Schema.define(:version => 20120218101814) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20120218050031) do
     t.string   "name"
     t.datetime "last_updated"
     t.text     "pic_url"
+    t.text     "email"
+    t.string   "cell"
   end
 
   add_index "facebooks", ["identifier"], :name => "index_facebooks_on_identifier", :unique => true
