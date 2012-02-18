@@ -208,6 +208,14 @@ class Facebook < ActiveRecord::Base
   end
   
   def update_recommendations
+    
+    # removing listended recommendations
+    self.recommendations.al.each do |recom|
+      if self.songs.include? recom.song
+        recom.listened = true
+      end
+    end
+    
     # list = self.list_of_friends_with_most_in_common
     list = self.list_of_people_with_most_in_common
     sum = 0
@@ -231,7 +239,10 @@ class Facebook < ActiveRecord::Base
         # elsif self.recommendeds.include? song
           # next
         else
-          recom = Recommendation.find_or_create_by_song(:song => song)
+          recom = Recommendation.find_or_initialize_by_song_and_facebook(:song => song, :facebook => self)
+          if (recom.listened == true)
+            next           
+          end
           recom.facebook = self
           recom.common_rank = obj[1]
           recom.recommended_by = obj[0]
