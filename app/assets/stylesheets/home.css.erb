@@ -10,21 +10,40 @@ body.tour {
 
 .tour section {
   position: relative;
-  padding: 20px 40px;
+  height: 400px;
+  padding: 30px;
   background: url(<%= asset_path 'bg.png' %>) repeat;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid #434C5D;
   border-radius: 3px;
   color: #fff;
-  overflow: hidden;
 }
 
 .tour h2 {
-  font-size: 32px;
+  font-size: 36px;
   margin: 0;
+  text-align: center;
+  margin-bottom: 120px;
+  text-shadow: 0 1px 0 #000;
 }
 
 .tour p {
   font-size: 20px;
   font-weight: normal;
   margin: 10px 0;
+  text-align: center;
+}
+
+/* Tour: Intro */
+.tour .intro .albums {
+  position: absolute; 
+  top: 100px; 
+  left: -5px;
+  right: -5px;
+  height: 140px;
+  background: #fafafa url(<%= asset_path 'tour/intro.png' %>) center center;
+  border: 1px solid #202833;
+  border-left: none;
+  border-right: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), inset 0 0 1px #fff;
 }

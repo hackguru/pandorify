@@ -1,6 +1,6 @@
 /*
- *= require_self
- *= require_tree
+*= require_self
+*= require_tree
 */
 
 /* General */
@@ -307,15 +307,48 @@ nav li.logout.active .icon {
 
 /* contailner for toggle bottons */
 .view-toggle {
-	float: right;
-	position: relative;
-	top: -35px;
-	padding-right: 50px;
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  height: 22px;
+  width: 53px;
+  background: url( <%= asset_path 'view-toggle.png' %>) 0 0 no-repeat;
 }
 
-.view-toggle a{
-	height: 35px;
-	width: 40px;
+.view-toggle button {
+  height: 22px;
+  width: 26px;
+  background: url( <%= asset_path 'view-toggle.png' %>) no-repeat;
+  text-indent: -9999px;
+  padding: 0;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.view-toggle button.active {
+  background: transparent !important;
+}
+
+.view-toggle button.detail {
+  float: left;
+  background-position: 0 -30px;
+}
+
+.view-toggle button.grid {
+  float: right;
+  background-position: -27px -30px;
+}
+
+.view-toggle button.detail:active {
+  float: left;
+  background-position: 0 -58px;
+}
+
+.view-toggle button.grid:active {
+  float: right;
+  background-position: -27px -58px;
 }
 
 /* Right Pane: Section */

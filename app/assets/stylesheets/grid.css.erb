@@ -96,17 +96,24 @@
 }
 
 .grid-item .info .listens {
-  height: 27px;
-  line-height: 27px;
+  position: relative; 
+  height: auto; 
+  max-height: 30px;
+  line-height: 14px; 
+  margin-top: 4px; 
+  padding-left: 19px; 
+  white-space: normal;
   color: #9ea2a9;
   font-size: 11px;
 }
 
 .grid-item .listens .icon.headphones {
   display: inline-block;
+  position: absolute;
+  top: 0; 
+  left: 0;
   height: 15px;
   width: 14px;
-  margin-right: 4px;
   background: url(<%= asset_path 'misc-icons.png' %>) -10px -11px no-repeat;
   vertical-align: text-bottom;
 }
