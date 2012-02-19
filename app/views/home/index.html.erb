@@ -2,13 +2,7 @@
 <body class="tour">
   <div class="container">
     <a class="logo_dark" href="/">Jolicloud</a>
-    <section class="intro">
-      <h2>Discover music through your friends.</h2>
-      <%= link_to "Connect with facebook", new_facebook_path, :class => "facebook" %>
-      <div class="albums"></div>
-      <p>Or take a tour.</p>
-      <button class="tour">Tour</button>
-    </section>
+    <%= link_to "Login with Facebook", new_facebook_path, :class => "facebook button" %>
   </div>
   <% else %>
   <body class="app">
@@ -28,15 +22,6 @@
       <section>
         <h3 class="lobster">playlists</h3>
         <ul>
-          <!--
-          SINA new playlist handling ALSO check JS.
-
-<li class="playlist">
-<a href="#"><span class="icon"></span>Playlist name</a>
-<span class="delete"></span>
-<a href="/DELETE_SOMETHING" class="confirm">Delete</a>
-</li>
--->
 <% @playlists.each do |pl|%>
 <li class="playlist <%='queue' if pl.perm %>"><%= link_to content_tag(:span, nil, :class=>'icon') + pl.name, playlist_play_path + "?id=#{pl.id}", :method => :get, :remote => true %></li>
 <% end %>
