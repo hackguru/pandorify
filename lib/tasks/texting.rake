@@ -79,7 +79,7 @@ task :run_song_based_on_sorted_listens_for_user_that_are_not_common_with_the_oth
   before = Time.now
   e = Facebook.find_by_name("Edward Mehr")
   g = Facebook.find_by_name("Gabe Audick") 
-  s = Song.song_based_on_sorted_listens_for_user_that_are_not_common_with_the_other(g,e,1.weeks.ago).limit(50)
+  s = Song.song_based_on_sorted_listens_for_user_that_are_not_common_with_the_other_since(g,e,1.weeks.ago).limit(50)
   after = Time.now
   puts before.to_s + after.to_s
   puts (after - before).to_s
