@@ -183,7 +183,7 @@ class Facebook < ActiveRecord::Base
     list = Facebook.users_with_common_song self
     sum = 0
     list.each do |obj|
-      sum += obj.song_count
+      sum += obj.song_count.to_i
     end
     
     if sum == 0
@@ -205,7 +205,7 @@ class Facebook < ActiveRecord::Base
             next           
           end
           recom.facebook = self
-          recom.common_rank = obj.song_count
+          recom.common_rank = obj.song_count.to_i
           recom.recommended_by = obj
           recom.listened = false
           recom.save!
