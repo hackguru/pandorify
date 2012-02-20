@@ -79,7 +79,7 @@ class Song < ActiveRecord::Base
   scope :song_based_on_sorted_listens_for_user_that_are_not_common_with_the_other_since, lambda { |*args| {
         :select => "#{Song.table_name}.*, count(distinct firstlistens.id) as listen_count",
         :joins => "JOIN #{Listen.table_name} as firstlistens ON #{Song.table_name}.id = firstlistens.song_id JOIN #{Facebook.table_name} as firsts ON firstlistens.facebook_id = firsts.id JOIN #{Listen.table_name} as otherlistens ON #{Song.table_name}.id = otherlistens.song_id JOIN #{Facebook.table_name} as others ON otherlistens.facebook_id = others.id",
-        :conditions => ["firsts.id = #{args.first.id} AND others.id <> #{args.second.id} AND others.id <> #{args.first.id} AND firstlistens.start_time > #{args[2]}"],
+        :conditions => ["firsts.id = #{args.first.id} AND others.id <> #{args.second.id} AND others.id <> #{args.first.id} AND firstlistens.start_time > ?", 1.weeks.ago],
         :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
         :order => "count(distinct firstlistens.id) DESC, coalesce(#{Song.table_name}.popularity,0) DESC"  
   }}
