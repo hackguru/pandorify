@@ -121,9 +121,9 @@ class Song < ActiveRecord::Base
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request).body
     header = http.request(request).header
-    new_info = JSON.parse(response)
-    puts response.to_s
-    puts header.to_s
+    # new_info = JSON.parse(response)
+    # puts response.to_s
+    # puts header.to_s
   end
   
   def get_uri
