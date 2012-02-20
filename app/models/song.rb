@@ -122,7 +122,7 @@ class Song < ActiveRecord::Base
     response = http.request(request)
     body = response.body
     new_info = JSON.parse(body)
-    response.to_hash.to_s
+    response["x-ratelimit-remaining"].to_s
   end
   
   def get_uri
