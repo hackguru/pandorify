@@ -120,7 +120,10 @@ class Song < ActiveRecord::Base
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request).body
+    header = http.request(request).header
     new_info = JSON.parse(response)
+    puts new_info
+    puts header
   end
   
   def get_uri
