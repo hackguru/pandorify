@@ -180,7 +180,7 @@ class Facebook < ActiveRecord::Base
     end
     
     # this can be done with friends
-    list = Facebook.users_with_common_song(self).limit(100) #for better perf (limit 50)
+    list = Facebook.users_with_common_song(self).limit(50) #for better perf (limit 50)
     sum = 0
     list.each do |obj|
       sum += obj.song_count.to_i
