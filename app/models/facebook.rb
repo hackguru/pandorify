@@ -192,7 +192,7 @@ class Facebook < ActiveRecord::Base
     
     list.each do |obj|
       number_of_songs = (obj.song_count.to_f/sum.to_f*20.0).round
-      list_of_songs = Song.song_based_on_sorted_listens_by_user(obj)
+      list_of_songs = Song.song_based_on_sorted_listens_for_user(obj)
       list_of_songs.each do |song|
         break if number_of_songs == 0
         if self.songs.include? song
