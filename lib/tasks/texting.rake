@@ -40,37 +40,6 @@ end
 
 task :run_common_song => :environment do
   before = Time.now
-  e = Facebook.find_by_name("Edward Mehr")
-  g = Facebook.find_by_name("Gabe Audick") 
-  s = g.list_of_friends_with_most_in_common
-  after = Time.now
-  puts before.to_s + after.to_s
-  puts (after - before).to_s
-  puts s.size.to_s
-  s.each do |obj|
-    puts obj[0].name + " : " + obj[1].to_s
-  end
-
-  s = g.list_of_people_with_most_in_common
-  after = Time.now
-  puts before.to_s + after.to_s
-  puts (after - before).to_s
-  puts s.size.to_s
-  s.each do |obj|
-    puts obj[0].name + " : " + obj[1].to_s
-  end
-  # s = g.list_of_friends_with_most_in_common.limit(100) 
-  # after = Time.now
-  # puts before.to_s + after.to_s
-  # puts (after - before).to_s
-  # puts s.size.to_s
-  # s.each do |obj|
-  #   puts obj[0].name + " : " + obj[1].to_s
-  # end
-end
-
-task :run_common_song_new => :environment do
-  before = Time.now
   g = Facebook.find_by_name("Gabe Audick") 
   s = Facebook.users_with_common_song g
   after = Time.now
@@ -100,7 +69,6 @@ task :run_song_based_on_sorted_listens_for_user => :environment do
   after = Time.now
   puts before.to_s + after.to_s
   puts (after - before).to_s
-  puts s.size.to_s
   s.each do |obj|
     puts obj.title + " : " + obj.listen_count.to_s;
   end
