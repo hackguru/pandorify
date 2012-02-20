@@ -80,6 +80,17 @@ task :run_common_song_new => :environment do
   s.each do |obj|
     puts obj.name + " : " + obj.song_count.to_s;
   end
+  
+  before = Time.now
+  s = g.friends.users_with_common_song g
+  after = Time.now
+  puts before.to_s + after.to_s
+  puts (after - before).to_s
+  puts s.size.to_s
+  s.each do |obj|
+    puts obj.name + " : " + obj.song_count.to_s;
+  end
+  
 end
 task :update_tiny_song_id => :environment do
   Song.update_tiny_song_id
