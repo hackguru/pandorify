@@ -179,7 +179,7 @@ class Facebook < ActiveRecord::Base
         common_list.each do |obj|
           size += 1
         end
-        result << [fri, size]
+        result << [fri, size] if size > 0
       rescue
         next
       end
