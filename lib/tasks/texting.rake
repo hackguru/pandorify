@@ -72,7 +72,7 @@ end
 task :run_common_song_new => :environment do
   before = Time.now
   g = Facebook.find_by_name("Gabe Audick") 
-  s = g.users_with_common_song
+  s = Facebook.users_with_common_song g
   after = Time.now
   puts before.to_s + after.to_s
   puts (after - before).to_s
