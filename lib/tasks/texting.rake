@@ -20,7 +20,7 @@ task :update_test => :environment do
 end
 
 task :update_recom => :environment do
-  e = Facebook.find_by_name("Edward Mehr")
+  e = Facebook.find_by_name("Gabe Audick")
   e.update_recommendations
 end
 
