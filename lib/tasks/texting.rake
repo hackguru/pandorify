@@ -42,7 +42,7 @@ task :run_common_song => :environment do
   before = Time.now
   e = Facebook.find_by_name("Edward Mehr")
   g = Facebook.find_by_name("Gabe Audick") 
-  s = g.list_of_friends_with_most_in_common.limit(100) 
+  s = g.list_of_friends_with_most_in_common
   after = Time.now
   puts before.to_s + after.to_s
   puts (after - before).to_s
