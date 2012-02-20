@@ -69,6 +69,18 @@ task :run_common_song => :environment do
   # end
 end
 
+task :run_common_song_new => :environment do
+  before = Time.now
+  g = Facebook.find_by_name("Gabe Audick") 
+  s = g.users_with_common_song
+  after = Time.now
+  puts before.to_s + after.to_s
+  puts (after - before).to_s
+  puts s.size.to_s
+  s.each do |obj|
+    puts obj[0].name + " : " + obj[1].to_s
+  end
+end
 task :update_tiny_song_id => :environment do
   Song.update_tiny_song_id
 end
