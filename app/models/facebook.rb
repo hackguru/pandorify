@@ -23,8 +23,8 @@ class Facebook < ActiveRecord::Base
 
   scope :users_with_common_song, lambda { |user| {
         :select => "friends.*, count(distinct #{Song.table_name}.id) as song_count",
-        :from => "#{Facebook.table_name} friends, #{Facebook.table_name} users",
-        :joins => "LEFT JOIN #{Listen.table_name} as friendlistens ON friends.id = friendlistens.facebook_id LEFT JOIN #{Song.table_name} ON friendlistens.song_id = #{Song.table_name}.id LEFT JOIN #{Listen.table_name} as userlistens ON #{Song.table_name}.id = userlistens.song_id LEFT JOIN users ON userlistens.facebook_id = users.id  AND users.id = #{user.id} AND friends.id <> #{user.id}",
+        :from => "#{Facebook.table_name} as friends",
+        :joins => "LEFT JOIN #{Listen.table_name} as friendlistens ON friends.id = friendlistens.facebook_id LEFT JOIN #{Song.table_name} ON friendlistens.song_id = #{Song.table_name}.id LEFT JOIN #{Listen.table_name} as userlistens ON #{Song.table_name}.id = userlistens.song_id LEFT JOIN #{Facebook.table_name} as users ON userlistens.facebook_id = users.id  AND users.id = #{user.id} AND friends.id <> #{user.id}",
         :conditions => ["users.id = ?", user.id],
         :group => "#{Facebook.table_name}.id, #{Facebook.table_name}.identifier, #{Facebook.table_name}.access_token, #{Facebook.table_name}.created_at, #{Facebook.table_name}.updated_at, #{Facebook.table_name}.is_friend_access, #{Facebook.table_name}.name, #{Facebook.table_name}.last_updated, #{Facebook.table_name}.pic_url, #{Facebook.table_name}.email, #{Facebook.table_name}.cell",
         :order => "song_count DESC"
