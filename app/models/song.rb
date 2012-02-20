@@ -114,6 +114,15 @@ class Song < ActiveRecord::Base
     end
   end
   
+  def update_song_characteristics
+    url = "http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=json&results=1&artist=#{CGI.escape(self.artist.name.to_s)}&title=#{CGI.escape(self.title.to_s)}&bucket=audio_summary"
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request).body
+    new_info = JSON.parse(response)
+  end
+  
   def get_uri
     if self.application.name == "Spotify"
       self.url.sub("http://open.spotify.com/track/","").strip
