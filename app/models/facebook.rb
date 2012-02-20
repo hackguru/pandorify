@@ -27,7 +27,7 @@ class Facebook < ActiveRecord::Base
         :joins => "LEFT JOIN #{Listen.table_name} as friendlistens ON friends.id = friendlistens.facebook_id LEFT JOIN #{Song.table_name} ON friendlistens.song_id = #{Song.table_name}.id LEFT JOIN #{Listen.table_name} as userlistens ON #{Song.table_name}.id = userlistens.song_id LEFT JOIN #{Facebook.table_name} as users ON userlistens.facebook_id = users.id  AND users.id = #{user.id} AND friends.id <> #{user.id}",
         :conditions => ["users.id = ?", user.id],
         :group => "friends.id, friends.identifier, friends.access_token, friends.created_at, friends.updated_at, friends.is_friend_access, friends.name, friends.last_updated, friends.pic_url, friends.email, friends.cell",
-        :order => "song_count DESC"
+        :order => "count(distinct #{Song.table_name}.id) DESC"
   }}
 
   def profile
