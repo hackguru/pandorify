@@ -78,7 +78,7 @@ task :run_common_song_new => :environment do
   puts (after - before).to_s
   puts s.size.to_s
   s.each do |obj|
-    puts obj[0].name + " : " + obj[1].to_s
+    puts obj.name;
   end
 end
 task :update_tiny_song_id => :environment do
