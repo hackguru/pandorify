@@ -50,6 +50,15 @@ task :run_common_song => :environment do
   s.each do |obj|
     puts obj[0].name + " : " + obj[1].to_s
   end
+
+  s = g.list_of_people_with_most_in_common
+  after = Time.now
+  puts before.to_s + after.to_s
+  puts (after - before).to_s
+  puts s.size.to_s
+  s.each do |obj|
+    puts obj[0].name + " : " + obj[1].to_s
+  end
   # s = g.list_of_friends_with_most_in_common.limit(100) 
   # after = Time.now
   # puts before.to_s + after.to_s
