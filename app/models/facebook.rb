@@ -218,7 +218,7 @@ class Facebook < ActiveRecord::Base
     end
     
     # list = self.list_of_friends_with_most_in_common
-    list = self.list_of_people_with_most_in_common.limit(100) #limit 100 for performance reasons
+    list = self.list_of_people_with_most_in_common
     sum = 0
     list.each do |obj|
       break if obj[1] == 0
@@ -232,7 +232,7 @@ class Facebook < ActiveRecord::Base
     list.each do |obj|
       break if obj[1] == 0      
       number_of_songs = (obj[1].to_f/sum.to_f*20.0).round
-      list_of_songs = Song.song_based_on_sorted_listens_by_user(obj[0]).limit(100) #limit 100 for performance reasons
+      list_of_songs = Song.song_based_on_sorted_listens_by_user(obj[0])
       list_of_songs.each do |song|
         break if number_of_songs == 0
         if self.songs.include? song
