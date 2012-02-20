@@ -122,10 +122,7 @@ class Song < ActiveRecord::Base
     response = http.request(request)
     body = response.body
     new_info = JSON.parse(body)
-    puts new_info.to_s
-    puts response.to_hash.to_s
-    # puts response.to_s
-    # puts header.to_s
+    response.to_hash.to_s
   end
   
   def get_uri
