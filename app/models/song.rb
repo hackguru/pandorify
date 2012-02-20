@@ -119,9 +119,12 @@ class Song < ActiveRecord::Base
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
-    response = http.request(request)
-    body = response.body
-    header = response.header.to_hash()
+    http.request(request) do |response|
+      body = response.body
+      header = response.header.to_hash()
+      puts body.to_s
+      puts header.to_s
+    end
     # new_info = JSON.parse(response)
     # puts response.to_s
     # puts header.to_s
