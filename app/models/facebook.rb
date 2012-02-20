@@ -106,26 +106,6 @@ class Facebook < ActiveRecord::Base
       return new_data
     end
     new_data
-    
-    # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
-    # @music_activity = []
-    # new_data = []
-    # count = 5
-    # begin
-    #   uri = URI.parse(url)
-    #   http = Net::HTTP.new(uri.host, uri.port)
-    #   http.use_ssl = true
-    #   http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
-    #   http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
-    #   request = Net::HTTP::Get.new(uri.request_uri)
-    #   response = http.request(request).body
-    #   new_info = JSON.parse(response)
-    #   url = new_info['paging']['next']
-    #   new_data = new_info['data']
-    #   @music_activity.push new_data
-    #   count -= 1
-    # end while new_data.count > 0 and count > 0
-    # @music_activity
   end
 
   def add_music_activity
@@ -188,42 +168,6 @@ class Facebook < ActiveRecord::Base
     self.save!
   end
   
-  def list_of_friends_with_most_in_common
-    result = []
-    self.friends.each do |fri|
-      begin
-        common_list = Song.common_songs self,fri
-        size = 0
-        common_list.each do |obj|
-          size += 1
-        end
-        result << [fri, size] if size > 0
-      rescue
-        next
-      end
-    end
-    result.sort! { |a,b| -a[1] <=> -b[1] }
-    result
-  end
-  
-  def list_of_people_with_most_in_common
-    result = []
-    Facebook.all.each do |user|
-      next if user.id == self.id
-      begin
-        common_list = Song.common_songs self,user
-        size = 0
-        common_list.each do |obj|
-          size += 1
-        end
-        result << [user, size] if size > 0
-      rescue
-        next
-      end
-    end
-    result.sort! { |a,b| -a[1] <=> -b[1] }
-    result
-  end
   
   def update_recommendations
     
@@ -235,12 +179,11 @@ class Facebook < ActiveRecord::Base
       end
     end
     
-    # list = self.list_of_friends_with_most_in_common
-    list = self.list_of_people_with_most_in_common
+    # this can be done with friends
+    list = Facebook.users_with_common_song self
     sum = 0
     list.each do |obj|
-      break if obj[1] == 0
-      sum += obj[1]
+      sum += obj.song_count
     end
     
     if sum == 0
@@ -248,9 +191,8 @@ class Facebook < ActiveRecord::Base
     end
     
     list.each do |obj|
-      break if obj[1] == 0      
-      number_of_songs = (obj[1].to_f/sum.to_f*20.0).round
-      list_of_songs = Song.song_based_on_sorted_listens_by_user(obj[0])
+      number_of_songs = (obj.song_count.to_f/sum.to_f*20.0).round
+      list_of_songs = Song.song_based_on_sorted_listens_by_user(obj)
       list_of_songs.each do |song|
         break if number_of_songs == 0
         if self.songs.include? song
