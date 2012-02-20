@@ -82,7 +82,7 @@ task :run_common_song_new => :environment do
   end
   
   before = Time.now
-  s = g.friends.users_with_common_song g
+  s = Facebook.users_with_common_song_among_friends g
   after = Time.now
   puts before.to_s + after.to_s
   puts (after - before).to_s
