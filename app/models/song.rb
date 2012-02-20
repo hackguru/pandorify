@@ -122,7 +122,7 @@ class Song < ActiveRecord::Base
     response = http.request(request).body
     header = http.request(request).header
     new_info = JSON.parse(response)
-    puts new_info.to_s
+    puts response.to_s
     puts header.to_s
   end
   
