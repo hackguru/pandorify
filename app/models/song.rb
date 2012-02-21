@@ -171,7 +171,7 @@ class Song < ActiveRecord::Base
     def update_song_characteristics
       calls_left = false
       i = 0
-      songs_to_get_info = Song..all(:conditions => [":echo_nested is null"], :limit => 2) #120
+      songs_to_get_info = Song..all(:conditions => ["echo_nested is null"], :limit => 2) #120
       begin
         url = "http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=json&results=1&artist=#{CGI.escape(songs_to_get_info[i].artist.name.to_s)}&title=#{CGI.escape(songs_to_get_info[i].title.to_s)}&bucket=audio_summary"
         uri = URI.parse(url)
