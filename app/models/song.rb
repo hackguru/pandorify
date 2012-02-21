@@ -190,6 +190,7 @@ class Song < ActiveRecord::Base
         songs_to_get_info[i].energy = info["energy"]
         songs_to_get_info[i].tempo = info["tempo"]
         songs_to_get_info[i].danceability = info["danceability"]
+        songs_to_get_info[i].echo_nested = true
         songs_to_get_info[i].save!
         i += 1
         # cleaning up
@@ -200,7 +201,7 @@ class Song < ActiveRecord::Base
         new_info = nil
         info = nil
         GC.start # Run the garbage collector to be sure this is real !        
-      end while calls_left
+      end while calls_left and i < 120
     end
         
   end
