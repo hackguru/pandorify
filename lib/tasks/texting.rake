@@ -114,4 +114,8 @@ task :testing_parsing => :environment do
 end
 
 
-
+task :testing_recommendation => :environment do
+  Facebook.find(:all,:conditions => ["is_friend_access = ?", false]).each do |user|
+    user.update_recommendations
+  end
+end 
