@@ -126,17 +126,6 @@ class Song < ActiveRecord::Base
     end
   end
   
-  def update_song_characteristics
-    url = "http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=json&results=1&artist=#{CGI.escape(self.artist.name.to_s)}&title=#{CGI.escape(self.title.to_s)}&bucket=audio_summary"
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Get.new(uri.request_uri)
-    response = http.request(request)
-    body = response.body
-    new_info = JSON.parse(body)
-    response.to_hash["x-ratelimit-remaining"][0].to_i > 0
-  end
-  
   def get_uri
     if self.application.name == "Spotify"
       self.url.sub("http://open.spotify.com/track/","").strip
@@ -179,6 +168,33 @@ class Song < ActiveRecord::Base
       self.update_songs
     end
     
+    def update_song_characteristics
+      calls_left = false
+      begin
+        url = "http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=json&results=1&artist=#{CGI.escape(self.artist.name.to_s)}&title=#{CGI.escape(self.title.to_s)}&bucket=audio_summary"
+        uri = URI.parse(url)
+        http = Net::HTTP.new(uri.host, uri.port)
+        request = Net::HTTP::Get.new(uri.request_uri)
+        response = http.request(request)
+        new_info = JSON.parse(response.body)
+        calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
+        # cleaning up
+        uri = nil
+        http = nil
+        request = nil
+        response = nil
+        new_info = nil
+        GC.start # Run the garbage collector to be sure this is real !        
+      end while calls_left
+    end
+        
   end
   
+end
+
+
+class Echonest
+  def self.perform
+    Song.update_song_characteristics
+  end
 end
