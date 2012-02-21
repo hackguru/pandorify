@@ -8,6 +8,11 @@ class Album < ActiveRecord::Base
     link = link[0..link.size-2]
     self.cover_pic_url = link
     self.save!
+    # cleaning up
+    c = nil
+    tag = nil
+    link = nil
+    GC.start # Run the garbage collector to be sure this is real !    
   end
   
   

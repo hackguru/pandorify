@@ -54,6 +54,9 @@ class Facebook < ActiveRecord::Base
         user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
         self.pic_url =user.picture
         self.save!
+        # cleaning up
+        user = nil
+        GC.start # Run the garbage collector to be sure this is real !        
       rescue
         return
       end
@@ -116,7 +119,7 @@ class Facebook < ActiveRecord::Base
     end
 
     music_activity.each do |object|
-      begin
+      # begin
         new_application = Application.find_or_create_by_identifier(object.raw_attributes["application"]["id"])
         new_application.name = object.raw_attributes["application"]["name"]
         new_application.save!
@@ -135,9 +138,20 @@ class Facebook < ActiveRecord::Base
         new_listen.song = new_song
         new_listen.access_token = object.raw_attributes["access_token"]
         new_listen.save!
-      rescue
-        next
-      end
+
+        # cleaning up
+        new_application = nil
+        new_song = nil
+        new_listen = nil
+        GC.start # Run the garbage collector to be sure this is real !        
+      # rescue
+        # next
+      # end
+      
+      # cleaning up
+      music_activity = nil
+      GC.start # Run the garbage collector to be sure this is real !
+      
     end
     
   end           
@@ -150,12 +164,15 @@ class Facebook < ActiveRecord::Base
         return
       end
       friend_list.each do |friend|
-        begin
+        # begin
           Facebook.add_as_friend friend, self
-        rescue
-          next
-        end
+        # rescue
+          # next
+        # end
       end
+      # cleaning up
+      friend_list = nil
+      GC.start # Run the garbage collector to be sure this is real !
     end    
   end
   
@@ -166,6 +183,9 @@ class Facebook < ActiveRecord::Base
     self.update_pic
     self.last_updated = time_for_update
     self.save!
+    # cleaning up
+    time_for_update = nil
+    GC.start # Run the garbage collector to be sure this is real !
   end
   
   

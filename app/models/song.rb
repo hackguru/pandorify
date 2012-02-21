@@ -111,6 +111,18 @@ class Song < ActiveRecord::Base
       self.save!
       new_album.save!
       new_artist.save!
+      
+      # cleaning up
+      url = nil
+      uri = nil
+      http = nil
+      request = nil
+      response = nil
+      new_info = nil
+      new_album_url = nil
+      new_artist_url = nil
+      GC.start # Run the garbage collector to be sure this is real !    
+      
     end
   end
   
