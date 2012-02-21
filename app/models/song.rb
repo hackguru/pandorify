@@ -170,14 +170,18 @@ class Song < ActiveRecord::Base
     
     def update_song_characteristics
       calls_left = false
+      i = 0
+      songs_to_get_info = Song.find_by_echo_nested(nil).limit(1) #120
       begin
-        url = "http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=json&results=1&artist=#{CGI.escape(self.artist.name.to_s)}&title=#{CGI.escape(self.title.to_s)}&bucket=audio_summary"
+        url = "http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=json&results=1&artist=#{CGI.escape(songs_to_get_info[i].artist.name.to_s)}&title=#{CGI.escape(songs_to_get_info[i].title.to_s)}&bucket=audio_summary"
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
         request = Net::HTTP::Get.new(uri.request_uri)
         response = http.request(request)
         new_info = JSON.parse(response.body)
+        puts new_info["songs"]["audio_summary"]["key"]
         calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
+        i += 1
         # cleaning up
         uri = nil
         http = nil
