@@ -191,6 +191,7 @@ class Song < ActiveRecord::Base
         songs_to_get_info[i].tempo = info["tempo"]
         songs_to_get_info[i].danceability = info["danceability"]
         songs_to_get_info[i].echo_nested = true
+        songs_to_get_info[i].last_echo_nested = Time.now
         songs_to_get_info[i].save!
         i += 1
         # cleaning up
