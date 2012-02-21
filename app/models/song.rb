@@ -170,7 +170,7 @@ class Song < ActiveRecord::Base
     
     def update_song_characteristics
       calls_left = false
-      info = nil
+      song = nil
       i = 0
       songs_to_get_info = Song.all(:conditions => ["echo_nested is null"], :limit => 2) #120
       begin
@@ -180,8 +180,17 @@ class Song < ActiveRecord::Base
         request = Net::HTTP::Get.new(uri.request_uri)
         response = http.request(request)
         new_info = JSON.parse(response.body)
-        info = new_info["response"]["songs"][0]["audio_summary"]#["key"]
+        info = new_info["response"]["songs"][0]["audio_summary"]
         # calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
+        songs_to_get_info[i].key = info["key"]
+        songs_to_get_info[i].mode = info["mode"]
+        songs_to_get_info[i].key = info["time_signature"]
+        songs_to_get_info[i].time_signature = info["duration"] if songs_to_get_info[i].duration == nil
+        songs_to_get_info[i].loudness = info["loudness"]
+        songs_to_get_info[i].energy = info["energy"]
+        songs_to_get_info[i].tempo = info["tempo"]
+        songs_to_get_info[i].danceability = info["danceability"]
+        songs_to_get_info[i].save!
         i += 1
         # cleaning up
         uri = nil
@@ -189,9 +198,9 @@ class Song < ActiveRecord::Base
         request = nil
         response = nil
         new_info = nil
+        info = nil
         GC.start # Run the garbage collector to be sure this is real !        
       end while calls_left
-      info
     end
         
   end
