@@ -123,3 +123,7 @@ end
 task :run_update_song_characteristics => :environment do
   Song.update_song_characteristics
 end
+
+task :run_echonest_perfom => :environment do
+  Echonest.perform
+end
