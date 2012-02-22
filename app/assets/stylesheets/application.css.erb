@@ -27,6 +27,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: auto;
+}
+
 .clear {
   clear: both;
 }
@@ -51,9 +55,24 @@ header {
   left: 0;
   right: 0;
   height: 49px;
+  z-index: 10;
   background: url(<%= asset_path 'dark-blue-bg.png' %>) repeat-x;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+}
+#header-container {
+  height: inherit;
+  background: url(<%= asset_path 'topbar-bg.png' %>) repeat-x;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 4px;
+  text-align: center;
+}
+
+#player {
+  display: inline-block;
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  z-index: 2;
 }
 
 .logo {
@@ -77,6 +96,52 @@ header {
 
 .logo_dark:hover {
   background-color: transparent;
+}
+
+/* contailner for toggle bottons */
+.view-toggle {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  height: 22px;
+  width: 53px;
+  background: url( <%= asset_path 'view-toggle.png' %>) 0 0 no-repeat;
+}
+
+.view-toggle button {
+  height: 22px;
+  width: 26px;
+  background: url( <%= asset_path 'view-toggle.png' %>) no-repeat;
+  text-indent: -9999px;
+  padding: 0;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.view-toggle button.active {
+  background: transparent !important;
+}
+
+.view-toggle button.detail {
+  float: left;
+  background-position: 0 -30px;
+}
+
+.view-toggle button.grid {
+  float: right;
+  background-position: -27px -30px;
+}
+
+.view-toggle button.detail:active {
+  float: left;
+  background-position: 0 -58px;
+}
+
+.view-toggle button.grid:active {
+  float: right;
+  background-position: -27px -58px;
 }
 
 /* Sidebar */
@@ -280,79 +345,6 @@ nav li.logout.active .icon {
   background: #FDFDFE;
   box-shadow: -7px 0 3px -3px rgba(32, 32, 32, 0.03);
   border-bottom-left-radius: 4px;
-}
-
-/* Right Pane: Header */
-#header-right-container {
-  position: fixed;
-  top: 0;
-  left: inherit !important;
-  right: inherit !important;
-  height: 49px;
-  z-index: 10;
-  background: url(<%= asset_path 'dark-blue-bg.png' %>) repeat-x;
-}
-
-#header-right {
-  height: inherit;
-  background: url(<%= asset_path 'topbar-bg.png' %>) repeat-x;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
-  border-top-left-radius: 4px;
-  text-align: center;
-}
-
-#player {
-  display: inline-block;
-  position: absolute;
-  top: 4px;
-  left: 5px;
-  z-index: 2;
-}
-
-/* contailner for toggle bottons */
-.view-toggle {
-  position: absolute;
-  top: 15px;
-  right: 16px;
-  height: 22px;
-  width: 53px;
-  background: url( <%= asset_path 'view-toggle.png' %>) 0 0 no-repeat;
-}
-
-.view-toggle button {
-  height: 22px;
-  width: 26px;
-  background: url( <%= asset_path 'view-toggle.png' %>) no-repeat;
-  text-indent: -9999px;
-  padding: 0;
-  outline: none;
-  border: none;
-  box-shadow: none;
-  cursor: pointer;
-}
-
-.view-toggle button.active {
-  background: transparent !important;
-}
-
-.view-toggle button.detail {
-  float: left;
-  background-position: 0 -30px;
-}
-
-.view-toggle button.grid {
-  float: right;
-  background-position: -27px -30px;
-}
-
-.view-toggle button.detail:active {
-  float: left;
-  background-position: 0 -58px;
-}
-
-.view-toggle button.grid:active {
-  float: right;
-  background-position: -27px -58px;
 }
 
 /* Right Pane: Section */
