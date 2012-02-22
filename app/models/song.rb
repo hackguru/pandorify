@@ -176,7 +176,7 @@ class Song < ActiveRecord::Base
         puts "wait atleast 3 minutes between calls to api"
         return
       end
-      calls_left = false
+      calls_left = true
       i = 0
       songs_to_get_info = Song.all(:conditions => ["echo_nested is null"], :limit => 120)
       begin
