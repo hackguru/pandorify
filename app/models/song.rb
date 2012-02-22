@@ -188,6 +188,9 @@ class Song < ActiveRecord::Base
           puts "response from api: #{response.body}"
           info = new_info["response"]["songs"][0]["audio_summary"]
         rescue
+          songs_to_get_info[i].echo_nested = true
+          songs_to_get_info[i].last_echo_nested = Time.now
+          songs_to_get_info[i].save!
           # cleaning up
           uri = nil
           http = nil
