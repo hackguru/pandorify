@@ -3,7 +3,7 @@ class AddTempToSongs < ActiveRecord::Migration
     add_column :songs, :temp, :text
 
     Song.reset_column_information
-    Song.find_each { |s| s.update_attribute(:temp, c.title) }
+    Song.find_each { |s| s.update_attribute(:temp, s.title) }
 
   end
 end
