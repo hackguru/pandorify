@@ -7,3 +7,8 @@ task :update => :environment do
   Delayed::Job.enqueue Album
   puts "Done"
 end
+
+task :update_echonest_info => :environment do
+  puts "Enqueueing Echonest info getter"
+  Delayed::Job.enqueue Echonest  
+end

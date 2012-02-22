@@ -8,6 +8,11 @@ class Album < ActiveRecord::Base
     link = link[0..link.size-2]
     self.cover_pic_url = link
     self.save!
+    # cleaning up
+    c = nil
+    tag = nil
+    link = nil
+    GC.start # Run the garbage collector to be sure this is real !    
   end
   
   
@@ -15,7 +20,7 @@ class Album < ActiveRecord::Base
     extend ActiveSupport::Memoizable
   
     def update_all_covers
-      Album.all.each do |obj|
+      Album.find(:all,:conditions => ["cover_pic_url is null"]).each do |obj|
         begin
           obj.update_album_cover
         rescue

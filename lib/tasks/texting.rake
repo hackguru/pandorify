@@ -40,17 +40,56 @@ end
 
 task :run_common_song => :environment do
   before = Time.now
-  e = Facebook.find_by_name("Edward Mehr")
   g = Facebook.find_by_name("Gabe Audick") 
-  s = e.list_of_friends_with_most_in_common 
+  s = Facebook.users_with_common_song g
   after = Time.now
   puts before.to_s + after.to_s
   puts (after - before).to_s
   puts s.size.to_s
   s.each do |obj|
-    puts obj[0].name + " : " + obj[1].to_s
+    puts obj.name + " : " + obj.song_count.to_s;
   end
+  
+  before = Time.now
+  s = Facebook.users_with_common_song_among_friends g
+  after = Time.now
+  puts before.to_s + after.to_s
+  puts (after - before).to_s
+  puts s.size.to_s
+  s.each do |obj|
+    puts obj.name + " : " + obj.song_count.to_s;
+  end
+  
 end
+
+task :run_song_based_on_sorted_listens_for_user => :environment do
+  before = Time.now
+  g = Facebook.find_by_name("Gabe Audick") 
+  s = Song.song_based_on_sorted_listens_for_user g
+  after = Time.now
+  puts before.to_s + after.to_s
+  puts (after - before).to_s
+  s.each do |obj|
+    puts obj.title + " : " + obj.listen_count.to_s;
+  end
+  
+end
+
+task :run_song_based_on_sorted_listens_for_user_that_are_not_common_with_the_other_since => :environment do
+  before = Time.now
+  e = Facebook.find_by_name("Edward Mehr")
+  g = Facebook.find_by_name("Gabe Audick")
+  last_time_gabe_listened = g.listens.find(:first, :order => "start_time DESC") 
+  s = Song.song_based_on_sorted_listens_for_user_that_are_not_common_with_the_other_since(g,e,last_time_gabe_listened.start_time-1.month).limit(50)
+  after = Time.now
+  puts before.to_s + after.to_s
+  puts (after - before).to_s
+  s.each do |obj|
+    puts obj.title + " : " + obj.listen_count.to_s;
+  end
+  
+end
+
 
 task :update_tiny_song_id => :environment do
   Song.update_tiny_song_id
@@ -75,4 +114,16 @@ task :testing_parsing => :environment do
 end
 
 
+task :testing_recommendation => :environment do
+  Facebook.find(:all,:conditions => ["is_friend_access = ?", false]).each do |user|
+    user.update_recommendations
+  end
+end 
 
+task :run_update_song_characteristics => :environment do
+  Song.update_song_characteristics
+end
+
+task :run_echonest_perfom => :environment do
+  Echonest.perform
+end

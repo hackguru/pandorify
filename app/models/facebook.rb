@@ -12,6 +12,8 @@ class Facebook < ActiveRecord::Base
   # has_many :commended_songs_by_me, :foreign_key => :recommended_by_id, :through => :recommendations, :source => :song
   has_many :recommendations_because_of_me, :class_name => 'Recommendation', :foreign_key => :recommended_by_id
   has_many :playlists
+  has_and_belongs_to_many :parties
+  
   
   scope :users_listen_to, lambda { |song| {
         :select => "#{Facebook.table_name}.*, count(#{Listen.table_name}.id) as listen_count",
@@ -19,6 +21,24 @@ class Facebook < ActiveRecord::Base
         :conditions => ["#{Song.table_name}.id = ?", song.id],
         :group => "#{Facebook.table_name}.id, #{Facebook.table_name}.identifier, #{Facebook.table_name}.access_token, #{Facebook.table_name}.created_at, #{Facebook.table_name}.updated_at, #{Facebook.table_name}.is_friend_access, #{Facebook.table_name}.name, #{Facebook.table_name}.last_updated, #{Facebook.table_name}.pic_url, #{Facebook.table_name}.email, #{Facebook.table_name}.cell",
         :order => "count(#{Listen.table_name}.id) DESC"
+  }}
+
+  scope :users_with_common_song, lambda { |user| {
+        :select => "friends.*, count(distinct #{Song.table_name}.id) as song_count",
+        :from => "#{Facebook.table_name} as friends",
+        :joins => "LEFT JOIN #{Listen.table_name} as friendlistens ON friends.id = friendlistens.facebook_id LEFT JOIN #{Song.table_name} ON friendlistens.song_id = #{Song.table_name}.id LEFT JOIN #{Listen.table_name} as userlistens ON #{Song.table_name}.id = userlistens.song_id LEFT JOIN #{Facebook.table_name} as users ON userlistens.facebook_id = users.id  AND users.id = #{user.id} AND friends.id <> #{user.id}",
+        :conditions => ["users.id = ?", user.id],
+        :group => "friends.id, friends.identifier, friends.access_token, friends.created_at, friends.updated_at, friends.is_friend_access, friends.name, friends.last_updated, friends.pic_url, friends.email, friends.cell",
+        :order => "count(distinct #{Song.table_name}.id) DESC"
+  }}
+
+  scope :users_with_common_song_among_friends, lambda { |user| {
+        :select => "friends.*, count(distinct #{Song.table_name}.id) as song_count",
+        :from => "#{Facebook.table_name} as friends",
+        :joins => "INNER JOIN friendships ON friends.id = friendships.friend_id LEFT JOIN #{Listen.table_name} as friendlistens ON friends.id = friendlistens.facebook_id LEFT JOIN #{Song.table_name} ON friendlistens.song_id = #{Song.table_name}.id LEFT JOIN #{Listen.table_name} as userlistens ON #{Song.table_name}.id = userlistens.song_id LEFT JOIN #{Facebook.table_name} as users ON userlistens.facebook_id = users.id  AND users.id = #{user.id} AND friends.id <> #{user.id} AND friendships.user_id = users.id",
+        :conditions => ["users.id = ?", user.id],
+        :group => "friends.id, friends.identifier, friends.access_token, friends.created_at, friends.updated_at, friends.is_friend_access, friends.name, friends.last_updated, friends.pic_url, friends.email, friends.cell",
+        :order => "count(distinct #{Song.table_name}.id) DESC"
   }}
 
   def profile
@@ -36,6 +56,9 @@ class Facebook < ActiveRecord::Base
         user = FbGraph::User.fetch(self.identifier, :access_token => self.access_token)
         self.pic_url =user.picture
         self.save!
+        # cleaning up
+        user = nil
+        GC.start # Run the garbage collector to be sure this is real !        
       rescue
         return
       end
@@ -88,26 +111,6 @@ class Facebook < ActiveRecord::Base
       return new_data
     end
     new_data
-    
-    # url = "https://graph.facebook.com/#{self.identifier}/music.listens?access_token=#{self.access_token}"
-    # @music_activity = []
-    # new_data = []
-    # count = 5
-    # begin
-    #   uri = URI.parse(url)
-    #   http = Net::HTTP.new(uri.host, uri.port)
-    #   http.use_ssl = true
-    #   http.verify_mode = OpenSSL::SSL::VERIFY_PEER 
-    #   http.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
-    #   request = Net::HTTP::Get.new(uri.request_uri)
-    #   response = http.request(request).body
-    #   new_info = JSON.parse(response)
-    #   url = new_info['paging']['next']
-    #   new_data = new_info['data']
-    #   @music_activity.push new_data
-    #   count -= 1
-    # end while new_data.count > 0 and count > 0
-    # @music_activity
   end
 
   def add_music_activity
@@ -118,7 +121,7 @@ class Facebook < ActiveRecord::Base
     end
 
     music_activity.each do |object|
-      begin
+      # begin
         new_application = Application.find_or_create_by_identifier(object.raw_attributes["application"]["id"])
         new_application.name = object.raw_attributes["application"]["name"]
         new_application.save!
@@ -137,9 +140,20 @@ class Facebook < ActiveRecord::Base
         new_listen.song = new_song
         new_listen.access_token = object.raw_attributes["access_token"]
         new_listen.save!
-      rescue
-        next
-      end
+
+        # cleaning up
+        new_application = nil
+        new_song = nil
+        new_listen = nil
+        GC.start # Run the garbage collector to be sure this is real !        
+      # rescue
+        # next
+      # end
+      
+      # cleaning up
+      music_activity = nil
+      GC.start # Run the garbage collector to be sure this is real !
+      
     end
     
   end           
@@ -152,12 +166,15 @@ class Facebook < ActiveRecord::Base
         return
       end
       friend_list.each do |friend|
-        begin
+        # begin
           Facebook.add_as_friend friend, self
-        rescue
-          next
-        end
+        # rescue
+          # next
+        # end
       end
+      # cleaning up
+      friend_list = nil
+      GC.start # Run the garbage collector to be sure this is real !
     end    
   end
   
@@ -168,44 +185,11 @@ class Facebook < ActiveRecord::Base
     self.update_pic
     self.last_updated = time_for_update
     self.save!
+    # cleaning up
+    time_for_update = nil
+    GC.start # Run the garbage collector to be sure this is real !
   end
   
-  def list_of_friends_with_most_in_common
-    result = []
-    self.friends.each do |fri|
-      begin
-        common_list = Song.common_songs self,fri
-        size = 0
-        common_list.each do |obj|
-          size += 1
-        end
-        result << [fri, size]
-      rescue
-        next
-      end
-    end
-    result.sort! { |a,b| -a[1] <=> -b[1] }
-    result
-  end
-  
-  def list_of_people_with_most_in_common
-    result = []
-    Facebook.all.each do |user|
-      next if user.id == self.id
-      begin
-        common_list = Song.common_songs self,user
-        size = 0
-        common_list.each do |obj|
-          size += 1
-        end
-        result << [user, size]
-      rescue
-        next
-      end
-    end
-    result.sort! { |a,b| -a[1] <=> -b[1] }
-    result
-  end
   
   def update_recommendations
     
@@ -217,12 +201,11 @@ class Facebook < ActiveRecord::Base
       end
     end
     
-    # list = self.list_of_friends_with_most_in_common
-    list = self.list_of_people_with_most_in_common
+    # this can be done with friends
+    list = Facebook.users_with_common_song(self).limit(50) #for better perf (limit 50)
     sum = 0
     list.each do |obj|
-      break if obj[1] == 0
-      sum += obj[1]
+      sum += obj.song_count.to_i
     end
     
     if sum == 0
@@ -230,27 +213,20 @@ class Facebook < ActiveRecord::Base
     end
     
     list.each do |obj|
-      break if obj[1] == 0      
-      number_of_songs = (obj[1].to_f/sum.to_f*20.0).round
-      list_of_songs = Song.song_based_on_sorted_listens_by_user(obj[0])
+      number_of_songs = (obj.song_count.to_f/sum.to_f*20.0).round
+      list_of_songs = Song.song_based_on_sorted_listens_for_user_that_are_not_common_with_the_other(obj,self).limit(20) #for better perf (limit 20)
       list_of_songs.each do |song|
         break if number_of_songs == 0
-        if self.songs.include? song
-          next
-        # elsif self.recommendeds.include? song
-          # next
-        else
-          recom = Recommendation.find_or_initialize_by_song_id_and_facebook_id(song.id, self.id)
-          if (recom.listened == true)
-            next           
-          end
-          recom.facebook = self
-          recom.common_rank = obj[1]
-          recom.recommended_by = obj[0]
-          recom.listened = false
-          recom.save!
-          number_of_songs -= 1
+        recom = Recommendation.find_or_initialize_by_song_id_and_facebook_id(song.id, self.id)
+        if (recom.listened == true)
+          next           
         end
+        recom.facebook = self
+        recom.common_rank = obj.song_count.to_i
+        recom.recommended_by = obj
+        recom.listened = false
+        recom.save!
+        number_of_songs -= 1
       end
     end    
   end
