@@ -2,16 +2,28 @@
 <body class="tour">
   <div class="container">
     <a class="logo_dark" href="/">Jolicloud</a>
-    <section class="intro">
-      <h2>Discover music the social way.</h2>
-      <p>Find new artists through your friends.</p>
-      <%= link_to "Connect with facebook", new_facebook_path, :class => "facebook" %>
-    </section>
+    <%= link_to "Login with Facebook", new_facebook_path, :class => "facebook button" %>
   </div>
   <% else %>
   <body class="app">
     <header>
-      <a class="logo" href="/">soundbook</a>
+      <div id="header-container">
+        <a class="logo" href="/">soundbook</a>
+        <div id="player">
+          <object width="250" height="40">
+            <param name="movie" value="http://listen.grooveshark.com/songWidget.swf">
+            <param name="wmode" value="window">
+            <param name="allowScriptAccess" value="always">
+            <param name="flashvars" value="hostname=cowbell.grooveshark.com&amp;widgetID=&amp;style=metal&amp;p=0">
+            <embed src="http://listen.grooveshark.com/songWidget.swf" type="application/x-shockwave-flash" width="250" height="40" flashvars="hostname=cowbell.grooveshark.com&amp;widgetID=&amp;style=metal&amp;p=0" allowscriptaccess="always" wmode="window">
+            </object>
+          </div>
+          <div class="view-toggle">
+            <button class="detail">detail</button>
+            <button class="grid active">grid</button>
+          </div>
+        </div>
+      </div>
     </header>
     <nav id = "side_bar">
       <section>
@@ -26,67 +38,39 @@
       <section>
         <h3 class="lobster">playlists</h3>
         <ul>
-          <!--
-            SINA new playlist handling ALSO check JS.
-            
-          <li class="playlist">
-            <a href="#"><span class="icon"></span>Playlist name</a>
-            <span class="delete"></span>
-            <a href="/DELETE_SOMETHING" class="confirm">Delete</a>
-          </li>
-          -->
-          
-          <% @playlists.each do |pl|%>
-          <li class="playlist <%='queue' if pl.perm %>"><%= link_to content_tag(:span, nil, :class=>'icon') + pl.name, playlist_play_path + "?id=#{pl.id}", :method => :get, :remote => true %></li>
-          <% end %>
-          <li class="playlist add"><a href="#"><span class="icon"></span>Create playlist</a></li>
-        </ul>
-      </section>
-      <section>
-        <h3 class="lobster">account</h3>
-        <ul>
-          <li class="profile"><a href="#"><span class="icon"></span>Profile</a></li>
-          <li class="settings"><a href="#"><span class="icon"></span>Settings</a></li>
-          <li class="logout">
-            <%= link_to content_tag(:span, nil, :class=>'icon') + "Logout", facebook_path, :method => :delete, :class => "logout" %>
-          </li>
-        </ul>
-      </section>
-    </nav>
+<% @playlists.each do |pl|%>
+<li class="playlist <%='queue' if pl.perm %>"><%= link_to content_tag(:span, nil, :class=>'icon') + pl.name, playlist_play_path + "?id=#{pl.id}", :method => :get, :remote => true %></li>
+<% end %>
+<li class="playlist add"><a href="#"><span class="icon"></span>Create playlist</a></li>
+</ul>
+</section>
+<section>
+  <h3 class="lobster">account</h3>
+  <ul>
+    <li class="profile"><a href="#"><span class="icon"></span>Profile</a></li>
+    <li class="settings"><a href="#"><span class="icon"></span>Settings</a></li>
+    <li class="logout">
+      <%= link_to content_tag(:span, nil, :class=>'icon') + "Logout", facebook_path, :method => :delete, :class => "logout" %>
+    </li>
+  </ul>
+</section>
+</nav>
 
-    <div id="right-pane">
-      <div id="header-right-container">
-        <div id="header-right">
-          <div id="player">
-            <object width="250" height="40">
-				<param name="movie" value="http://listen.grooveshark.com/songWidget.swf">
-				<param name="wmode" value="window">
-				<param name="allowScriptAccess" value="always">
-				<param name="flashvars" value="hostname=cowbell.grooveshark.com&amp;widgetID=&amp;style=metal&amp;p=0">
-				<embed src="http://listen.grooveshark.com/songWidget.swf" type="application/x-shockwave-flash" width="250" height="40" flashvars="hostname=cowbell.grooveshark.com&amp;widgetID=&amp;style=metal&amp;p=0" allowscriptaccess="always" wmode="window">
-			</object>
-          </div>
-          <div class="view-toggle">
-            <button class="detail">detail</button>
-			<button class="grid">grid</button>
-          </div>
-        </div>
-      </div>
+<div id="right-pane">
       <!-- <header id="toolbar" class="joli-header" style="display: block; ">
-		<nav id="menu"></nav>
-		<nav id="options"></nav>
-		<div data-template="joli/searchfield" class="joli-searchfield search" data-class="joli.searchfield" id="search" data-var="search">
-			<input data-var="input" type="text" placeholder="Search apps and friends" data-class="joli.widget" class="input">
-			<div data-var="clearinput" data-class="joli.widget" class="clearinput" style="display: none; ">
-				<a data-var="clearlink" data-event="clear" data-class="joli.clickable" class="clearlink">Clear</a>
-			</div>
-			<ul data-item="joli/sectionchooser/section" data-template="joli/sectionchooser" class="joli-sectionchooser results" data-class="joli.sectionchooser" data-var="results" style="display: none; ">
-			</ul>
-		</div>
-	</header> -->
-	  <!-- type can be grid or detail and content can be hot or recom or playlist if playlist content_id is the id of the playlist -->
-      <section id = "song_view" type="grid" content="hot" content_id = "">
-	    <%= render "song/songs", :songs => @songs, :type =>'grid' %>
-      </section>
-    </div>
-  <% end %>
+      <nav id="menu"></nav>
+      <nav id="options"></nav>
+      <div data-template="joli/searchfield" class="joli-searchfield search" data-class="joli.searchfield" id="search" data-var="search">
+      <input data-var="input" type="text" placeholder="Search apps and friends" data-class="joli.widget" class="input">
+      <div data-var="clearinput" data-class="joli.widget" class="clearinput" style="display: none; ">
+      <a data-var="clearlink" data-event="clear" data-class="joli.clickable" class="clearlink">Clear</a>
+      </div>
+      <ul data-item="joli/sectionchooser/section" data-template="joli/sectionchooser" class="joli-sectionchooser results" data-class="joli.sectionchooser" data-var="results" style="display: none; ">
+      </ul>
+      </div>
+      </header> -->
+      <!-- type can be grid or detail and content can be hot or recom or playlist if playlist content_id is the id of the playlist -->
+    <section id = "song_view" type="grid" content="hot" content_id = "">
+      <%= render "song/songs", :songs => @songs, :type =>'grid' %>
+    </section>
+    <% end %>
