@@ -10,6 +10,7 @@ grid/record.png: grid/record-05d49c0cb89a91398086d3fd56b70450.png
 grid/shine.png: grid/shine-550e81a721cd907f58b2b4f472b9789d.png
 list/bg.png: list/bg-9757ba1dc50a4946a1a6c9acd48978de.png
 list/buttons.png: list/buttons-7ca1cc7121ff2d9061cd3fb8eabc58aa.png
+logo-blue.png: logo-blue-16a91debd9a8072b8a67d4df5e174e30.png
 logo-dark.png: logo-dark-71fa1650a1bb909c6931b68a71a2a8ea.png
 logo.png: logo-f76ca7e8c4e25a138e12802819432b9f.png
 misc-icons.png: misc-icons-03bdd58f9f68725461e56f374920fc6b.png
@@ -24,4 +25,4 @@ jquery.tokeninput.js: jquery.tokeninput-63f600cc9a24aaeb5234244be3acec6c.js
 jquery-ui.min.js: jquery-ui.min-2b432ef5545e6620f94e7638b7574058.js
 jquery.min.js: jquery.min-bd368409099eb0579c0463d2977af8a9.js
 application.js: application-e90f37cdf3bf9e5ac14fd0e54e8b23d9.js
-application.css: application-a662e5a5bec18b9fabb0d48909cb009e.css
+application.css: application-3d55f5d58a24620f65e0aec086975fdc.css
