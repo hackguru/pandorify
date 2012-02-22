@@ -203,7 +203,11 @@ class Song < ActiveRecord::Base
           new_info = nil
           info = nil
           GC.start # Run the garbage collector to be sure this is real !
-          next        
+          if calls_left and i < 120
+            next
+          else
+            break
+          end
         end
         songs_to_get_info[i].key = info["key"].to_i
         songs_to_get_info[i].mode = info["mode"].to_i
