@@ -186,13 +186,14 @@ class Song < ActiveRecord::Base
           response = http.request(request)
           new_info = JSON.parse(response.body)
           puts "response from api: #{response.body}"
-          info = new_info["response"]["songs"][0]["audio_summary"]
           calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
           puts "calls left: #{response.to_hash["x-ratelimit-remaining"][0]}"
+          info = new_info["response"]["songs"][0]["audio_summary"]
         rescue
           songs_to_get_info[i].echo_nested = true
           songs_to_get_info[i].last_echo_nested = Time.now
           songs_to_get_info[i].save!
+          i += 1
           # cleaning up
           uri = nil
           http = nil
@@ -214,7 +215,6 @@ class Song < ActiveRecord::Base
         songs_to_get_info[i].echo_nested = true
         songs_to_get_info[i].last_echo_nested = Time.now
         songs_to_get_info[i].save!
-        i += 1
         # cleaning up
         uri = nil
         http = nil
