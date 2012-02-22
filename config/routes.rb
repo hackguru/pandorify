@@ -1,5 +1,7 @@
 Pandorify::Application.routes.draw do
 
+  resources :parties
+
   get "home/index"
   get "home/new"
   post "home/play"

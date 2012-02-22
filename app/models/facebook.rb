@@ -12,6 +12,8 @@ class Facebook < ActiveRecord::Base
   # has_many :commended_songs_by_me, :foreign_key => :recommended_by_id, :through => :recommendations, :source => :song
   has_many :recommendations_because_of_me, :class_name => 'Recommendation', :foreign_key => :recommended_by_id
   has_many :playlists
+  has_and_belongs_to_many :parties
+  
   
   scope :users_listen_to, lambda { |song| {
         :select => "#{Facebook.table_name}.*, count(#{Listen.table_name}.id) as listen_count",

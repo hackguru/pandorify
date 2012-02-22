@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221230155) do
+ActiveRecord::Schema.define(:version => 20120222034758) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -68,6 +68,11 @@ ActiveRecord::Schema.define(:version => 20120221230155) do
     t.integer "music_id",    :null => false
   end
 
+  create_table "facebooks_parties", :id => false, :force => true do |t|
+    t.integer "facebook_id"
+    t.integer "party_id"
+  end
+
   create_table "friendships", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.integer  "friend_id",  :null => false
@@ -101,6 +106,11 @@ ActiveRecord::Schema.define(:version => 20120221230155) do
 
   add_index "musics", ["identifier"], :name => "index_musics_on_identifier", :unique => true
 
+  create_table "parties", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "playlists", :force => true do |t|
     t.string   "name"
     t.boolean  "perm"
@@ -114,6 +124,11 @@ ActiveRecord::Schema.define(:version => 20120221230155) do
 
 # Could not dump table "songs" because of following StandardError
 #   Unknown type 'ineteger' for column 'album_id'
+
+  create_table "songs_parties", :id => false, :force => true do |t|
+    t.integer "song_id"
+    t.integer "party_id"
+  end
 
   create_table "songs_playlists", :id => false, :force => true do |t|
     t.integer "song_id"
