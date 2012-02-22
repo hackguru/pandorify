@@ -129,8 +129,8 @@ class Facebook < ActiveRecord::Base
         new_application.save!
       
         new_song = Song.find_or_create_by_identifier(object.raw_attributes["data"]["song"]["id"])
-        new_song.title = object.raw_attributes["data"]["song"]["title"]
-        new_song.url = object.raw_attributes["data"]["song"]["url"]
+        new_song.title = object.raw_attributes["data"]["song"]["title"][0..254] #only the first characters - might wanna change this later to text
+        new_song.url = object.raw_attributes["data"]["song"]["url"][0..254] #only the first characters - might wanna change this later to text
         new_song.application_id = new_application 
         new_song.save!
       

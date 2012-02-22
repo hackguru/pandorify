@@ -2,10 +2,14 @@ class SongController < ApplicationController
 
   def hot_songs
     @page =  params[:page] || 1
-    @after = params[:after] || 2.years.ago
+    @after = params[:after] || 2.days.ago
     @type = params[:type] || "grid"
-    # @songs = Song.song_based_on_sorted_listens_by_friends_after(current_user,@after).paginate(:page => @page )
-    @songs = Song.song_based_on_sorted_listens_by_user_since(2.days.ago).paginate(:page => @page )
+    @from_friends = params[:from_friends] || str_to_bool(params[:from_friends]) || false
+    if @from_friends
+      @user = current_user || Facebook.find_by_email(params[:user_email])
+      @songs = Song.song_based_on_sorted_listens_by_friends_after(@user,@after).paginate(:page => @page )
+    end
+    @songs = Song.song_based_on_sorted_listens_by_user_since(@after).paginate(:page => @page )
     respond_to do |format|
        format.js
        format.json{
