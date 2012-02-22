@@ -187,6 +187,8 @@ class Song < ActiveRecord::Base
           new_info = JSON.parse(response.body)
           puts "response from api: #{response.body}"
           info = new_info["response"]["songs"][0]["audio_summary"]
+          calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
+          puts "calls left: #{response.to_hash["x-ratelimit-remaining"][0]}"
         rescue
           songs_to_get_info[i].echo_nested = true
           songs_to_get_info[i].last_echo_nested = Time.now
@@ -201,8 +203,6 @@ class Song < ActiveRecord::Base
           GC.start # Run the garbage collector to be sure this is real !
           next        
         end
-        calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
-        puts "calls left: #{response.to_hash["x-ratelimit-remaining"][0]}"
         songs_to_get_info[i].key = info["key"].to_i
         songs_to_get_info[i].mode = info["mode"].to_i
         songs_to_get_info[i].key = info["time_signature"].to_i
