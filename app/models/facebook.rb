@@ -13,6 +13,8 @@ class Facebook < ActiveRecord::Base
   has_many :recommendations_because_of_me, :class_name => 'Recommendation', :foreign_key => :recommended_by_id
   has_many :playlists
   has_and_belongs_to_many :parties
+  has_many :hosted_parties, :foreign_key => :host_id, :class_name => 'Party'
+  
   
   
   scope :users_listen_to, lambda { |song| {
