@@ -178,7 +178,13 @@ class Song < ActiveRecord::Base
       i = 0
       songs_to_get_info = Song.all(:conditions => ["echo_nested is null"], :limit => 120)
       begin
-        url = "http://developer.echonest.com/api/v4/song/search?api_key=IZ6G5QC5FWSFZISEW&format=json&results=1&artist=#{CGI.escape(songs_to_get_info[i].artist.name.to_s)}&title=#{CGI.escape(songs_to_get_info[i].title.to_s)}&bucket=audio_summary"
+
+        begin
+          url = "http://developer.echonest.com/api/v4/song/search?api_key=IZ6G5QC5FWSFZISEW&format=json&results=1&artist=#{CGI.escape(songs_to_get_info[i].artist.name.to_s)}&title=#{CGI.escape(songs_to_get_info[i].title.to_s)}&bucket=audio_summary"
+        rescue
+          break # index i is invalid
+        end
+      
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
         puts "GETTING INFO FOR #{songs_to_get_info[i].title.to_s} - #{songs_to_get_info[i].artist.name.to_s}"
