@@ -20,7 +20,7 @@ class Album < ActiveRecord::Base
     extend ActiveSupport::Memoizable
   
     def update_all_covers
-      Album.all.each do |obj|
+      Album.find(:all,:conditions => ["cover_pic_url is null"]).each do |obj|
         begin
           obj.update_album_cover
         rescue
