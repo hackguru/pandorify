@@ -119,3 +119,7 @@ task :testing_recommendation => :environment do
     user.update_recommendations
   end
 end 
+
+task :run_update_song_characteristics => :environment do
+  Song.update_song_characteristics
+end

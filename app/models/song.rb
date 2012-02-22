@@ -169,10 +169,13 @@ class Song < ActiveRecord::Base
     end
     
     def update_song_characteristics
+      last_updated = Song.find(:first, :conditions => ["echo_nested is not null"], :order => "last_echo_nested DESC")
+      if (last_updated.last_echo_nested > Time.now - 3.mins)
+        return
+      end
       calls_left = false
-      song = nil
       i = 0
-      songs_to_get_info = Song.all(:conditions => ["echo_nested is null"], :limit => 2) #120
+      songs_to_get_info = Song.all(:conditions => ["echo_nested is null"], :limit => 120)
       begin
         url = "http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=json&results=1&artist=#{CGI.escape(songs_to_get_info[i].artist.name.to_s)}&title=#{CGI.escape(songs_to_get_info[i].title.to_s)}&bucket=audio_summary"
         uri = URI.parse(url)
@@ -181,7 +184,7 @@ class Song < ActiveRecord::Base
         response = http.request(request)
         new_info = JSON.parse(response.body)
         info = new_info["response"]["songs"][0]["audio_summary"]
-        # calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
+        calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
         songs_to_get_info[i].key = info["key"]
         songs_to_get_info[i].mode = info["mode"]
         songs_to_get_info[i].key = info["time_signature"]
@@ -204,7 +207,12 @@ class Song < ActiveRecord::Base
         GC.start # Run the garbage collector to be sure this is real !        
       end while calls_left and i < 120
     end
-        
+    # cleaning up
+    last_updated = nil
+    calls_left = nil
+    i = nil
+    songs_to_get_info = nil
+    GC.start # Run the garbage collector to be sure this is real !            
   end
   
 end
