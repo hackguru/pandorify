@@ -170,7 +170,7 @@ class Song < ActiveRecord::Base
     
     def update_song_characteristics
       last_updated = Song.find(:first, :conditions => ["echo_nested is not null"], :order => "last_echo_nested DESC")
-      if (last_updated.last_echo_nested > Time.now - 3.minutes)
+      if (last_updated.last_echo_nested.utc > Time.now.utc - 3.minutes)
         return
       end
       calls_left = false
