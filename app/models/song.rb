@@ -209,7 +209,6 @@ class Song < ActiveRecord::Base
             break
           end
         end
-        i += 1
         songs_to_get_info[i].key = info["key"].to_i
         songs_to_get_info[i].mode = info["mode"].to_i
         songs_to_get_info[i].key = info["time_signature"].to_i
@@ -221,6 +220,7 @@ class Song < ActiveRecord::Base
         songs_to_get_info[i].echo_nested = true
         songs_to_get_info[i].last_echo_nested = Time.now
         songs_to_get_info[i].save!
+        i += 1
         # cleaning up
         uri = nil
         http = nil
