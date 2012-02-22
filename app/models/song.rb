@@ -209,6 +209,7 @@ class Song < ActiveRecord::Base
             break
           end
         end
+        i += 1
         songs_to_get_info[i].key = info["key"].to_i
         songs_to_get_info[i].mode = info["mode"].to_i
         songs_to_get_info[i].key = info["time_signature"].to_i
