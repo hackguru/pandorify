@@ -202,6 +202,7 @@ class Song < ActiveRecord::Base
           next        
         end
         calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
+        puts "calls left: #{response.to_hash["x-ratelimit-remaining"][0]}"
         songs_to_get_info[i].key = info["key"].to_i
         songs_to_get_info[i].mode = info["mode"].to_i
         songs_to_get_info[i].key = info["time_signature"].to_i
