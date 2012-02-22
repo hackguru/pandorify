@@ -211,8 +211,8 @@ class Song < ActiveRecord::Base
         end
         songs_to_get_info[i].key = info["key"].to_i
         songs_to_get_info[i].mode = info["mode"].to_i
-        songs_to_get_info[i].key = info["time_signature"].to_i
-        songs_to_get_info[i].time_signature = info["duration"].to_f if songs_to_get_info[i].duration == nil
+        songs_to_get_info[i].time_signature = info["time_signature"].to_i
+        songs_to_get_info[i].duration = info["duration"].to_f if songs_to_get_info[i].duration == nil
         songs_to_get_info[i].loudness = info["loudness"].to_f
         songs_to_get_info[i].energy = info["energy"].to_f
         songs_to_get_info[i].tempo = info["tempo"].to_f
