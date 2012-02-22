@@ -180,10 +180,12 @@ class Song < ActiveRecord::Base
         url = "http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=json&results=1&artist=#{CGI.escape(songs_to_get_info[i].artist.name.to_s)}&title=#{CGI.escape(songs_to_get_info[i].title.to_s)}&bucket=audio_summary"
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
+        puts "GETTING INFO FOR #{songs_to_get_info[i].title.to_s} - #{songs_to_get_info[i].artist.name.to_s}"
         begin
           request = Net::HTTP::Get.new(uri.request_uri)
           response = http.request(request)
           new_info = JSON.parse(response.body)
+          puts "response from api: #{response.body}"
           info = new_info["response"]["songs"][0]["audio_summary"]
         rescue
           # cleaning up
