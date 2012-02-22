@@ -187,7 +187,7 @@ class Song < ActiveRecord::Base
           response = http.request(request)
           new_info = JSON.parse(response.body)
           puts "response from api: #{response.body}"
-          calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
+          calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 1)
           puts "calls left: #{response.to_hash["x-ratelimit-remaining"][0]}"
           info = new_info["response"]["songs"][0]["audio_summary"]
         rescue
