@@ -185,14 +185,14 @@ class Song < ActiveRecord::Base
         new_info = JSON.parse(response.body)
         info = new_info["response"]["songs"][0]["audio_summary"]
         calls_left = (response.to_hash["x-ratelimit-remaining"][0].to_i > 0)
-        songs_to_get_info[i].key = info["key"]
-        songs_to_get_info[i].mode = info["mode"]
-        songs_to_get_info[i].key = info["time_signature"]
-        songs_to_get_info[i].time_signature = info["duration"] if songs_to_get_info[i].duration == nil
-        songs_to_get_info[i].loudness = info["loudness"]
-        songs_to_get_info[i].energy = info["energy"]
-        songs_to_get_info[i].tempo = info["tempo"]
-        songs_to_get_info[i].danceability = info["danceability"]
+        songs_to_get_info[i].key = info["key"].to_i
+        songs_to_get_info[i].mode = info["mode"].to_i
+        songs_to_get_info[i].key = info["time_signature"].to_i
+        songs_to_get_info[i].time_signature = info["duration"].to_f if songs_to_get_info[i].duration == nil
+        songs_to_get_info[i].loudness = info["loudness"].to_f
+        songs_to_get_info[i].energy = info["energy"].to_f
+        songs_to_get_info[i].tempo = info["tempo"].to_f
+        songs_to_get_info[i].danceability = info["danceability"].to_f
         songs_to_get_info[i].echo_nested = true
         songs_to_get_info[i].last_echo_nested = Time.now
         songs_to_get_info[i].save!
