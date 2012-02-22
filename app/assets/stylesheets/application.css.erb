@@ -63,7 +63,7 @@ header {
   height: inherit;
   background: url(<%= asset_path 'topbar-bg.png' %>) repeat-x;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
-  border-top-left-radius: 4px;
+  border-radius: 4px 4px 0 0;
   text-align: center;
 }
 
@@ -73,6 +73,7 @@ header {
   top: 4px;
   left: 5px;
   z-index: 2;
+  background: url(<%= asset_path 'divider.png' %>) no-repeat;
 }
 
 .logo {
@@ -80,7 +81,7 @@ header {
   float: left;
   height: 100%;
   width: 115px;
-  background: url(<%= asset_path 'logo.png' %>) left center no-repeat;
+  background: url(<%= asset_path 'logo-dark.png' %>) left center no-repeat;
   margin-left: 18px;
   text-indent: -9999px;
 }
