@@ -10,21 +10,21 @@ class Song < ActiveRecord::Base
         :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
         :joins => "LEFT JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id LEFT JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id",
         :conditions => ["#{Listen.table_name}.start_time > ?", time],
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song, #{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "user_count DESC, coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
   
   scope :song_based_on_sorted_listens_by_user,
         :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
         :joins => "LEFT JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id LEFT JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "user_count DESC, coalesce(#{Song.table_name}.popularity, 0) DESC"
 
   scope :song_based_on_sorted_listens_by_friends, lambda { |user| {
         :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
         :joins => "LEFT JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id LEFT JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id LEFT JOIN #{Friendship.table_name} ON #{Facebook.table_name}.id = #{Friendship.table_name}.friend_id AND #{Friendship.table_name}.user_id = #{user.id}",
         :conditions => ["#{Friendship.table_name}.user_id = ?", user.id],
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "user_count DESC, coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
 
@@ -33,14 +33,14 @@ class Song < ActiveRecord::Base
         :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
         :joins => "LEFT JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id LEFT JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id LEFT JOIN #{Friendship.table_name} ON #{Facebook.table_name}.id = #{Friendship.table_name}.friend_id AND #{Friendship.table_name}.user_id = #{args.first.id}",
         :conditions => ["#{Friendship.table_name}.user_id = ? AND start_time > ?", args.first.id, args.second],
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "user_count DESC, coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
   
   scope :common_songs, lambda { |*args| {
         :select => "#{Song.table_name}.*",
         :joins => "JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id AND (#{Facebook.table_name}.id = #{args.first.id} OR #{Facebook.table_name}.id = #{args.second.id})",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :having => "count(DISTINCT #{Facebook.table_name}.id) > 1",
         :order => "coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
@@ -49,14 +49,14 @@ class Song < ActiveRecord::Base
   scope :sort_based_on_common_song_count, lambda { |users_string| {
         :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
         :joins => "JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id AND #{users_string}",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "user_count DESC, count(DISTINCT #{Listen.table_name}.id) DESC, coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
 
   scope :not_common_songs, lambda { |*args| {
         :select => "#{Song.table_name}.*",
         :joins => "JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id AND (#{Facebook.table_name}.id = #{args.first.id} OR #{Facebook.table_name}.id = #{args.second.id})",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :having => "count(DISTINCT #{Facebook.table_name}.id) = 1",
         :order => "coalesce(#{Song.table_name}.popularity, 0) DESC"
   }}
@@ -64,7 +64,7 @@ class Song < ActiveRecord::Base
   scope :song_based_on_sorted_listens_for_user, lambda { |user| {
         :select => "#{Song.table_name}.*, count(#{Listen.table_name}.id) as listen_count",
         :joins => "JOIN #{Listen.table_name} ON #{Song.table_name}.id = #{Listen.table_name}.song_id JOIN #{Facebook.table_name} ON #{Listen.table_name}.facebook_id = #{Facebook.table_name}.id AND #{Facebook.table_name}.id = #{user.id}",
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "count(#{Listen.table_name}.id) DESC, coalesce(#{Song.table_name}.popularity,0) DESC"  
   }}
 
@@ -72,7 +72,7 @@ class Song < ActiveRecord::Base
         :select => "#{Song.table_name}.*, count(distinct firstlistens.id) as listen_count",
         :joins => "JOIN #{Listen.table_name} as firstlistens ON #{Song.table_name}.id = firstlistens.song_id JOIN #{Facebook.table_name} as firsts ON firstlistens.facebook_id = firsts.id JOIN #{Listen.table_name} as otherlistens ON #{Song.table_name}.id = otherlistens.song_id JOIN #{Facebook.table_name} as others ON otherlistens.facebook_id = others.id",
         :conditions => ["firsts.id = #{args.first.id} AND others.id <> #{args.second.id} AND others.id <> #{args.first.id}"],
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "count(distinct firstlistens.id) DESC, coalesce(#{Song.table_name}.popularity,0) DESC"  
   }}
 
@@ -80,7 +80,7 @@ class Song < ActiveRecord::Base
         :select => "#{Song.table_name}.*, count(distinct firstlistens.id) as listen_count",
         :joins => "JOIN #{Listen.table_name} as firstlistens ON #{Song.table_name}.id = firstlistens.song_id JOIN #{Facebook.table_name} as firsts ON firstlistens.facebook_id = firsts.id JOIN #{Listen.table_name} as otherlistens ON #{Song.table_name}.id = otherlistens.song_id JOIN #{Facebook.table_name} as others ON otherlistens.facebook_id = others.id",
         :conditions => ["firsts.id = #{args.first.id} AND others.id <> #{args.second.id} AND others.id <> #{args.first.id} AND firstlistens.start_time > ?", args[2]],
-        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration",
+        :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "count(distinct firstlistens.id) DESC, coalesce(#{Song.table_name}.popularity,0) DESC"  
   }}
 
