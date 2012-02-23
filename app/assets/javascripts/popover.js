@@ -3,8 +3,8 @@ $.fn.popover = function(options) {
   var defaults = {
     openEvent: null,
     closeEvent: null,
-    offsetX: 0,
-    offsetY: 0
+    offsetX: 5,
+    offsetY: -2
   }
   var options = $.extend(defaults, options);
 
