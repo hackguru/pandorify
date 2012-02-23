@@ -31,9 +31,6 @@ $.fn.popover = function(options) {
 
   var showPopover = function(button) {
     // Already opened?
-    console.log($(button));
-    console.log($(button).closest('.grid-item'));
-    console.log($(button).parents('.grid-item'));
     $(button).closest('.grid-item').addClass('popped')
     if ($.fn.popover.openedPopup === button) {
       $.fn.popover.openedPopup.trigger('hidePopover');
