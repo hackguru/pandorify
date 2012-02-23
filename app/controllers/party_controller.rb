@@ -10,6 +10,7 @@ class PartyController < ApplicationController
     end
     
     ids = params[:friend_tokens].split(",")
+    ids.map! {|item| item = item.to_i}
     ids_string = "("
     i = 0
     while i < ids.size() - 1
