@@ -9,14 +9,6 @@ class PartyController < ApplicationController
       @host = Facebook.find_by_email(params[:host_email])
     end
     
-    @party = Party.find_or_initialize_by_host_id(@host.id);
-    if !@party.persisted?
-      @party.facebooks = ids
-    else
-      @party.songs = Requestedsongs.find(:all, :conditions => ['part_id = ? AND added = ?', @party.id, false])
-    end
-    @party.save   
-    
     ids = params[:friend_tokens].split(",")
     ids_string = "("
     i = 0
@@ -27,7 +19,15 @@ class PartyController < ApplicationController
     ids_string += "#{Facebook.table_name}.id = #{ids[i]})"
     @page =  params[:page] || 1
     @songs = Song.sort_based_on_common_song_count(ids_string).paginate(:page => @page )
-    
+
+    @party = Party.find_or_initialize_by_host_id(@host.id);
+    if !@party.persisted?
+      @party.facebooks = ids
+    else
+      @party.songs = Requestedsongs.find(:all, :conditions => ['part_id = ? AND added = ?', @party.id, false])
+    end
+    @party.save   
+        
       
     @type = params[:type] || "grid"
 
