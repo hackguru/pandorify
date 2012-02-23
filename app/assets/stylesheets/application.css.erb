@@ -152,8 +152,8 @@ nav {
   top: 49px;
   left: 0;
   bottom: 0;
-  width: 228px;
-  padding-right: 4px;
+  width: 230px;
+  padding-right: 3px;
   overflow-y: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
@@ -376,53 +376,62 @@ nav li.logout.active .icon {
   height: 50px;
   width: 50px;
   background: url(<%= asset_path 'loading-spinner.png' %>) repeat;
-  -webkit-animation: loading 4s infinite;
+  opacity: 0;
+  -webkit-animation: loading 2.5s linear infinite;
+  -webkit-transition-delay: 0s;
+  -moz-animation: loading 2.5s linear infinite;
+  -moz-transition-delay: 0s;
+  -o-animation: loading 2.5s linear infinite;
+  -o-transition-delay: 0s;
+  -ms-animation: loading 2.5s linear infinite;
+  -ms-transition-delay: 0s;
+  animation: loading 2.5s linear infinite;
+  transition-delay: 0s;
+}
+
+body.loading .loading-spinner {
+  opacity: 1;
 }
 
 @-webkit-keyframes loading {
-  from {
+  0%   { 
     -webkit-transform: rotate(0deg);
-  }
-  to {
+  }    
+  100% { 
     -webkit-transform: rotate(360deg);
   }
 }
 @-moz-keyframes loading {
-  from {
+  0%   { 
     -moz-transform: rotate(0deg);
-  }
-  to {
+  }    
+  100% { 
     -moz-transform: rotate(360deg);
   }
 }
 @-o-keyframes loading {
-  from {
+  0%   { 
     -o-transform: rotate(0deg);
-  }
-  to {
+  }    
+  100% { 
     -o-transform: rotate(360deg);
   }
 }
 @-ms-keyframes loading {
-  from {
+  0%   { 
     -ms-transform: rotate(0deg);
-  }
-  to {
+  }    
+  100% { 
     -ms-transform: rotate(360deg);
   }
 }
 @keyframes loading {
-  from {
+  0%   { 
     transform: rotate(0deg);
-  }
-  to {
+  }    
+  100% { 
     transform: rotate(360deg);
   }
-}
-
-
-body.loading .loading-spinner {
-  opacity: 1;
 }
 
 /* Scrollbars */

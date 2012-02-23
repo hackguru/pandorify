@@ -1,5 +1,6 @@
 <% if @page == 1 %>
 $('#song_view').html("<%= escape_javascript(render 'song/songs', :songs => @songs, :type =>@type, :appended => false) %>");
+$('body').removeClass('loading');
 <% else %>
 $('#song_view').children(":first").append("<%= escape_javascript(render 'song/songs', :songs => @songs, :type =>@type, :appended => true) %>");
 <% end %>	
