@@ -20,5 +20,6 @@ $(document).endlessScroll({
   callback: function(){
     $(document).unbind('scroll', unlimited_scroll);
     $.get("<%= song_hot_songs_path %>", { type: view_type, page: nextPage, before: beforeTime } );
+    $('body').addClass('appending');
   }
 });

@@ -41,6 +41,7 @@ $(document).ready(function(){
   });
 
   $('button.detail').click(function() {
+    $('body').addClass('loading');
     $('.view-toggle .active').removeClass('active');
     $(this).addClass('active');
     content = $('#song_view').attr("content");
@@ -55,6 +56,7 @@ $(document).ready(function(){
   });
 
   $('button.grid').click(function() {
+    $('body').addClass('loading');
     $('.view-toggle .active').removeClass('active');
     $(this).addClass('active');
     content = $('#song_view').attr("content");
