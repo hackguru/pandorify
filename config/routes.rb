@@ -18,6 +18,8 @@ Pandorify::Application.routes.draw do
   
   get "party/index"
   
+  get "twilio/sms"
+  
   # Connect Site
   resource :facebook, :except => :create do
     get :callback, :to => :create
