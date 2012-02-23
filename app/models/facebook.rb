@@ -8,6 +8,7 @@ class Facebook < ActiveRecord::Base
   has_many :listens
   has_many :songs, :through => :listens, :source => :song
   has_many :recommendations, :dependent => :destroy
+  has_many :requested_songs, :dependant => :destroy
   has_many :recommendeds, :through => :recommendations, :source => :song
   # has_many :commended_songs_by_me, :foreign_key => :recommended_by_id, :through => :recommendations, :source => :song
   has_many :recommendations_because_of_me, :class_name => 'Recommendation', :foreign_key => :recommended_by_id
@@ -129,8 +130,8 @@ class Facebook < ActiveRecord::Base
         new_application.save!
       
         new_song = Song.find_or_create_by_identifier(object.raw_attributes["data"]["song"]["id"])
-        new_song.title = object.raw_attributes["data"]["song"]["title"]
-        new_song.url = object.raw_attributes["data"]["song"]["url"]
+        new_song.title = object.raw_attributes["data"]["song"]["title"][0..254] #only the first characters - might wanna change this later to text
+        new_song.url = object.raw_attributes["data"]["song"]["url"][0..254] #only the first characters - might wanna change this later to text
         new_song.application_id = new_application 
         new_song.save!
       

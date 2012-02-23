@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  song_id: 
+  party_id: 
+  added: false
+
+two:
+  song_id: 
+  party_id: 
+  added: false
