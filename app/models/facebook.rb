@@ -13,7 +13,7 @@ class Facebook < ActiveRecord::Base
   # has_many :commended_songs_by_me, :foreign_key => :recommended_by_id, :through => :recommendations, :source => :song
   has_many :recommendations_because_of_me, :class_name => 'Recommendation', :foreign_key => :recommended_by_id
   has_many :playlists
-  has_and_belongs_to_many :parties
+  has_and_belongs_to_many :parties, :join_table => "facebooks_parties"
   has_many :hosted_parties, :foreign_key => :host_id, :class_name => 'Party'
   
   
