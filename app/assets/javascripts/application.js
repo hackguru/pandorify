@@ -63,6 +63,7 @@ $(document).ready(function(){
   });
 
   $('#side_bar li').click(function() {
+    $.fn.popover.openedPopup.trigger('hidePopover');
     $('#side_bar li.active').removeClass('active');
     $(this).addClass('active');
     $('body').addClass('loading');

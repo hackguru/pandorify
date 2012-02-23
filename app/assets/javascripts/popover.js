@@ -95,6 +95,12 @@ $.fn.popover = function(options) {
     if ($.isFunction(options.openEvent)) options.openEvent();
     $.fn.popover.openedPopup = button;
     button.addClass('popover-on');
+    
+    $('#right-pace section').scroll(function() {
+      $('#right-pace section').unbind();
+      $.fn.popover.openedPopup.trigger('hidePopover');
+    });
+    
     return false;
   }
 
