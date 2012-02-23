@@ -8,14 +8,6 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(function() {
-  $("#friend_tokens").tokenInput("/facebook/friends.json", {
-    crossDomain: false,
-    //    prePopulate: $("#book_author_tokens").data("pre"),
-    theme: "facebook"
-  });
-});
-
 $(document).ready(function(){	
   $('.playlist.add a').click(function() {
     $('.playlist.add').before("<li class='playlist' style='display: none;' ><a href='#'><span class='icon'></span><form id='new_playlist'  style='display: inline;'><input type='text'/></form></a></li>");

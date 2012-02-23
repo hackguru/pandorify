@@ -1,6 +1,6 @@
 Pandorify::Application.routes.draw do
 
-  resources :parties
+  # resources :parties
 
   get "home/index"
   get "home/new"
