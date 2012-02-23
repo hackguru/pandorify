@@ -22,6 +22,7 @@ class TwilioController < ApplicationController
     number = params["From"]
     user = Facebook.find_by_cell(number)
     party = user.parties.first
+    party = user.hosted_parties.first if !party
     
     if party
       url = "http://ws.spotify.com/search/1/track.json?q=#{CGI.escape(body)}"
