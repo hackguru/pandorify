@@ -22,9 +22,6 @@ $.fn.popover = function(options) {
   // Document click closes active popover
   $.fn.popover.openedPopup = null;
   $(document).bind("click", function(event) {
-    console.log('inn');
-    console.log($(event.target).parents(".popover").length);
-    console.log($(event.target).attr('class'));
     if ($.fn.popover.openedPopup != null
         && ($(event.target).parents(".popover").length === 0)
         && (!$(event.target).hasClass('popover-button'))) {
@@ -34,6 +31,9 @@ $.fn.popover = function(options) {
 
   var showPopover = function(button) {
     // Already opened?
+    console.log($(button));
+    console.log($(button).closest('.grid-item'));
+    console.log($(button).parents('.grid-item'));
     $(button).closest('.grid-item').addClass('popped')
     if ($.fn.popover.openedPopup === button) {
       $.fn.popover.openedPopup.trigger('hidePopover');
