@@ -33,14 +33,17 @@ class TwilioController < ApplicationController
       new_info = JSON.parse(response)
       song = Song.find_by_url(Song.get_url_from_uri(new_info["tracks"][0]["href"]))
       Requestedsong.create(:facebook => user, :song => song, :party => party, :added => false)
+      @body = song.title + " was added to the party playlist!"
+    else
+      @body = "Sorry! We encountered an error"
     end
 
-    # @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
-    # @client.account.sms.messages.create(
-    #   :from => "+19492720608",
-    #   :to => number,
-    #   :body => @body
-    # )
+    @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
+    @client.account.sms.messages.create(
+      :from => "+19492720608",
+      :to => number,
+      :body => @body
+    )
     
     respond_to do |format|
        # format.js
