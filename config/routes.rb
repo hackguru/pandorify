@@ -16,6 +16,8 @@ Pandorify::Application.routes.draw do
   get "song/play"
   get "song/party"
   
+  get "party/create_or_more_songs"
+  
   # Connect Site
   resource :facebook, :except => :create do
     get :callback, :to => :create
