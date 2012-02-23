@@ -42,7 +42,7 @@ class TwilioController < ApplicationController
     respond_to do |format|
        # format.js
        format.json{
-         render :json => @new_info
+         render :json => @new_info["tracks"][0]
        }
     end
     
