@@ -78,7 +78,8 @@
       z-index: 9;
     }
       .popover .content ul li:last-child {
-        border-bottom-color: transparent;
+        height: 25px;
+        border-bottom: none;
         box-shadow: none;
       }
       .popover .content li a,
@@ -86,4 +87,8 @@
         color: #fff;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
         font-size: 12px;
+      }
+      .popover .content li:active {
+        box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.15);
       }
