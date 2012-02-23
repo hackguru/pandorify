@@ -96,8 +96,8 @@ $.fn.popover = function(options) {
     $.fn.popover.openedPopup = button;
     button.addClass('popover-on');
     
-    $('#right-pace section').scroll(function() {
-      $('#right-pace section').unbind();
+    $('#right-pane section').scroll(function() {
+      $('#right-pane section').unbind();
       $.fn.popover.openedPopup.trigger('hidePopover');
     });
     
