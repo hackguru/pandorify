@@ -9,7 +9,8 @@ class PartyController < ApplicationController
       @host = Facebook.find_by_email(params[:host_email])
     end
     
-    ids = params[:friend_tokens].split(",").map {|item| item = item.to_i }
+    ids = []
+    params[:friend_tokens].split(",").map {|item| ids << item.to_i }
     ids_string = "("
     i = 0
     while i < ids.size() - 1
