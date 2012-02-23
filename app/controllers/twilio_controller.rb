@@ -42,7 +42,8 @@ class TwilioController < ApplicationController
     respond_to do |format|
        # format.js
        format.json{
-         render :json => @new_info["tracks"][0]
+         render :json => get_url_from_uri @new_info["tracks"][0]["href"]
+         
        }
     end
     

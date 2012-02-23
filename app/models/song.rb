@@ -171,6 +171,10 @@ class Song < ActiveRecord::Base
       self.update_songs
     end
     
+    def get_url_from_uri (uri)
+      return "http://open.spotify.com/track/".concat(uri.sub("spotify:track:","").strip)
+    end
+    
     def update_song_characteristics
       last_updated = Song.find(:first, :conditions => ["echo_nested is not null"], :order => "last_echo_nested DESC")
       if (last_updated and last_updated.last_echo_nested.utc > Time.now.utc - 3.minutes)
