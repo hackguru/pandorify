@@ -1,89 +1,93 @@
 <% appended = false if local_assigns[:appended].nil? %>
 <% if type=='grid' %>
-<% if !appended %>
-<div class="grid">
-<%end%>
+  <% if !appended %>
+  <div class="grid">
+  <%end%>
   <% songs.each do |obj|%>
   <div class="grid-space">
     <div class="grid-item">
       <div class="album">
         <img class="cover" src="<%= obj.album.cover_pic_url if obj.album!=nil and obj.album.cover_pic_url!=nil %>" />
-		<%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
+        <%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
         <a href="#" class="add" id="<%= obj.id %>"></a>
-		<div id="my-popover" style="display:none">
-		  <div class="header">
-		  </div>
-		  <div class="content" id="<%= obj.id %>content_for_popup">
-		    <a href=<%= obj.url %> >Open in Spotify! </a>
-			<% playlists = current_user.playlists %><br />
-			<% playlists.each do |pl|%>
-          		<%= link_to content_tag(:span, nil, :class=>'icon') + 'Add to ' + pl.name, playlist_add_path + "?plid=#{pl.id}&sid=#{obj.id}", :method => :post, :remote => true %><br />
-          	<% end %>
-		  </div>
-		</div>
+        <div id="my-popover" style="display:none">
+          <div class="header">
+          </div>
+          <ul class="content" id="<%= obj.id %>content_for_popup">
+            <li>
+              <a href=<%= obj.url %> >Open in Spotify! </a>
+            </li>
+            <% playlists = current_user.playlists %>
+            <% playlists.each do |pl|%>
+            <li>
+              <%= link_to content_tag(:span, nil, :class=>'icon') + 'Add to ' + pl.name, playlist_add_path + "?plid=#{pl.id}&sid=#{obj.id}", :method => :post, :remote => true %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
 
       </div>
       <div class="info">
         <p class="song bold"><%= obj.title %></p>
         <p class="artist"><%= obj.artist.name if obj.artist!=nil and obj.artist.name != nil%></p>
-		<% count = 0 %>
-		<% Facebook.users_listen_to(obj).each do |o| %>
-			<%  count += 1 %>
-		<% end %>
-		<% name = Facebook.users_listen_to(obj)[rand(count)].try(:name) %>
+        <% count = 0 %>
+        <% Facebook.users_listen_to(obj).each do |o| %>
+        <%  count += 1 %>
+        <% end %>
+        <% name = Facebook.users_listen_to(obj)[rand(count)].try(:name) %>
         <p class="listens"><span class="icon headphones"></span><%= name %> & <%= count-1 %> others</p>
       </div>
     </div>
   </div>
   <% end %>
-	<script>
-	$('.album img').load(function() {
-		$(this).parent().addClass('loaded');
-	});
-	$('a.add').each(function(index){
-		var id = $(this).attr('id');
-		$(this).popover({header: '', content: '#'+id+'content_for_popup'});
-	});
-	
-	</script>
-<% if !appended %>
+  <script>
+  $('.album img').load(function() {
+    $(this).parent().addClass('loaded');
+  });
+  $('a.add').each(function(index){
+    var id = $(this).attr('id');
+    $(this).popover({header: '', content: '#'+id+'content_for_popup'});
+  });
+
+  </script>
+  <% if !appended %>
 </div>
 <%end%>
 <%else%>
 <% if !appended %>
 <ul class="list-container">
 <%end%>
-  <% songs.each do |obj|%>
-  <li class="row">
-    <div class="dynamic">
-      <div class="song"><%= obj.title %></div>
-      <div class="artist"><%= obj.artist.name if obj.artist!=nil and obj.artist.name!=nil %></div>
-      <div class="album"><%= obj.album.name if obj.album!=nil and obj.album.name != nil %></div>
-      <div class="genre">Dubstep</div>
-	  <% duration = obj.duration %>
-	  <% mins = (duration/60.0).to_i %>
-	  <% secs = (duration-(mins*60)).to_i %>
-      <div class="duration"><%=mins%>m <%=secs%>s</div>
+<% songs.each do |obj|%>
+<li class="row">
+  <div class="dynamic">
+    <div class="song"><%= obj.title %></div>
+    <div class="artist"><%= obj.artist.name if obj.artist!=nil and obj.artist.name!=nil %></div>
+    <div class="album"><%= obj.album.name if obj.album!=nil and obj.album.name != nil %></div>
+    <div class="genre">Dubstep</div>
+    <% duration = obj.duration %>
+    <% mins = (duration/60.0).to_i %>
+    <% secs = (duration-(mins*60)).to_i %>
+    <div class="duration"><%=mins%>m <%=secs%>s</div>
+  </div>
+  <div class="static">
+    <div class="friends">
+      <ul class="thumbs">
+        <% friends = Facebook.users_listen_to(obj) %>
+        <% count = 0 %>
+        <% friends.each do |fri| %>
+        <li><a href="/profile"><img src="<%=fri.pic_url %>?type=square" /></a></li>
+        <% count += 1%>
+        <% break if count == 4%>
+        <% end %>
+      </ul>
     </div>
-    <div class="static">
-      <div class="friends">
-        <ul class="thumbs">
-		  <% friends = Facebook.users_listen_to(obj) %>
-		  <% count = 0 %>
-		  <% friends.each do |fri| %>
-		      <li><a href="/profile"><img src="<%=fri.pic_url %>?type=square" /></a></li>
-			  <% count += 1%>
-			  <% break if count == 4%>
-		  <% end %>
-        </ul>
-      </div>
-      <div class="actions">
-        <%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
-        <a href="#" class="add"></a>
-      </div>
+    <div class="actions">
+      <%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
+      <a href="#" class="add"></a>
     </div>
-  </li>
-  <% end %>
+  </div>
+</li>
+<% end %>
 <% if !appended %>
 </ul>
 <% end %>

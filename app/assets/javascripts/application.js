@@ -77,3 +77,16 @@ $(document).ready(function(){
   });
 });
 
+$(document).endlessScroll({
+  bottomPixels: 400,
+  fireOnce: true,
+  fireDelay: 500,
+  ceaseFire: function(){
+    return $('#cease_fire_on_scroll').attr('value') == 'true';
+  },
+  callback: function(){
+    $(document).unbind('scroll', unlimited_scroll);
+    $.get("<%= song_hot_songs_path %>", { type: view_type, page: nextPage, before: beforeTime } );
+    $('body').addClass('appending');
+  }
+});

@@ -22,15 +22,15 @@
     opacity: 1; z-index: 9;}
   .popover > .triangle {
     position: absolute;
-    top: -50px;
+    top: -12px;
     float: left;
     font-size: 0px;
     line-height: 0%;
     width: 0px;
-    border-top: 25px solid rgba(0,0,0,0);
-    border-left: 25px solid rgba(0,0,0,0);
-    border-right: 25px solid rgba(0,0,0,0);
-    border-bottom: 25px solid black; }
+    border-top: 6px solid rgba(0,0,0,0);
+    border-left: 6px solid rgba(0,0,0,0);
+    border-right: 6px solid rgba(0,0,0,0);
+    border-bottom: 6px solid #434C5D; }
   .popover > .header {
 	/* I ADDED THIS LINE*/
 	display: none;
