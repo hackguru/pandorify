@@ -31,7 +31,10 @@ $.fn.popover = function(options) {
 
   var showPopover = function(button) {
     // Already opened?
-    $(button).closest('grid-item').addClass('popped')
+    console.log($(button));
+    console.log($(button).closest('.grid-item'));
+    console.log($(button).parents('.grid-item'));
+    $(button).closest('.grid-item').addClass('popped')
     if ($.fn.popover.openedPopup === button) {
       $.fn.popover.openedPopup.trigger('hidePopover');
       return false;
@@ -104,7 +107,7 @@ $.fn.popover = function(options) {
     button.bind('click', function() { showPopover(button) });
     button.bind('showPopover', function() { showPopover(button) });
     button.bind('hidePopover', function() {
-      $(button).closest('grid-item').removeClass('popped')
+      $(button).closest('.grid-item').removeClass('popped')
       button.removeClass('popover-on');
       floater.removeClass("active").attr("style", "").css('display', 'none');
       if ($.isFunction(options.closeEvent)) {
