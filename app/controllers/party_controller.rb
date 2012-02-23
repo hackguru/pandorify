@@ -1,4 +1,4 @@
-class SongController < ApplicationController
+class PartyController < ApplicationController
 
   def create_or_more_songs
     if current_user
