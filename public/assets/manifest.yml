@@ -10,8 +10,8 @@ grid/record.png: grid/record-05d49c0cb89a91398086d3fd56b70450.png
 grid/shine.png: grid/shine-550e81a721cd907f58b2b4f472b9789d.png
 list/bg.png: list/bg-9757ba1dc50a4946a1a6c9acd48978de.png
 list/buttons.png: list/buttons-7ca1cc7121ff2d9061cd3fb8eabc58aa.png
-loading-spinner-mini.png: loading-spinner-mini-87960894be0fdbbf3244f173952d267e.png
-loading-spinner.png: loading-spinner-9670f8cce6041d23034dc3d9a9881ac3.png
+loading-spinner-mini.png: loading-spinner-mini-462b1a14ec55eab4cf7d495d1e24959a.png
+loading-spinner.png: loading-spinner-87f2d2f3dade95f4446e1708d2b5edb6.png
 logo-blue.png: logo-blue-3cf58a4b842b997b80171b0c8c90f25e.png
 logo-dark.png: logo-dark-71fa1650a1bb909c6931b68a71a2a8ea.png
 logo.png: logo-f76ca7e8c4e25a138e12802819432b9f.png
@@ -26,5 +26,5 @@ jquery.endless-scroll.js: jquery.endless-scroll-889321461a4d636eea1698f65b36afc5
 jquery.tokeninput.js: jquery.tokeninput-63f600cc9a24aaeb5234244be3acec6c.js
 jquery-ui.min.js: jquery-ui.min-2b432ef5545e6620f94e7638b7574058.js
 jquery.min.js: jquery.min-bd368409099eb0579c0463d2977af8a9.js
-application.js: application-2201fc6be9336b6979cd83474e21686a.js
+application.js: application-d8c83d605e81c296cb43d674faeeda4d.js
 application.css: application-63bcdc72b24d371ac1874d918b44601c.css

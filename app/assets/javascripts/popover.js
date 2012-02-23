@@ -22,6 +22,9 @@ $.fn.popover = function(options) {
   // Document click closes active popover
   $.fn.popover.openedPopup = null;
   $(document).bind("click", function(event) {
+    console.log('inn');
+    console.log($(event.target).parents(".popover").length);
+    console.log($(event.target).attr('class'));
     if ($.fn.popover.openedPopup != null
         && ($(event.target).parents(".popover").length === 0)
         && (!$(event.target).hasClass('popover-button'))) {
