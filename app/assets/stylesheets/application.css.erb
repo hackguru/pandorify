@@ -351,7 +351,6 @@ nav li.logout.active .icon {
   z-index: 9;
   background: #FDFDFE;
   box-shadow: -7px 0 3px -3px rgba(32, 32, 32, 0.03);
-  border-bottom-left-radius: 4px;
 }
 
 /* Right Pane: Section */
@@ -364,7 +363,7 @@ nav li.logout.active .icon {
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-transition: opacity 200ms ease-in-out;
+  -webkit-transition: opacity 100ms ease;
   opacity: 1;
 }
 
@@ -393,12 +392,24 @@ nav li.logout.active .icon {
   z-index: 9;
 }
 
-body.loading .loading-spinner {
+body.appending .loading-spinner {
+  top: auto;
+  margin-top: 0;
+  bottom: 20px;
+}
+
+body.loading .loading-spinner,
+body.appending .loading-spinner {
   opacity: 1;
 }
 
 body.loading #right-pane > section {
   opacity: 0;
+}
+
+body.appending #right-pane > section {
+  -webkit-transition: padding 300ms ease;
+  padding-bottom: 40px;
 }
 
 @-webkit-keyframes loading {
