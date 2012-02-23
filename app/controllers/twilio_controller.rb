@@ -24,7 +24,7 @@ class TwilioController < ApplicationController
     # party = user.parties.first
     # 
     # if party
-      url = "http://ws.spotify.com/search/1/track?q=#{CGI.escape(body)}"
+      url = "http://ws.spotify.com/search/1/track.json?q=#{CGI.escape(body)}"
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)
