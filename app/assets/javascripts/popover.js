@@ -31,6 +31,7 @@ $.fn.popover = function(options) {
 
   var showPopover = function(button) {
     // Already opened?
+    console.log($(this));
     if ($.fn.popover.openedPopup === button) {
       $.fn.popover.openedPopup.trigger('hidePopover');
       return false;
