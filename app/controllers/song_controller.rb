@@ -53,6 +53,9 @@ class SongController < ApplicationController
     @songs = Song.sort_based_on_common_song_count(ids_string).paginate(:page => @page )
     respond_to do |format|
        format.js
+       format.json{
+         render :json => @songs.to_json
+       }
     end
   end
   
