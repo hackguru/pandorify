@@ -31,8 +31,8 @@ class TwilioController < ApplicationController
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request).body
       new_info = JSON.parse(response)
-      song = Song.find_by_url(Song.get_url_from_uri(@new_info["tracks"][0]["href"]))
-      Requestedsong.create(:facebook => user, :song => song, :party => part, :added => false)
+      song = Song.find_by_url(Song.get_url_from_uri(new_info["tracks"][0]["href"]))
+      Requestedsong.create(:facebook => user, :song => song, :party => party, :added => false)
     end
 
     # @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
