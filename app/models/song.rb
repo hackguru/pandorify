@@ -5,7 +5,7 @@ class Song < ActiveRecord::Base
   belongs_to :artist
   belongs_to :album
   has_and_belongs_to_many :playlists, :join_table => "songs_playlists"
-  has_many :requested_songs, :class_name => 'RequestedSongs', :dependent => :destroy
+  has_many :requestedsong, :dependent => :destroy
   
   
 
