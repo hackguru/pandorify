@@ -8,6 +8,7 @@ class Facebook < ActiveRecord::Base
   has_many :listens
   has_many :songs, :through => :listens, :source => :song
   has_many :recommendations, :dependent => :destroy
+  has_many :requested_songs, :dependant => :destroy
   has_many :recommendeds, :through => :recommendations, :source => :song
   # has_many :commended_songs_by_me, :foreign_key => :recommended_by_id, :through => :recommendations, :source => :song
   has_many :recommendations_because_of_me, :class_name => 'Recommendation', :foreign_key => :recommended_by_id
