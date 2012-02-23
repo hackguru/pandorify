@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  song_id: 
-  party_id: 
+  facebook: 
+  song: 
+  party: 
   added: false
 
 two:
-  song_id: 
-  party_id: 
+  facebook: 
+  song: 
+  party: 
   added: false
