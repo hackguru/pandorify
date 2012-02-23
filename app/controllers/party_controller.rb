@@ -24,7 +24,7 @@ class PartyController < ApplicationController
     if !@party.persisted?
       @party.facebooks = Facebook.find(:all,:conditions=>[ids_string])
     else
-      @party.songs = Requestedsongs.find(:all, :conditions => ['part_id = ? AND added = ?', @party.id, false])
+      @party.songs = Requestedsong.find(:all, :conditions => ['part_id = ? AND added = ?', @party.id, false])
     end
     @party.save   
         
