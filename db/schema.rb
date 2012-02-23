@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222220849) do
+ActiveRecord::Schema.define(:version => 20120223003754) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -123,13 +123,21 @@ ActiveRecord::Schema.define(:version => 20120222220849) do
 # Could not dump table "recommendations" because of following StandardError
 #   Unknown type 'listened' for column 'bool'
 
+  create_table "requestedsongs", :force => true do |t|
+    t.integer  "facebook_id"
+    t.integer  "song_id"
+    t.integer  "party_id"
+    t.boolean  "added"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "requestedsongs", ["facebook_id"], :name => "index_requestedsongs_on_facebook_id"
+  add_index "requestedsongs", ["party_id"], :name => "index_requestedsongs_on_party_id"
+  add_index "requestedsongs", ["song_id"], :name => "index_requestedsongs_on_song_id"
+
 # Could not dump table "songs" because of following StandardError
 #   Unknown type 'ineteger' for column 'album_id'
-
-  create_table "songs_parties", :id => false, :force => true do |t|
-    t.integer "song_id"
-    t.integer "party_id"
-  end
 
   create_table "songs_playlists", :id => false, :force => true do |t|
     t.integer "song_id"
