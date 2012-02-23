@@ -42,7 +42,7 @@ class TwilioController < ApplicationController
     respond_to do |format|
        # format.js
        format.json{
-         render :json => "ok"
+         render :json => @new_info
        }
     end
     
