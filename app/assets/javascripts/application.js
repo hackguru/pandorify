@@ -71,11 +71,7 @@ $(document).ready(function(){
   $('#side_bar li').click(function() {
     $('#side_bar li.active').removeClass('active');
     $(this).addClass('active');
+    $('body').addClass('loading');
   });
-
-
-
-
-
 });
 
