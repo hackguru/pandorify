@@ -9,8 +9,7 @@ class PartyController < ApplicationController
       @host = Facebook.find_by_email(params[:host_email])
     end
     
-    ids = []
-    params[:friend_tokens].split(",").map {|item| ids << item.to_i }
+    ids = params[:friend_tokens].split(",")
     ids_string = "("
     i = 0
     while i < ids.size() - 1
@@ -23,7 +22,7 @@ class PartyController < ApplicationController
 
     @party = Party.find_or_initialize_by_host_id(@host.id);
     if !@party.persisted?
-      @party.facebooks = ids
+      @party.facebooks = Facebook.find(:all,:conditions=>[ids_string])
     else
       @party.songs = Requestedsongs.find(:all, :conditions => ['part_id = ? AND added = ?', @party.id, false])
     end
