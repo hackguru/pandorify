@@ -1,6 +1,6 @@
 class PartyController < ApplicationController
 
-  def create_or_more_songs
+  def index
     if current_user
       @host = current_user
     elsif params[:host]
@@ -10,7 +10,6 @@ class PartyController < ApplicationController
     end
     
     ids = params[:friend_tokens].split(",")
-    ids.map! {|item| item = item.to_i}
     ids_string = "("
     i = 0
     while i < ids.size() - 1
@@ -22,12 +21,13 @@ class PartyController < ApplicationController
     @songs = Song.sort_based_on_common_song_count(ids_string).paginate(:page => @page )
 
     @party = Party.find_or_initialize_by_host_id(@host.id);
-    if !@party.persisted?
-      @party.facebooks = ids
-    else
-      @party.songs = Requestedsongs.find(:all, :conditions => ['part_id = ? AND added = ?', @party.id, false])
+    @party.facebooks = Facebook.find(:all,:conditions=>[ids_string])
+    Requestedsong.find(:all, :conditions => ['party_id = ? AND added = ?', @party.id, false]).each do |request|
+      @party.songs << request.song
+      request.added = true
     end
-    @party.save   
+    @party.save
+      
         
       
     @type = params[:type] || "grid"
@@ -38,9 +38,6 @@ class PartyController < ApplicationController
          render :json => {:matched => @songs.to_json, :requested => @party.songs}
        }
     end
-  end
-  
-  def update
   end
   
 end
