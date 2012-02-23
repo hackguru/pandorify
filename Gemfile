@@ -13,6 +13,7 @@ group :development, :test do
 end
 
 gem 'delayed_job_active_record'
+gem 'twilio-ruby'
 
 gem 'fb_graph'
 gem 'curb'
