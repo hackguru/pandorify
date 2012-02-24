@@ -71,13 +71,13 @@ $(document).ready(function(){
 
   $('.slide-out-div').tabSlideOut({
       tabHandle: '.handle',                              //class of the element that will be your tab
-      pathToTabImage: <%= asset_path knob.jpg %>,          //path to the image for the tab (optionaly can be set using css)
+      pathToTabImage: <%= asset_path 'knob.jpg' %>,          //path to the image for the tab (optionaly can be set using css)
       imageHeight: '122px',                               //height of tab image
       imageWidth: '40px',                               //width of tab image    
       tabLocation: 'right',                               //side of screen where tab lives, top, right, bottom, or left
       speed: 300,                                        //speed of animation
       action: 'click',                                   //options: 'click' or 'hover', action to trigger animation
-      topPos: '200px',                                   //position from the top
+      topPos: '55px',                                   //position from the top
       fixedPosition: true                               //options: true makes it stick(fixed position) on scroll
   });
 
@@ -92,7 +92,7 @@ $(document).endlessScroll({
   },
   callback: function(){
     $(document).unbind('scroll', unlimited_scroll);
-    $.get("<%= song_hot_songs_path %>", { type: view_type, page: nextPage, before: beforeTime } );
+    $.get("/song/hot_songs", { type: view_type, page: nextPage, before: beforeTime } );
     $('body').addClass('appending');
   }
 });
