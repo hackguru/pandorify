@@ -34,7 +34,10 @@ view-toggle.png: view-toggle-8ce6778d821c7a5e8ca85494d0910528.png
 jquery.endless-scroll.js: jquery.endless-scroll-889321461a4d636eea1698f65b36afc5.js
 jquery.tabSlideOut.v1.3.js: jquery.tabSlideOut.v1.3-04ea27602ff77bfb03367101ed37896d.js
 jquery.tokeninput.js: jquery.tokeninput-63f600cc9a24aaeb5234244be3acec6c.js
+jquery.ui.mouse.js: jquery.ui.mouse-c2064a13cc85da66abe2ef274e0e36c3.js
+jquery.ui.slider.js: jquery.ui.slider-3ef4c5d0cef372814c75595c193d3b9c.js
+jquery.ui.widget.js: jquery.ui.widget-d1ab233c7eeb8738a139b51a4258c3b5.js
 jquery-ui.min.js: jquery-ui.min-2b432ef5545e6620f94e7638b7574058.js
 jquery.min.js: jquery.min-bd368409099eb0579c0463d2977af8a9.js
-application.js: application-452282b0a361f1f61f00efd5682edbb7.js
+application.js: application-de264aa5a53fc2685349f509c4962a8a.js
 application.css: application-5f47e8497cee05cd9263b8e4dddbaff1.css
