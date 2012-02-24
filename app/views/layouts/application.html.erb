@@ -42,7 +42,7 @@
 <div class="slide-out-div">
     <a class="handle" href="http://link-for-non-js-users">Content</a>
 	<%= render 'party/tokenizer' %>
-    <p>
+		
 		<div class="slider_outer" >
 		  <h3>Mootols Slider with two knobs ( Minimum and Maximum Knobs)</h3>
 		  <div class="slide_container" >
@@ -52,7 +52,7 @@
 		      <div id="slider_minmax_gutter_m" class="slider_gutter_item gutter iconsprite_controls">
 		        <!--        <div id="slider_gutter_bkg_minmax" class="slider_gutter_bkg"></div>
 		-->
-		        <img id="slider_bkg_img" src="images/bkg_slider.gif"/>
+		        <img id="slider_bkg_img" src="<%= asset_path "bkg_slider.gif"%>"/>
 		        <div id="slider_minmax_minKnobA" class="knob"></div>
 		        <div id="slider_minmax_maxKnobA" class="knob"></div>
 		      </div>
@@ -62,7 +62,7 @@
 		    <div class="clearfix"></div>
 		  </div>
 		</div>
-	</p>
+		
 </div>
 
 </body>
