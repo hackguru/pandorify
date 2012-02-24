@@ -52,7 +52,7 @@ class FacebooksController < ApplicationController
   
   def all_users
     @users = Array.new
-    Facebook.find(:all, :conditions => ["name like ?", params[:q]]).each do |user| # .where("name like ?", "%#{params[:q]}%")
+    Facebook.find(:all, :conditions => ["name like ?", "%"+params[:q]+"%"]).each do |user| # .where("name like ?", "%#{params[:q]}%")
       @users << {"id" => user.id, "name" => user.name}
   	end
   		
