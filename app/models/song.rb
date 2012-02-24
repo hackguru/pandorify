@@ -157,12 +157,12 @@ class Song < ActiveRecord::Base
       
     end
     
-    def perform
-      self.update_popularity_and_duration
-    end
-    
   end
-  
+
+  def perform
+    self.update_popularity_and_duration
+  end
+    
   def get_uri
     if self.application.name == "Spotify"
       self.url.sub("http://open.spotify.com/track/","").strip
