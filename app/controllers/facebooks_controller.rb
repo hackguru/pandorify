@@ -1,6 +1,8 @@
 require 'rack/oauth2'
 
 class FacebooksController < ApplicationController
+  include ApplicationHelper
+  
   before_filter :require_authentication, :only => [:destroy, :friends]
 
   rescue_from Rack::OAuth2::Client::Error, :with => :oauth2_error

@@ -1,4 +1,5 @@
 class SongController < ApplicationController
+  include ApplicationHelper
 
   def hot_songs
     @page =  params[:page] || 1

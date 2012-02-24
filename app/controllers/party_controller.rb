@@ -1,4 +1,5 @@
 class PartyController < ApplicationController
+  include ApplicationHelper
 
   def index
     if current_user

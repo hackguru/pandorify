@@ -1,4 +1,5 @@
 class TinySongController < ApplicationController
+  include ApplicationHelper
   
   def get_id
     obj = Song.find(params[:id])

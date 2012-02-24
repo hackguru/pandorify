@@ -1,5 +1,5 @@
 class RecommendationController < ApplicationController
-
+  include ApplicationHelper
   def recommended
     @page =  params[:page] || 1
     @from_friends = params[:from_friends] || str_to_bool(params[:from_friends]) || false

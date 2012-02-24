@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  include ApplicationHelper
   before_filter :require_authentication, :only => :play
   
   def index

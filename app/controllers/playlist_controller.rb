@@ -1,4 +1,5 @@
 class PlaylistController < ApplicationController
+  include ApplicationHelper
   
   def create
     @playlist = Playlist.create(:name => params[:plname], :perm => false, :facebook => current_user)
