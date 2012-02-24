@@ -14,7 +14,6 @@ Pandorify::Application.routes.draw do
   post "playlist/create_and_add"
   get "playlist/play"
   get "song/play"
-  get "song/party"
   
   get "party/index"
   
@@ -24,6 +23,9 @@ Pandorify::Application.routes.draw do
   resource :facebook, :except => :create do
     get :callback, :to => :create
     get :friends
+    get :users_listen_to
+    get :all_users
+    get :like_taste
   end
  
   # The priority is based upon order of creation:

@@ -39,13 +39,41 @@ class FacebooksController < ApplicationController
   def friends
     @friends = Array.new
     current_user.friends.each do |friend| # .where("name like ?", "%#{params[:q]}%")
-      @friends << {"id" => friend.identifier, "name" => friend.name}
+      @friends << {"id" => friend.id, "name" => friend.name}
   	end
   		
   	respond_to do |format|
        format.json { render :json => @friends.delete_if { |item| !item['name'].downcase.include? params[:q].downcase} }
     end
     
+  end
+  
+  def all_users
+    @users = Array.new
+    Facebook.find(:all, :conditions => ["name like ?", params[:q]]).each do |user| # .where("name like ?", "%#{params[:q]}%")
+      @users << {"id" => user.id, "name" => user.name}
+  	end
+  		
+  	respond_to do |format|
+       format.json { render :json => @users }
+    end    
+  end
+  
+  def like_taste
+    @page =  params[:page] || 1
+    @user = current_user || Facebook.find_by_email(params[:user_email])
+    @users = Facebook.users_with_common_song(@user).paginate(:page => @page )
+  	respond_to do |format|
+       format.json { render :json => @users }
+    end    
+  end
+  
+
+  def users_listen_to
+    @users = Facebook.users_listen_to(Song.find(params[:song].to_i)).paginate(:page => @page )
+  	respond_to do |format|
+       format.json { render :json => @users }
+    end
   end
   
   private

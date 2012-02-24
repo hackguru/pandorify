@@ -8,8 +8,9 @@ class SongController < ApplicationController
     if @from_friends
       @user = current_user || Facebook.find_by_email(params[:user_email])
       @songs = Song.song_based_on_sorted_listens_by_friends_after(@user,@after).paginate(:page => @page )
+    else
+      @songs = Song.song_based_on_sorted_listens_by_user_since(@after).paginate(:page => @page )
     end
-    @songs = Song.song_based_on_sorted_listens_by_user_since(@after).paginate(:page => @page )
     respond_to do |format|
        format.js
        format.json{
@@ -36,29 +37,7 @@ class SongController < ApplicationController
        format.js
     end
   end
-  
-  def party
-    ids = params[:friend_tokens].split(",")
-    ids_string = "("
-    i = 0
-    while i < ids.size() - 1
-      ids_string += "#{Facebook.table_name}.id = #{ids[i]} OR "
-      i += 1
-    end
-    ids_string += "#{Facebook.table_name}.id = #{ids[i]})"
-      
-    @page =  params[:page] || 1
-    @after = params[:after] || 2.years.ago
-    @type = params[:type] || "grid"
-    @songs = Song.sort_based_on_common_song_count(ids_string).paginate(:page => @page )
-    respond_to do |format|
-       format.js
-       format.json{
-         render :json => @songs.to_json
-       }
-    end
-  end
-  
+    
   private
   
   def str_to_bool (arg)

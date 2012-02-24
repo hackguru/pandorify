@@ -6,8 +6,6 @@ class Song < ActiveRecord::Base
   belongs_to :album
   has_and_belongs_to_many :playlists, :join_table => "songs_playlists"
   has_many :requestedsongs, :dependent => :destroy
-  
-  
 
   scope :song_based_on_sorted_listens_by_user_since, lambda { |time| {
         :select => "#{Song.table_name}.*, count(DISTINCT #{Facebook.table_name}.id) as user_count",
@@ -86,6 +84,37 @@ class Song < ActiveRecord::Base
         :group => "#{Song.table_name}.id, #{Song.table_name}.identifier, #{Song.table_name}.title, #{Song.table_name}.url, #{Song.table_name}.created_at, #{Song.table_name}.updated_at, #{Song.table_name}.application_id, #{Song.table_name}.popularity, #{Song.table_name}.artist_id, #{Song.table_name}.album_id, #{Song.table_name}.tiny_song,#{Song.table_name}.duration, #{Song.table_name}.key, #{Song.table_name}.mode, #{Song.table_name}.time_signature, #{Song.table_name}.duration, #{Song.table_name}.loudness, #{Song.table_name}.energy, #{Song.table_name}.tempo, #{Song.table_name}.danceability, #{Song.table_name}.echo_nested, #{Song.table_name}.last_echo_nested",
         :order => "count(distinct firstlistens.id) DESC, coalesce(#{Song.table_name}.popularity,0) DESC"  
   }}
+  
+  scope :songs_with_tempo_range, lambda { |*args| {
+        :select => "#{Song.table_name}.*",
+        :conditions => ["( #{Song.table_name}.tempo > #{args.first} AND #{Song.table_name}.tempo < #{args.second} ) or #{Song.table_name}.tempo is null"],
+  }}
+
+  scope :songs_with_danceability_range, lambda { |*args| {
+        :select => "#{Song.table_name}.*",
+        :conditions => ["( #{Song.table_name}.danceability > #{args.first} AND #{Song.table_name}.danceability < #{args.second}  ) or #{Song.table_name}.danceability is null"],
+  }}
+
+  scope :songs_with_energy_range, lambda { |*args| {
+        :select => "#{Song.table_name}.*",
+        :conditions => ["( #{Song.table_name}.energy > #{args.first} AND #{Song.table_name}.energy < #{args.second}  ) or #{Song.table_name}.energy is null"],
+  }}
+
+  scope :songs_with_key_range, lambda { |*args| {
+        :select => "#{Song.table_name}.*",
+        :conditions => ["( #{Song.table_name}.key > #{args.first} AND #{Song.table_name}.key < #{args.second}  ) or #{Song.table_name}.key is null"],
+  }}
+
+  scope :songs_with_loudness_range, lambda { |*args| {
+        :select => "#{Song.table_name}.*",
+        :conditions => ["( #{Song.table_name}.loudness > #{args.first} AND #{Song.table_name}.loudness < #{args.second}  ) or #{Song.table_name}.loudness is null"],
+  }}
+
+  scope :songs_with_time_signature_range, lambda { |*args| {
+        :select => "#{Song.table_name}.*",
+        :conditions => ["( #{Song.table_name}.time_signature > #{args.first} AND #{Song.table_name}.time_signature < #{args.second}  ) or #{Song.table_name}.time_signature is null"],
+  }}
+
 
   self.per_page = 20
   
