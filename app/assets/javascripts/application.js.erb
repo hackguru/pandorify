@@ -81,13 +81,18 @@ $(document).ready(function(){
       fixedPosition: true                               //options: true makes it stick(fixed position) on scroll
   });
 
-	// var mySlideA = new Slider($('slider_minmax_gutter_m'), $('slider_minmax_minKnobA'),$('slider_bkg_img'), {
-	// 	start: 0,
-	// 	end: 5,
-	// 	offset:8,
-	// 	snap:false,
-	// 	onChange: function(pos){$('slider_minmax_min').setHTML('min '+pos.minpos);$('slider_minmax_max').setHTML('max '+pos.maxpos);}
-	// }, $('slider_minmax_maxKnobA')).setMin(2).setMax(3);
+
+	$( "#slider-range" ).slider({
+		range: true,
+		min: 0,
+		max: 500,
+		values: [ 75, 300 ],
+		slide: function( event, ui ) {
+			$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		}
+	});
+	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+		" - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
 });
 
