@@ -156,6 +156,11 @@ class Song < ActiveRecord::Base
       GC.start # Run the garbage collector to be sure this is real !    
       
     end
+    
+    def perform
+      self.update_popularity_and_duration
+    end
+    
   end
   
   def get_uri
@@ -169,11 +174,11 @@ class Song < ActiveRecord::Base
   
     def update_all
       Song.all.each do |object|
-        begin
-          object.update_popularity_and_duration
-        rescue
-          next
-        end
+        # begin
+           Delayed::Job.enqueue object
+        # rescue
+          # next
+        # end
       end
     end
 

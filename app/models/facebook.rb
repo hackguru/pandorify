@@ -124,7 +124,7 @@ class Facebook < ActiveRecord::Base
     end
 
     music_activity.each do |object|
-      # begin
+      begin
         new_application = Application.find_or_create_by_identifier(object.raw_attributes["application"]["id"])
         new_application.name = object.raw_attributes["application"]["name"]
         new_application.save!
@@ -149,9 +149,9 @@ class Facebook < ActiveRecord::Base
         new_song = nil
         new_listen = nil
         GC.start # Run the garbage collector to be sure this is real !        
-      # rescue
-        # next
-      # end
+      rescue
+        next
+      end
       
       # cleaning up
       music_activity = nil
@@ -236,7 +236,7 @@ class Facebook < ActiveRecord::Base
   
   def perform
     self.update_me
-    self.update_recommendations
+    self.update_recommendations if !self.is_friend_access
   end
   
   class << self
@@ -310,14 +310,17 @@ class Facebook < ActiveRecord::Base
     end
     
     def update_all
-      #updatinf frienads and songs
       Facebook.all.each do |user|
-        user.update_me
+        Delayed::Job.enqueue user
       end
+      #updatinf frienads and songs
+      # Facebook.all.each do |user|
+      #   user.update_me
+      # end
       #updating recommendations:
-      Facebook.find(:all,:conditions => ["is_friend_access = ?", false]).each do |user|
-        user.update_recommendations
-      end
+      # Facebook.find(:all,:conditions => ["is_friend_access = ?", false]).each do |user|
+      #   user.update_recommendations
+      # end
     end
     
     def create_queue_for_users

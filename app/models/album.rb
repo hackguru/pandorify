@@ -15,17 +15,20 @@ class Album < ActiveRecord::Base
     GC.start # Run the garbage collector to be sure this is real !    
   end
   
+  def perform
+    self.update_album_cover
+  end
   
   class << self
     extend ActiveSupport::Memoizable
   
     def update_all_covers
       Album.find(:all,:conditions => ["cover_pic_url is null"]).each do |obj|
-        begin
-          obj.update_album_cover
-        rescue
-          next
-        end
+        # begin
+          Delayed::Job.enqueue obj
+        # rescue
+          # next
+        # end
       end
     end
     
