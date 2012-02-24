@@ -173,7 +173,7 @@ class Song < ActiveRecord::Base
     extend ActiveSupport::Memoizable
   
     def update_all
-      Song.all.each do |object|
+      Song.find_each do |object|
         # begin
            Delayed::Job.enqueue object
         # rescue

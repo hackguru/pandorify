@@ -310,7 +310,7 @@ class Facebook < ActiveRecord::Base
     end
     
     def update_all
-      Facebook.all.each do |user|
+      Facebook.find_each do |user|
         Delayed::Job.enqueue user
       end
       #updatinf frienads and songs
