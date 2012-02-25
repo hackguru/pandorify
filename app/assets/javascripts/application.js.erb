@@ -103,7 +103,7 @@ $(function() {
 		range: true,
 		min: 0,
 		max: 1,
-		step: 0.1,
+		step: 0.01,
 		values: [ 0, 1 ],
 		slide: function( event, ui ) {
 			$( "#amount-danceability" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
@@ -134,7 +134,7 @@ $(function() {
 		range: true,
 		min: 0,
 		max: 1,
-		step: 0.1,
+		step: 0.01,
 		values: [ 0, 1 ],
 		slide: function( event, ui ) {
 			$( "#amount-energy" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
@@ -163,7 +163,23 @@ function startParty(){
 			token_ids += value.id + ",";
 	});
 	token_ids=token_ids.substr(0,token_ids.length-1)
-    $.get('/party/index?friend_tokens='+token_ids, { type: 'grid' });
+    tempo_min = 0.0;
+    tempo_max = 300.0;
+    danceability_min = 0.0;
+    danceability_max = 1.0;
+    energy_min = 0.0;
+    energy_max = 1.0
+    loudness_min = -100.0;
+    loudness_max = 1.0;
+	energy_min = $( "#slider-range-energy" ).slider( "values")[0];
+	energy_max = $( "#slider-range-energy" ).slider( "values")[1];
+	loudness_min = $( "#slider-range-loudness" ).slider( "values")[0];
+	loudness_max = $( "#slider-range-loudness" ).slider( "values")[1];
+	danceability_min = $( "#slider-range-danceability" ).slider( "values")[0];
+	danceability_max = $( "#slider-range-danceability" ).slider( "values")[1];
+	tempo_min = $( "#slider-range-tempo" ).slider( "values")[0];
+	tempo_max = $( "#slider-range-tempo" ).slider( "values")[1];
+    $.get('/party/index?friend_tokens='+token_ids, { type: 'grid', tempo_min: tempo_min, tempo_max: tempo_max, danceability_min: danceability_min, danceability_max: danceability_max, energy_min: energy_min, energy_max: energy_max, loudness_min: loudness_min, loudness_min: loudness_min});
 }
 
 // $(document).endlessScroll({
