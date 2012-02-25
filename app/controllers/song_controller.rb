@@ -3,7 +3,7 @@ class SongController < ApplicationController
 
   def hot_songs
     @page =  params[:page] || 1
-    @after = params[:after] || 2.days.ago
+    @after = params[:after] || 5.days.ago
     @type = params[:type] || "grid"
     @tempo_min = params[:tempo_min] || 0.0
     @tempo_max = params[:tempo_max] || 300.0
