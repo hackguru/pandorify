@@ -124,8 +124,8 @@ $(function() {
 			$( "#amount-loudness" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
 		}
 	});
-	$( "#amount-loudness" ).val( "$" + $( "#slider-range-loudness" ).slider( "values", 0 ) +
-		" - $" + $( "#slider-range-loudness" ).slider( "values", 1 ) );
+	$( "#amount-loudness" ).val( $( "#slider-range-loudness" ).slider( "values", 0 ) +
+		" - " + $( "#slider-range-loudness" ).slider( "values", 1 ) );
 });
 
 

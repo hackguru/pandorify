@@ -36,6 +36,7 @@ class PartyController < ApplicationController
     Requestedsong.find(:all, :conditions => ['party_id = ? AND added = ?', @party.id, false]).each do |request|
       @party.songs << request.song
       request.added = true
+      request.save
     end
     @party.save
       
