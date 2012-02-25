@@ -57,6 +57,9 @@ GEM
     hike (1.2.1)
     httpclient (2.2.3)
     i18n (0.6.0)
+    jquery-rails (1.0.19)
+      railties (~> 3.0)
+      thor (~> 0.14)
     json (1.6.1)
     jwt (0.1.4)
       json (>= 1.2.4)
@@ -138,6 +141,7 @@ DEPENDENCIES
   curb
   delayed_job_active_record
   fb_graph
+  jquery-rails
   pg
   rails (= 3.1.0)
   sass-rails (~> 3.1.0)
