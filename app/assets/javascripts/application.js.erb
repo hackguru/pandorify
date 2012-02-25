@@ -179,7 +179,7 @@ function startParty(){
 	danceability_max = $( "#slider-range-danceability" ).slider( "values")[1];
 	tempo_min = $( "#slider-range-tempo" ).slider( "values")[0];
 	tempo_max = $( "#slider-range-tempo" ).slider( "values")[1];
-    $.get('/party/index?friend_tokens='+token_ids, { type: 'grid', tempo_min: tempo_min, tempo_max: tempo_max, danceability_min: danceability_min, danceability_max: danceability_max, energy_min: energy_min, energy_max: energy_max, loudness_min: loudness_min, loudness_min: loudness_min});
+    $.get('/party/index?friend_tokens='+token_ids, { type: 'grid', tempo_min: tempo_min, tempo_max: tempo_max, danceability_min: danceability_min, danceability_max: danceability_max, energy_min: energy_min, energy_max: energy_max, loudness_min: loudness_min, loudness_max: loudness_max});
 }
 
 // $(document).endlessScroll({
