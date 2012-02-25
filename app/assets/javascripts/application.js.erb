@@ -102,8 +102,9 @@ $(function() {
 	$( "#slider-range-danceability" ).slider({
 		range: true,
 		min: 0,
-		max: 100,
-		values: [ 0, 100 ],
+		max: 1,
+		step: 0.1,
+		values: [ 0, 1 ],
 		slide: function( event, ui ) {
 			$( "#amount-danceability" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
 		}
@@ -132,8 +133,9 @@ $(function() {
 	$( "#slider-range-energy" ).slider({
 		range: true,
 		min: 0,
-		max: 100,
-		values: [ 0, 100 ],
+		max: 1,
+		step: 0.1,
+		values: [ 0, 1 ],
 		slide: function( event, ui ) {
 			$( "#amount-energy" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
 		}
