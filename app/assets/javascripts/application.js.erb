@@ -157,10 +157,11 @@ function startParty(){
     // }
 
 	token_ids = "";
-	$("#friend_tokens").tokenInput("get").each(function(index) {
-		token_ids += $(this).id + ",";
+	$.each($("#friend_tokens").tokenInput("get"),function(index,value) {
+			token_ids += value.id + ",";
 	});
-	alert(token_ids);
+	token_ids=token_ids.substr(0,token_ids.length-1)
+    $.get('/party/index?friend_tokens='+token_ids, { type: 'grid' });
 }
 
 // $(document).endlessScroll({
