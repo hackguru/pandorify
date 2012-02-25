@@ -4,14 +4,30 @@ class HomeController < ApplicationController
   
   def index
     if authenticated?
-      # friend_list = current_user.profile.friends
-      # friend_list.each do |friend|
-      #   Facebook.add_as_friend friend, current_user
-      # end
-      # @songs = Song.song_based_on_sorted_listens_by_friends(current_user).paginate(:page => 1 )
-      # @songs = Song.song_based_on_sorted_listens_by_user.paginate(:page => 1 )
-      @songs = Song.song_based_on_sorted_listens_by_user_since(2.days.ago).paginate(:page => 1 )
-      @playlists = current_user.playlists    
+      @page =  params[:page] || 1
+      @after = params[:after] || 2.days.ago
+      @type = params[:type] || "grid"
+      @tempo_min = params[:tempo_min] || 0.0
+      @tempo_max = params[:tempo_max] || 300.0
+      @danceability_min = params[:danceability_min] || 0.0
+      @danceability_max = params[:danceability_max] || 1.0
+      @energy_min = params[:energy_min] || 0.0
+      @energy_max = params[:energy_max] || 1.0
+      @loudness_min = params[:loudness_min] || -100.0
+      @loudness_max = params[:loudness_max] || 1.0
+      @from_friends = params[:from_friends] || str_to_bool(params[:from_friends]) || false
+      if @from_friends
+        @user = current_user || Facebook.find_by_email(params[:user_email])
+        @songs = Song.song_based_on_sorted_listens_by_friends_after(@user,@after).songs_with_tempo_range(@tempo_min,@tempo_max).songs_with_danceability_range(@danceability_min,@danceability_max).songs_with_energy_range(@energy_min,@energy_max).songs_with_loudness_range(@loudness_min,@loudness_max).paginate(:page => @page )
+      else
+        @songs = Song.song_based_on_sorted_listens_by_user_since(@after).songs_with_tempo_range(@tempo_min,@tempo_max).songs_with_danceability_range(@danceability_min,@danceability_max).songs_with_energy_range(@energy_min,@energy_max).songs_with_loudness_range(@loudness_min,@loudness_max).paginate(:page => @page )
+      end
+      respond_to do |format|
+         format.js
+         format.json{
+           render :json => @songs.to_json
+         }
+      end
     end
   end
 
