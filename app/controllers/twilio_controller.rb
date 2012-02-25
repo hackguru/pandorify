@@ -33,7 +33,9 @@ include ApplicationHelper
       response = http.request(request).body
       new_info = JSON.parse(response)
       song = Song.find_by_url(Song.get_url_from_uri(new_info["tracks"][0]["href"]))
-      Requestedsong.create(:facebook => user, :song => song, :party => party, :added => false)
+      rs = Requestedsong.create(:facebook => user, :song => song, :party => party, :added => false)
+      rs.added = true
+      rs.save!
       @body = song.title + " was added to the party playlist!"
     else
       @body = "Sorry! We encountered an error"
