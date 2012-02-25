@@ -52,7 +52,6 @@ class FacebooksController < ApplicationController
   
   def all_users
     @users = Array.new
-    puts "%"+params[:q]+"% ---- HEREEEEE"
     Facebook.find(:all, :conditions => ["lower(name) like ?", "%"+params[:q]+"%"]).each do |user| # .where("name like ?", "%#{params[:q]}%")
       @users << {"id" => user.id, "name" => user.name}
   	end
@@ -73,7 +72,12 @@ class FacebooksController < ApplicationController
   
 
   def users_listen_to
-    @users = Facebook.users_listen_to(Song.find(params[:song].to_i)).paginate(:page => @page )
+    @page =  params[:page] || 1
+    if params[:song]
+      @users = Facebook.users_listen_to(Song.find(params[:song].to_i)).paginate(:page => @page )
+    else
+      @users = Facebook.users_listen_to(Song.find_by_url(params[:song_url])).paginate(:page => @page )
+    end
   	respond_to do |format|
        format.json { render :json => @users }
     end
