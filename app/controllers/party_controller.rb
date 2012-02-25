@@ -2,6 +2,16 @@ class PartyController < ApplicationController
   include ApplicationHelper
 
   def index
+    
+    @tempo_min = params[:tempo_min]
+    @tempo_max = params[:tempo_max]
+    @danceability_min = params[:danceability_min]
+    @danceability_max = params[:danceability_max]
+    @energy_min = params[:energy_min]
+    @energy_max = params[:energy_max]
+    @loudness_min = params[:loudness_min]
+    @loudness_max = params[:loudness_max]
+    
     if current_user
       @host = current_user
     elsif params[:host]
@@ -19,7 +29,7 @@ class PartyController < ApplicationController
     end
     ids_string += "#{Facebook.table_name}.id = #{ids[i]})"
     @page =  params[:page] || 1
-    @songs = Song.sort_based_on_common_song_count(ids_string).paginate(:page => @page )
+    @songs = Song.sort_based_on_common_song_count(ids_string).songs_with_tempo_range(@tempo_min,@tempo_max).songs_with_danceability_range(@danceability_min,@danceability_max).songs_with_energy_range(@energy_min,@energy_max).songs_with_loudness_range(@loudness_min,@loudness_max).paginate(:page => @page )
 
     @party = Party.find_or_initialize_by_host_id(@host.id);
     @party.facebooks = Facebook.find(:all,:conditions=>[ids_string])

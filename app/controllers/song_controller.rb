@@ -5,12 +5,20 @@ class SongController < ApplicationController
     @page =  params[:page] || 1
     @after = params[:after] || 2.days.ago
     @type = params[:type] || "grid"
+    @tempo_min = params[:tempo_min]
+    @tempo_max = params[:tempo_max]
+    @danceability_min = params[:danceability_min]
+    @danceability_max = params[:danceability_max]
+    @energy_min = params[:energy_min]
+    @energy_max = params[:energy_max]
+    @loudness_min = params[:loudness_min]
+    @loudness_max = params[:loudness_max]
     @from_friends = params[:from_friends] || str_to_bool(params[:from_friends]) || false
     if @from_friends
       @user = current_user || Facebook.find_by_email(params[:user_email])
-      @songs = Song.song_based_on_sorted_listens_by_friends_after(@user,@after).paginate(:page => @page )
+      @songs = Song.song_based_on_sorted_listens_by_friends_after(@user,@after).songs_with_tempo_range(@tempo_min,@tempo_max).songs_with_danceability_range(@danceability_min,@danceability_max).songs_with_energy_range(@energy_min,@energy_max).songs_with_loudness_range(@loudness_min,@loudness_max).paginate(:page => @page )
     else
-      @songs = Song.song_based_on_sorted_listens_by_user_since(@after).paginate(:page => @page )
+      @songs = Song.song_based_on_sorted_listens_by_user_since(@after).songs_with_tempo_range(@tempo_min,@tempo_max).songs_with_danceability_range(@danceability_min,@danceability_max).songs_with_energy_range(@energy_min,@energy_max).songs_with_loudness_range(@loudness_min,@loudness_max).paginate(:page => @page )
     end
     respond_to do |format|
        format.js
