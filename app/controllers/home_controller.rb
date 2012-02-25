@@ -22,7 +22,7 @@ class HomeController < ApplicationController
       else
         @songs = Song.song_based_on_sorted_listens_by_user_since(@after).songs_with_tempo_range(@tempo_min,@tempo_max).songs_with_danceability_range(@danceability_min,@danceability_max).songs_with_energy_range(@energy_min,@energy_max).songs_with_loudness_range(@loudness_min,@loudness_max).paginate(:page => @page )
       end
-      @playlists =  @songs.playlists
+      @playlists =  @user.playlists
       respond_to do |format|
         format.html
          format.js
