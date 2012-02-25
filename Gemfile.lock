@@ -57,9 +57,6 @@ GEM
     hike (1.2.1)
     httpclient (2.2.3)
     i18n (0.6.0)
-    jquery-rails (1.0.18)
-      railties (~> 3.0)
-      thor (~> 0.14)
     json (1.6.1)
     jwt (0.1.4)
       json (>= 1.2.4)
@@ -95,8 +92,6 @@ GEM
       activesupport (= 3.1.0)
       bundler (~> 1.0)
       railties (= 3.1.0)
-    rails-asset-jqueryui (0.0.3)
-      jquery-rails
     railties (3.1.0)
       actionpack (= 3.1.0)
       activesupport (= 3.1.0)
@@ -143,10 +138,8 @@ DEPENDENCIES
   curb
   delayed_job_active_record
   fb_graph
-  jquery-rails
   pg
   rails (= 3.1.0)
-  rails-asset-jqueryui
   sass-rails (~> 3.1.0)
   sqlite3
   turn

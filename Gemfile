@@ -18,7 +18,6 @@ gem 'twilio-ruby'
 gem 'fb_graph'
 gem 'curb'
 gem 'will_paginate'
-gem "rails-asset-jqueryui"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,7 +27,7 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
