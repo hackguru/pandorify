@@ -86,17 +86,61 @@ $(document).ready(function(){
 });
 
 $(function() {
-	$( "#slider-range" ).slider({
+	$( "#slider-range-tempo" ).slider({
 		range: true,
 		min: 0,
 		max: 500,
 		values: [ 75, 300 ],
 		slide: function( event, ui ) {
-			$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+			$( "#amount-temp" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 		}
 	});
-	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-		" - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	$( "#amount-tempo" ).val( "$" + $( "#slider-range-tempo" ).slider( "values", 0 ) +
+		" - $" + $( "#slider-range-tempo" ).slider( "values", 1 ) );
+});
+
+$(function() {
+	$( "#slider-range-danceability" ).slider({
+		range: true,
+		min: 0,
+		max: 500,
+		values: [ 75, 300 ],
+		slide: function( event, ui ) {
+			$( "#amount-danceability" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		}
+	});
+	$( "#amount-danceability" ).val( "$" + $( "#slider-range-danceability" ).slider( "values", 0 ) +
+		" - $" + $( "#slider-range-danceability" ).slider( "values", 1 ) );
+});
+
+
+$(function() {
+	$( "#slider-range-loudness" ).slider({
+		range: true,
+		min: 0,
+		max: 500,
+		values: [ 75, 300 ],
+		slide: function( event, ui ) {
+			$( "#amount-loudness" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		}
+	});
+	$( "#amount-loudness" ).val( "$" + $( "#slider-range-loudness" ).slider( "values", 0 ) +
+		" - $" + $( "#slider-range-loudness" ).slider( "values", 1 ) );
+});
+
+
+$(function() {
+	$( "#slider-range-energy" ).slider({
+		range: true,
+		min: 0,
+		max: 500,
+		values: [ 75, 300 ],
+		slide: function( event, ui ) {
+			$( "#amount-energy" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		}
+	});
+	$( "#amount-energy" ).val( "$" + $( "#slider-range-energy" ).slider( "values", 0 ) +
+		" - $" + $( "#slider-range-energy" ).slider( "values", 1 ) );
 });
 
 // $(document).endlessScroll({
