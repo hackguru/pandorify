@@ -81,26 +81,6 @@ $(document).ready(function(){
       topPos: '55px',                                   //position from the top
       fixedPosition: true                               //options: true makes it stick(fixed position) on scroll
   });
-
-	function startParty(){
-	    // $('body').addClass('loading');
-	    // $(this).addClass('active');
-	    // content = $('#song_view').attr("content");
-	    // content_id = $('#song_view').attr("content_id");
-	    // if (content == 'playlist') {
-	    //   $.get('/playlist/play', { id: content_id , type: 'grid' });
-	    // }else if (content == 'hot'){
-	    //   $.get('/song/hot_songs', { type: 'grid' });
-	    // }else if (content == 'recom'){
-	    //   $.get('/recommendation/recommended', { type: 'grid' });
-	    // }
-	
-		token_ids = "";
-		$("#friend_tokens").tokenInput("get").each(function(index) {
-			token_ids += $(this).id + ",";
-		});
-		alert(token_ids);
-	}
 	
 });
 
@@ -161,6 +141,27 @@ $(function() {
 	$( "#amount-energy" ).val( $( "#slider-range-energy" ).slider( "values", 0 ) +
 		" - " + $( "#slider-range-energy" ).slider( "values", 1 ) );
 });
+
+
+function startParty(){
+    // $('body').addClass('loading');
+    // $(this).addClass('active');
+    // content = $('#song_view').attr("content");
+    // content_id = $('#song_view').attr("content_id");
+    // if (content == 'playlist') {
+    //   $.get('/playlist/play', { id: content_id , type: 'grid' });
+    // }else if (content == 'hot'){
+    //   $.get('/song/hot_songs', { type: 'grid' });
+    // }else if (content == 'recom'){
+    //   $.get('/recommendation/recommended', { type: 'grid' });
+    // }
+
+	token_ids = "";
+	$("#friend_tokens").tokenInput("get").each(function(index) {
+		token_ids += $(this).id + ",";
+	});
+	alert(token_ids);
+}
 
 // $(document).endlessScroll({
 //   bottomPixels: 400,
