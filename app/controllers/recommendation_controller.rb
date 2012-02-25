@@ -16,6 +16,9 @@ class RecommendationController < ApplicationController
     end
     respond_to do |format|
        format.js
+       format.json{
+         render :json => @songs.to_json
+       }
     end
   end
 
