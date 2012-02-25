@@ -5,14 +5,14 @@ class SongController < ApplicationController
     @page =  params[:page] || 1
     @after = params[:after] || 2.days.ago
     @type = params[:type] || "grid"
-    @tempo_min = params[:tempo_min] | 0.0
-    @tempo_max = params[:tempo_max] | 300.0
-    @danceability_min = params[:danceability_min] | 0.0
-    @danceability_max = params[:danceability_max] | 1.0
-    @energy_min = params[:energy_min] | 0.0
-    @energy_max = params[:energy_max] | 1.0
-    @loudness_min = params[:loudness_min] | -100.0
-    @loudness_max = params[:loudness_max] | 1.0
+    @tempo_min = params[:tempo_min] || 0.0
+    @tempo_max = params[:tempo_max] || 300.0
+    @danceability_min = params[:danceability_min] || 0.0
+    @danceability_max = params[:danceability_max] || 1.0
+    @energy_min = params[:energy_min] || 0.0
+    @energy_max = params[:energy_max] || 1.0
+    @loudness_min = params[:loudness_min] || -100.0
+    @loudness_max = params[:loudness_max] || 1.0
     @from_friends = params[:from_friends] || str_to_bool(params[:from_friends]) || false
     if @from_friends
       @user = current_user || Facebook.find_by_email(params[:user_email])

@@ -3,14 +3,14 @@ class PartyController < ApplicationController
 
   def index
     
-    @tempo_min = params[:tempo_min] | 0.0
-    @tempo_max = params[:tempo_max] | 300.0
-    @danceability_min = params[:danceability_min] | 0.0
-    @danceability_max = params[:danceability_max] | 1.0
-    @energy_min = params[:energy_min] | 0.0
-    @energy_max = params[:energy_max] | 1.0
-    @loudness_min = params[:loudness_min] | -100.0
-    @loudness_max = params[:loudness_max] | 1.0
+    @tempo_min = params[:tempo_min] || 0.0
+    @tempo_max = params[:tempo_max] || 300.0
+    @danceability_min = params[:danceability_min] || 0.0
+    @danceability_max = params[:danceability_max] || 1.0
+    @energy_min = params[:energy_min] || 0.0
+    @energy_max = params[:energy_max] || 1.0
+    @loudness_min = params[:loudness_min] || -100.0
+    @loudness_max = params[:loudness_max] || 1.0
     
     if current_user
       @host = current_user
