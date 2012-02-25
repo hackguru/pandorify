@@ -4,9 +4,9 @@ class HomeController < ApplicationController
   
   def index
     if authenticated?
-        @user = current_user || Facebook.find_by_email(params[:user_email])
+        @user = current_user
         @playlists =  @user.playlists
-        @songs = Song.song_based_on_sorted_listens_by_user_since(@after).paginate(:page => @page )
+        @songs = Song.song_based_on_sorted_listens_by_user.paginate(:page => @page )
       respond_to do |format|
         format.html
       end
