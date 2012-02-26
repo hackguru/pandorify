@@ -127,3 +127,9 @@ end
 task :run_echonest_perfom => :environment do
   Echonest.perform
 end
+
+task :deleting_errors_from_job_q => :environment do
+  Delayed::Job.find(:all, :conditions => "last_error is not null").each do |err|
+    err.destroy!
+  end
+end
