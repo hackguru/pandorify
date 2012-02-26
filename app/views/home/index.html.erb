@@ -39,7 +39,7 @@
         <h3 class="lobster">playlists</h3>
         <ul>
 <% @playlists.each do |pl|%>
-<li class="playlist <%='queue' if pl.perm %>"><%= link_to content_tag(:span, nil, :class=>'icon') + pl.name, playlist_play_path + "?id=#{pl.id}&page=1", :method => :get, :remote => true %><span class="delete"></span></li>
+<li class="playlist <%='queue' if pl.perm %>"><%= link_to content_tag(:span, nil, :class=>'icon') + pl.name, playlist_play_path + "?id=#{pl.id}", :method => :get, :remote => true %><span class="delete"></span></li>
 <% end %>
 <li class="playlist add"><a href="#"><span class="icon"></span>Create playlist</a></li>
 </ul>
