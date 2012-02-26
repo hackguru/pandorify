@@ -1,7 +1,4 @@
 $('#song_view').html("<%= escape_javascript(render 'song/songs', :songs => @songs, :type =>@type) %>");
-console.log('rendering playlist');
-console.log('rendering @songs');
-console.log('rendering @type');
 $('#song_view').attr("type","<%=@type%>");
 $('#song_view').attr("content",'playlist');
 $('#song_view').attr("content_id","<%=@playlist.id%>");

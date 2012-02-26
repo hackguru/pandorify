@@ -113,15 +113,19 @@
   font-size: 11px;
 }
 
-.grid-item .listens .icon.headphones {
-  display: inline-block;
-  position: absolute;
-  top: 0; 
-  left: 0;
-  height: 15px;
+.grid-item .listens .icon {
+  height: 17px;
   width: 14px;
-  background: url(<%= asset_path 'misc-icons.png' %>) -10px -11px no-repeat;
+  background: url(<%= asset_path 'misc-icons.png' %>) no-repeat;
   vertical-align: text-bottom;
+}
+
+.grid-item .listens .icon.headphones {
+  background-position: -10px -11px;
+}
+
+.grid-item .listens .icon.love {
+  background-position: -30px -11px;
 }
 
 /* Media Queries */

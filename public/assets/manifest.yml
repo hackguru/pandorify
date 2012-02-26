@@ -18,7 +18,7 @@ loading-spinner.png: loading-spinner-87f2d2f3dade95f4446e1708d2b5edb6.png
 logo-blue.png: logo-blue-3cf58a4b842b997b80171b0c8c90f25e.png
 logo-dark.png: logo-dark-71fa1650a1bb909c6931b68a71a2a8ea.png
 logo.png: logo-f76ca7e8c4e25a138e12802819432b9f.png
-misc-icons.png: misc-icons-03bdd58f9f68725461e56f374920fc6b.png
+misc-icons.png: misc-icons-0aebe2b7d24301d121d84017318e6cc7.png
 old_bkg_slider.gif: old_bkg_slider-1769a6f804a4bf2d63f5e75c9daa59f0.gif
 power.png: power-3761b88fb5d1077870b9aa86682389d3.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
@@ -30,6 +30,7 @@ slider_rptr.gif: slider_rptr-0da124aceb82c61156e1c622786221d2.gif
 spacer.gif: spacer-5eb7af3a7562d2ca4ff6e1bb564b83df.gif
 topbar-bg.png: topbar-bg-5cc75f2e3b3f5b0eda2a953caba2a4a6.png
 tour/intro.png: tour/intro-f3be9ff28dec258e59207e05cbeab513.png
+user-love-icon.png: user-love-icon-670fbaba2f06cbc0d4951d999f798fbf.png
 view-toggle.png: view-toggle-8ce6778d821c7a5e8ca85494d0910528.png
 jquery.endless-scroll.js: jquery.endless-scroll-889321461a4d636eea1698f65b36afc5.js
 jquery.tabSlideOut.v1.3.js: jquery.tabSlideOut.v1.3-04ea27602ff77bfb03367101ed37896d.js
@@ -37,4 +38,4 @@ jquery.tokeninput.js: jquery.tokeninput-63f600cc9a24aaeb5234244be3acec6c.js
 jquery-ui.min.js: jquery-ui.min-2b432ef5545e6620f94e7638b7574058.js
 jquery.min.js: jquery.min-460459a37590253002f65e6137a90b87.js
 application.js: application-023fb9dd7d0ec2fa4d5a9cbe51b2943a.js
-application.css: application-c538e8871897d9963ac6fa35ebf4e573.css
+application.css: application-df1cd84406d32defe83d46eb299fac3c.css

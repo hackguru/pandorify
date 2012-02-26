@@ -35,7 +35,8 @@
         <%  count += 1 %>
         <% end %>
         <% name = Facebook.users_listen_to(obj)[rand(count)].try(:name) %>
-        <p class="listens"><span class="icon headphones"></span><%= name %> & <%= count-1 %> others</p>
+        <p class="listens"><span class="icon love"></span><%= name %></p>
+        <p class="listens"><span class="icon headphones"></span><%= count-1 %> friends</p>
       </div>
     </div>
   </div>
