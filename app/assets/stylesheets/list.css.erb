@@ -1,7 +1,8 @@
-#song_view {
+#song_view[type="detail"] {
   background: url(<%= asset_path 'list/bg.png' %>) repeat;
 }
 
+.grid,
 .list-container {
   position: absolute;
   top: 0;
@@ -11,20 +12,20 @@
   background: url(<%= asset_path 'list/bg.png' %>) repeat;
 }
 
-.list-container .row {
+.row {
   position: relative;
   height: 42px;
   line-height: 42px;
 }
 
-.list-container .dynamic {
+.row .dynamic {
   position: absolute;
   left: 95px;
   right: 300px;
   height: 100%;
 }
 
-.list-container .static {
+.row .static {
   position: absolute;
   right: 0;
   width: 300px;
@@ -32,7 +33,7 @@
   line-height: 21px;
 }
 
-.list-container li .dynamic div {
+.row li .dynamic div {
   float: left;
   height: 100%;
   margin: 0;
@@ -45,18 +46,18 @@
   text-overflow: ellipsis;
 }
 
-.list-container .row .song {
+.row .row .song {
   width: 40%;
 }
 
-.list-container .row .artist {
+.row .row .artist {
   width: 30%;
 }
-.list-container .row .album {
+.row .row .album {
   width: 30%;
 }
 
-.list-container .friends {
+.row .friends {
   float: left;
   width: 100%;
   text-align: center;
@@ -64,32 +65,32 @@
   box-shadow: 1px 0 0 #E9EAED, 2px 0 0 #fff;
 }
 
-.list-container li .thumbs {
+.row li .thumbs {
   text-align: right;
   padding-left: 6px;	
   overflow: hidden;
   white-space: nowrap;
 }
 
-.list-container li .thumbs li {
+.row li .thumbs li {
   display: inline-block;
   margin: 4px 2px 0 0;
   text-indent: 0;
   line-height: 0;
 }
 
-.list-container li .thumbs li:last-child {
+.row li .thumbs li:last-child {
   margin-right: 0;
 }
 
-.list-container li .thumbs img {
+.row li .thumbs img {
   height: 33px;
   width: 33px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 #fff;
   border-radius: 2px;
 }
 
-.list-container  .actions {
+.row  .actions {
   float: left;
   width: 84px;
   box-shadow: none;
@@ -98,22 +99,22 @@
   box-shadow: 1px 0 0 #E9EAED, 2px 0 0 #fff;
 }
 
-.list-container .actions a {
+.row .actions a {
   float: left;
 }
 
-.list-container .actions .play {
+.row .actions .play {
   display: inline-block;
   height: 34px;
   width: 34px;
   background: url(<%= asset_path 'list/buttons.png' %>) -8px -8px no-repeat;
 }
 
-.list-container .actions .play:active {
+.row .actions .play:active {
   background-position: -8px -69px;
 }
 
-.list-container .actions .add {
+.row .actions .add {
   display: inline-block;
   height: 28px;
   width: 28px;
@@ -121,6 +122,6 @@
   background: url(<%= asset_path 'list/buttons.png' %>) -72px -11px no-repeat;
 }
 
-.list-container .actions .add:active {
+.row .actions .add:active {
   background-position: -72px -73px;
 }
