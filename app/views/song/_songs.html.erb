@@ -65,7 +65,18 @@
         <% friends = Facebook.users_listen_to(obj) %>
         <% count = 0 %>
         <% friends.each do |fri| %>
-        <li><a href="/profile"><img src="<%=fri.pic_url %>?type=square" /></a></li>
+        <li><a class="thumb" href="/profile"><img src="<%=fri.pic_url %>?type=square" /></a></li>
+        
+        <div id="my-popover" style="display:none">
+          <div class="header">
+          </div>
+          <div class="content">
+            <img src="<%=fri.pic_url %>?type=square" />
+            <p><%= fri.name %></p>
+            <p>133 listens</p>
+          </div>
+        </div>
+        
         <% count += 1%>
         <% break if count == 10%>
         <% end %>
@@ -85,6 +96,15 @@ $('.album img').load(function() {
 $('a.add').each(function(index){
   var id = $(this).attr('id');
   $(this).popover({header: '', content: '#'+id+'content_for_popup'});
+});
+
+$('a.add').each(function(index){
+  var id = $(this).attr('id');
+  $(this).popover({header: '', content: '#'+id+'content_for_popup'});
+});
+
+$('.row .thumb').each(function(index){
+  $(this).popover({header: '', content: ''});
 });
 
 </script>

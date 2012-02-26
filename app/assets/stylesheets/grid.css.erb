@@ -5,7 +5,7 @@
 .grid-space {
   float: left;
   width: 20%;
-  height: 250px;
+  height: 255px;
   text-align: center;
 }
 
@@ -99,6 +99,7 @@
 .grid-item .artist {
   color: #5b6371;
   font-size: 12px;
+  margin-bottom: 3px;
 }
 
 .grid-item .info .listens {
@@ -106,26 +107,26 @@
   height: auto; 
   max-height: 30px;
   line-height: 14px; 
-  margin-top: 4px; 
-  padding-left: 19px; 
   white-space: normal;
   color: #9ea2a9;
   font-size: 11px;
 }
 
 .grid-item .listens .icon {
+  display: inline-block;
   height: 17px;
-  width: 14px;
+  width: 17px;
+  margin-right: 6px;
   background: url(<%= asset_path 'misc-icons.png' %>) no-repeat;
   vertical-align: text-bottom;
 }
 
-.grid-item .listens .icon.headphones {
-  background-position: -10px -11px;
+.grid-item .listens .icon.love {
+  background-position: -9px -51px;
 }
 
-.grid-item .listens .icon.love {
-  background-position: -30px -11px;
+.grid-item .listens .icon.headphones {
+  background-position: -9px -72px;
 }
 
 /* Media Queries */
