@@ -57,7 +57,7 @@ header {
   height: 49px;
   z-index: 10;
   background: url(<%= asset_path 'dark-blue-bg.png' %>) repeat-x;
-  
+
 }
 #header-container {
   height: inherit;
@@ -152,8 +152,7 @@ nav {
   top: 49px;
   left: 0;
   bottom: 0;
-  width: 230px;
-  padding-right: 3px;
+  width: 233px;
   overflow-y: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
@@ -482,8 +481,12 @@ body.appending #right-pane > section {
 }
 
 .slide-out-div {
-   padding: 20px;
-    width: 400px;
-    background: #f2f2f2;
-    border: #29216d 2px solid;
+  padding: 20px;
+  width: 400px;
+  background: #f2f2f2;
+  border: #29216d 2px solid;
+}
+
+body.tour .slide-out-div {
+  display: none;
 }
