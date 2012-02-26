@@ -182,16 +182,16 @@ function startParty(){
     $.get('/party/index?friend_tokens='+token_ids, { type: 'grid', tempo_min: tempo_min, tempo_max: tempo_max, danceability_min: danceability_min, danceability_max: danceability_max, energy_min: energy_min, energy_max: energy_max, loudness_min: loudness_min, loudness_max: loudness_max});
 }
 
-// $(document).endlessScroll({
-//   bottomPixels: 400,
-//   fireOnce: true,
-//   fireDelay: 500,
-//   ceaseFire: function(){
-//     return $('#cease_fire_on_scroll').attr('value') == 'true';
-//   },
-//   callback: function(){
-//     $(document).unbind('scroll', unlimited_scroll);
-//     $.get("/song/hot_songs", { type: view_type, page: nextPage, before: beforeTime } );
-//     $('body').addClass('appending');
-//   }
-// });
+$(document).endlessScroll({
+  bottomPixels: 400,
+  fireOnce: true,
+  fireDelay: 500,
+  ceaseFire: function(){
+    return $('#cease_fire_on_scroll').attr('value') == 'true';
+  },
+  callback: function(){
+    $(document).unbind('scroll', unlimited_scroll);
+    $.get("/song/hot_songs", { type: "grid", page: 2 } );
+    $('body').addClass('appending');
+  }
+});
