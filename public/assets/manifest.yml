@@ -21,6 +21,7 @@ logo-dark.png: logo-dark-71fa1650a1bb909c6931b68a71a2a8ea.png
 logo.png: logo-f76ca7e8c4e25a138e12802819432b9f.png
 misc-icons.png: misc-icons-db997f078bc8dc94e4d8edef51f344c2.png
 old_bkg_slider.gif: old_bkg_slider-1769a6f804a4bf2d63f5e75c9daa59f0.gif
+player-bg.png: player-bg-8941437187aa64008ff40233af37b5d8.png
 power.png: power-3761b88fb5d1077870b9aa86682389d3.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
 sidebar-icons.png: sidebar-icons-9024454b47efd9e39788ef4753b6c939.png
@@ -39,4 +40,4 @@ jquery.tokeninput.js: jquery.tokeninput-63f600cc9a24aaeb5234244be3acec6c.js
 jquery-ui.min.js: jquery-ui.min-2b432ef5545e6620f94e7638b7574058.js
 jquery.min.js: jquery.min-460459a37590253002f65e6137a90b87.js
 application.js: application-023fb9dd7d0ec2fa4d5a9cbe51b2943a.js
-application.css: application-2e6d460be34459bb79ae7a068c336494.css
+application.css: application-6a46851659398d724b19f12f5376963e.css
