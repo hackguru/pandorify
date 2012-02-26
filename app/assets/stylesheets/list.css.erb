@@ -98,12 +98,8 @@
   margin: 0;
   z-index: 9;
   opacity: 1;
+  text-align: center;
   visibility: hidden;
-  -webkit-transition: visibility 200ms ease-in-out;
-  -moz-transition: visibility 200ms ease-in-out;
-  -o-transition: visibility 200ms ease-in-out;
-  -ms-transition: visibility 200ms ease-in-out;
-  transition: visibility 200ms ease-in-out;
 }
 
 .row .thumbs li .popover .triangle {
@@ -113,7 +109,16 @@
 
 .row .thumbs li:hover .popover {
   visibility: visible;
-  text-align: center;
+  -webkit-transition: visibility 150ms ease-in-out;
+  -webkit-transition-delay: 400ms;
+  -moz-transition: visibility 150ms ease-in-out;
+  -moz-transition-delay: 400ms;
+  -o-transition: visibility 150ms ease-in-out;
+  -o-transition-delay: 400ms;
+  -ms-transition: visibility 150ms ease-in-out;
+  -ms-transition-delay: 400ms;
+  transition: visibility 150ms ease-in-out;
+  transition-delay: 400ms;
 }
 
 .row .thumbs li .popover p {
