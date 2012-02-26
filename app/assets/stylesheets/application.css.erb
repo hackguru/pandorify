@@ -148,11 +148,12 @@ body.playing #controls .control.play:active {
 
 #player .album {
   float: left;
-  height: 38px;
-  width: 38px;
+  height: 41px;
+  width: 41px;
   margin: 1px 0 0 1px;
   border-radius: 2px;
-  background: #fafafa;
+  background: url(<%= asset_path 'album-cover.png' %>) center center no-repeat;
+  background-color: #e0e0e0;
 }
 
 #player .album img {
@@ -194,14 +195,14 @@ body.playing #controls .control.play:active {
   right: 10px;
   height: 23px;
   width: 21px;
-  background: url(<%= asset_path 'buttons-sprite.png' %>) -157px 1px no-repeat;
+  background: url(<%= asset_path 'buttons-sprite.png' %>) -155px -7px no-repeat;
   border: none;
   outline: none;
   padding: 0;
 }
 
-#player .info .current_playlist:active {
-  background-position: -157px -44px;
+#player .current_playlist:active {
+  background-position: -155px -52px;
 }
 
 #player object {
