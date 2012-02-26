@@ -34,12 +34,13 @@ class PartyController < ApplicationController
 
     @party = Party.find_or_initialize_by_host_id(@host.id);
     @party.facebooks = Facebook.find(:all,:conditions=>[ids_string])
-    @party.songs = []
+    reqSongs = []
     Requestedsong.find(:all, :conditions => ['party_id = ? AND added is not TRUE', @party.id]).each do |request|
-      @party.songs << request.song
+      reqSongs << request.song
       request.added = true
       request.save!
     end
+    @party.songs = reqSongs;
     @party.save
     
       
