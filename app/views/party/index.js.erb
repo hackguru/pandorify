@@ -1,4 +1,8 @@
-$('#song_view').html("<%= escape_javascript(render 'song/songs', :songs => @songs, :type => @type) %>");
+<% if @page == 1 %>
+$('#song_view').html("<%= escape_javascript(render 'song/songs', :songs => @songs, :type => @type) %>").append('<div class="loading-spinner mini"></div>');
+<% else %>
+$('#song_view').children(":first").append("<%= escape_javascript(render 'song/songs', :songs => @songs, :type =>@type, :appended => true) %>");
+<% end %>	
 $('#song_view').attr("type","<%=@type%>");
 $('#song_view').attr("content",'hot');
 $('#song_view').attr("content_id","");
