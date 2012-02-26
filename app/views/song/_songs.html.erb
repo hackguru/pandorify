@@ -66,13 +66,13 @@
         <% count = 0 %>
         <% friends.each do |fri| %>
         <li id="<%= fri.id %>">
-          <a href="/profile"><img src="<%=fri.pic_url %>?type=large" /></a>
+          <a href="/profile"><img src="<%=fri.pic_url %>?type=square" /></a>
           <div class="popover">
             <div class="triangle"></div>
             <div class="content" id="<%= fri.id %>content_for_popup">
-              <img src="<%=fri.pic_url %>?type=square" />
+              <img src="<%=fri.pic_url %>?type=large" />
               <p><%= fri.name %></p>
-              <p>133 listens</p>
+              <p class="count">133 listens</p>
             </div>
           </div>
         </li>

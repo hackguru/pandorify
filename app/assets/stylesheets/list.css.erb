@@ -72,6 +72,7 @@
 }
 
 .row .thumbs li {
+  position: relative;
   display: inline-block;
   margin: 4px 2px 0 0;
   text-indent: 0;
@@ -96,6 +97,7 @@
   left: -93px;
   margin: 0;
   z-index: 9;
+  opacity: 1;
   visibility: hidden;
   -webkit-transition: visibility 200ms ease-in-out;
   -moz-transition: visibility 200ms ease-in-out;
@@ -111,11 +113,24 @@
 
 .row .thumbs li:hover .popover {
   visibility: visible;
+  text-align: center;
+}
+
+.row .thumbs li:hover .popover p {
+  color: white;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+}
+
+.row .thumbs li:hover .popover .count {
+  font-size: 11px;
 }
 
 .row .thumbs li:hover .popover img {
+  width: 167px;
   height: auto;
-  width: 100%;
+  margin: 4px 4px 2px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .row .actions {
