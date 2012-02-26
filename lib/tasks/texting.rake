@@ -130,6 +130,6 @@ end
 
 task :deleting_errors_from_job_q => :environment do
   Delayed::Job.find(:all, :conditions => "last_error is not null").each do |err|
-    err.destroy!
+    err.destroy
   end
 end
