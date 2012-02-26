@@ -40,16 +40,6 @@
     </div>
   </div>
   <% end %>
-  <script>
-  $('.album img').load(function() {
-    $(this).parent().addClass('loaded');
-  });
-  $('a.add').each(function(index){
-    var id = $(this).attr('id');
-    $(this).popover({header: '', content: '#'+id+'content_for_popup'});
-  });
-
-  </script>
   <% if !appended %>
 </div>
 <%end%>
@@ -61,7 +51,7 @@
 <li class="row">
   <div class="actions">
     <%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
-    <a href="#" class="add"></a>
+    <a href="#" class="add" id="<%= obj.id %>"></a>
   </div>
   <div class="dynamic">
     <div class="song"><%= obj.title %></div>
@@ -87,3 +77,13 @@
 </ul>
 <% end %>
 <%end%>
+<script>
+$('.album img').load(function() {
+  $(this).parent().addClass('loaded');
+});
+$('a.add').each(function(index){
+  var id = $(this).attr('id');
+  $(this).popover({header: '', content: '#'+id+'content_for_popup'});
+});
+
+</script>
