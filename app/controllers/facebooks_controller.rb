@@ -70,6 +70,13 @@ class FacebooksController < ApplicationController
     end    
   end
   
+  def edit
+    @user = current_user || Facebook.find_by_email(params[:user_email])
+  	respond_to do |format|
+       format.js
+    end    
+  end
+  
 
   def users_listen_to
     @page =  params[:page] || 1

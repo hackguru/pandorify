@@ -26,6 +26,7 @@ Pandorify::Application.routes.draw do
     get :users_listen_to
     get :all_users
     get :like_taste
+    get :edit
   end
  
   # The priority is based upon order of creation:

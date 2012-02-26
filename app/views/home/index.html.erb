@@ -47,7 +47,7 @@
 <section>
   <h3 class="lobster">account</h3>
   <ul>
-    <li class="profile"><a href="#"><span class="icon"></span>Profile</a></li>
+    <li class="profile"><%= link_to content_tag(:span, nil, :class=>'icon') + "Profile", facebook_edit_path, :method => :get, :remote => true %>Profile</a></li>
     <li class="settings"><a href="#"><span class="icon"></span>Settings</a></li>
     <li class="logout">
       <%= link_to content_tag(:span, nil, :class=>'icon') + "Logout", facebook_path, :method => :delete, :class => "logout" %>
