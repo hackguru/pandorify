@@ -78,30 +78,53 @@ header {
 
 #controls {
   float: left;
-  line-height: 41px;
+  line-height: 48px;
+  margin-left: 7px;
 }
 
 #controls .control {
   display: inline-block;
-  height: 31px;
-  width: 31px;
+  height: 33px;
+  width: 34px;
   background: url(<%= asset_path 'buttons-sprite.png' %>) no-repeat;
-  margin-left: 5px;
   vertical-align: middle;
+  border: none;
+  outline: none;
+  padding: 0;
 }
 
 #controls .control.prev {
-  background-position: 0 0;
+  background-position: 0 -2px;
 }
 
 #controls .control.next {
-  background-position: 0 0;
+  background-position: -77px -2px;
 }
 
 #controls .control.play {
-  height: 37px;
-  width: 37px;
-  background-position: 0;
+  height: 40px;
+  width: 38px;
+  background-position: -37px 1px;
+}
+
+#controls .control.prev:after {
+  background-position: 0 -47px;
+}
+
+#controls .control.next:after {
+  background-position: -77px -47px;
+}
+
+#controls .control.play:after {
+  background-position: -37px -44px;
+}
+
+body.playing #controls .control.play {
+  background-position: -116px 1px;
+}
+
+body.playing #controls .control.play:after {
+  background-position: -116px -44px;
 }
 
 #player {
@@ -109,7 +132,7 @@ header {
   position: absolute;
   top: 4px;
   left: 50%;
-  margin-left: -8px;
+  margin-left: -125px;
   z-index: 2;
 }
 
