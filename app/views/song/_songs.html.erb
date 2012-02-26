@@ -53,21 +53,6 @@
   <div class="actions">
     <%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
     <a href="#" class="add" id="<%= obj.id %>"></a>
-    <div id="my-popover" style="display:none">
-      <div class="header">
-      </div>
-      <ul class="content" id="<%= obj.id %>content_for_popup">
-        <li>
-          <a href=<%= obj.url %> >Open in Spotify! </a>
-        </li>
-        <% playlists = current_user.playlists %>
-        <% playlists.each do |pl|%>
-        <li>
-          <%= link_to content_tag(:span, nil, :class=>'icon') + 'Add to ' + pl.name, playlist_add_path + "?plid=#{pl.id}&sid=#{obj.id}", :method => :post, :remote => true %>
-        </li>
-        <% end %>
-      </ul>
-    </div>
   </div>
   <div class="dynamic">
     <div class="song"><%= obj.title %></div>
@@ -107,11 +92,6 @@
 $('.album img').load(function() {
   $(this).parent().addClass('loaded');
 });
-$('a.add').each(function(index){
-  var id = $(this).attr('id');
-  $(this).popover({header: '', content: '#'+id+'content_for_popup'});
-});
-
 $('a.add').each(function(index){
   var id = $(this).attr('id');
   $(this).popover({header: '', content: '#'+id+'content_for_popup'});
