@@ -59,6 +59,10 @@
 <%end%>
 <% songs.each do |obj|%>
 <li class="row">
+  <div class="actions">
+    <%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
+    <a href="#" class="add"></a>
+  </div>
   <div class="dynamic">
     <div class="song"><%= obj.title %></div>
     <div class="artist"><%= obj.artist.name if obj.artist!=nil and obj.artist.name!=nil %></div>
@@ -80,10 +84,6 @@
         <% break if count == 4%>
         <% end %>
       </ul>
-    </div>
-    <div class="actions">
-      <%= link_to "", song_play_path + "?id=#{obj.id}", :method => :get, :remote => true, :class => "play" %>
-      <a href="#" class="add"></a>
     </div>
   </div>
 </li>
