@@ -25,7 +25,6 @@ $(document).ready(function(){
 
   $('li .delete').click(function(event) {
     $(this).closest('.playlist').addClass('confirming').find('.confirm').click(function(event) {
-      console.log('DELETE PLAYLIST AND .slideUp()');
       $(this).slideUp();
     }).mouseleave(function(event) {
       $(this).parent().removeClass('confirming');
@@ -34,7 +33,6 @@ $(document).ready(function(){
   });
 
   $('button.detail').click(function() {
-    console.log('asdfs');
     $('body').addClass('loading');
     $('.view-toggle .active').removeClass('active');
     $(this).addClass('active');
@@ -72,134 +70,134 @@ $(document).ready(function(){
   });
 
   $('.slide-out-div').tabSlideOut({
-      tabHandle: '.handle',                              //class of the element that will be your tab
-      pathToTabImage: '<%= asset_path 'knob.jpg' %>',          //path to the image for the tab (optionaly can be set using css)
-      imageHeight: '122px',                               //height of tab image
-      imageWidth: '40px',                               //width of tab image    
-      tabLocation: 'right',                               //side of screen where tab lives, top, right, bottom, or left
-      speed: 300,                                        //speed of animation
-      action: 'click',                                   //options: 'click' or 'hover', action to trigger animation
-      topPos: '55px',                                   //position from the top
-      fixedPosition: true                               //options: true makes it stick(fixed position) on scroll
+    tabHandle: '.handle',                              //class of the element that will be your tab
+    pathToTabImage: '<%= asset_path 'knob.jpg' %>',          //path to the image for the tab (optionaly can be set using css)
+    imageHeight: '122px',                               //height of tab image
+    imageWidth: '40px',                               //width of tab image    
+    tabLocation: 'right',                               //side of screen where tab lives, top, right, bottom, or left
+    speed: 300,                                        //speed of animation
+    action: 'click',                                   //options: 'click' or 'hover', action to trigger animation
+    topPos: '55px',                                   //position from the top
+    fixedPosition: true                               //options: true makes it stick(fixed position) on scroll
   });
-	
+
 });
 
 
 function party(){
-	
-	$(".slide-out-div").css("display","inherit");
-	
+
+  $(".slide-out-div").css("display","inherit");
+
 }
 
 $(function() {
-	$( "#slider-range-tempo" ).slider({
-		range: true,
-		min: 0,
-		max: 300,
-		values: [ 0, 300 ],
-		slide: function( event, ui ) {
-			$( "#amount-tempo" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-		}
-	});
-	$( "#amount-tempo" ).val( $( "#slider-range-tempo" ).slider( "values", 0 ) +
-		" - " + $( "#slider-range-tempo" ).slider( "values", 1 ) );
+  $( "#slider-range-tempo" ).slider({
+    range: true,
+    min: 0,
+    max: 300,
+    values: [ 0, 300 ],
+    slide: function( event, ui ) {
+      $( "#amount-tempo" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+    }
+  });
+  $( "#amount-tempo" ).val( $( "#slider-range-tempo" ).slider( "values", 0 ) +
+  " - " + $( "#slider-range-tempo" ).slider( "values", 1 ) );
 });
 
 $(function() {
-	$( "#slider-range-danceability" ).slider({
-		range: true,
-		min: 0,
-		max: 1,
-		step: 0.01,
-		values: [ 0, 1 ],
-		slide: function( event, ui ) {
-			$( "#amount-danceability" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-		}
-	});
-	$( "#amount-danceability" ).val( $( "#slider-range-danceability" ).slider( "values", 0 ) +
-		" - " + $( "#slider-range-danceability" ).slider( "values", 1 ) );
-});
-
-
-$(function() {
-	$( "#slider-range-loudness" ).slider({
-		range: true,
-		min: -100,
-		max: 1,
-		values: [ -100, 1 ],
-		slide: function( event, ui ) {
-			$( "#amount-loudness" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-		}
-	});
-	$( "#amount-loudness" ).val( $( "#slider-range-loudness" ).slider( "values", 0 ) +
-		" - " + $( "#slider-range-loudness" ).slider( "values", 1 ) );
+  $( "#slider-range-danceability" ).slider({
+    range: true,
+    min: 0,
+    max: 1,
+    step: 0.01,
+    values: [ 0, 1 ],
+    slide: function( event, ui ) {
+      $( "#amount-danceability" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+    }
+  });
+  $( "#amount-danceability" ).val( $( "#slider-range-danceability" ).slider( "values", 0 ) +
+  " - " + $( "#slider-range-danceability" ).slider( "values", 1 ) );
 });
 
 
 $(function() {
-	$( "#slider-range-energy" ).slider({
-		range: true,
-		min: 0,
-		max: 1,
-		step: 0.01,
-		values: [ 0, 1 ],
-		slide: function( event, ui ) {
-			$( "#amount-energy" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-		}
-	});
-	$( "#amount-energy" ).val( $( "#slider-range-energy" ).slider( "values", 0 ) +
-		" - " + $( "#slider-range-energy" ).slider( "values", 1 ) );
+  $( "#slider-range-loudness" ).slider({
+    range: true,
+    min: -100,
+    max: 1,
+    values: [ -100, 1 ],
+    slide: function( event, ui ) {
+      $( "#amount-loudness" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+    }
+  });
+  $( "#amount-loudness" ).val( $( "#slider-range-loudness" ).slider( "values", 0 ) +
+  " - " + $( "#slider-range-loudness" ).slider( "values", 1 ) );
+});
+
+
+$(function() {
+  $( "#slider-range-energy" ).slider({
+    range: true,
+    min: 0,
+    max: 1,
+    step: 0.01,
+    values: [ 0, 1 ],
+    slide: function( event, ui ) {
+      $( "#amount-energy" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+    }
+  });
+  $( "#amount-energy" ).val( $( "#slider-range-energy" ).slider( "values", 0 ) +
+  " - " + $( "#slider-range-energy" ).slider( "values", 1 ) );
 });
 
 
 function startParty(){
-    // $('body').addClass('loading');
-    // $(this).addClass('active');
-    // content = $('#song_view').attr("content");
-    // content_id = $('#song_view').attr("content_id");
-    // if (content == 'playlist') {
+  // $('body').addClass('loading');
+  // $(this).addClass('active');
+  // content = $('#song_view').attr("content");
+  // content_id = $('#song_view').attr("content_id");
+  // if (content == 'playlist') {
     //   $.get('/playlist/play', { id: content_id , type: 'grid' });
     // }else if (content == 'hot'){
-    //   $.get('/song/hot_songs', { type: 'grid' });
-    // }else if (content == 'recom'){
-    //   $.get('/recommendation/recommended', { type: 'grid' });
-    // }
+      //   $.get('/song/hot_songs', { type: 'grid' });
+      // }else if (content == 'recom'){
+        //   $.get('/recommendation/recommended', { type: 'grid' });
+        // }
 
-	token_ids = "";
-	$.each($("#friend_tokens").tokenInput("get"),function(index,value) {
-			token_ids += value.id + ",";
-	});
-	token_ids=token_ids.substr(0,token_ids.length-1)
-    tempo_min = 0.0;
-    tempo_max = 300.0;
-    danceability_min = 0.0;
-    danceability_max = 1.0;
-    energy_min = 0.0;
-    energy_max = 1.0
-    loudness_min = -100.0;
-    loudness_max = 1.0;
-	energy_min = $( "#slider-range-energy" ).slider( "values")[0];
-	energy_max = $( "#slider-range-energy" ).slider( "values")[1];
-	loudness_min = $( "#slider-range-loudness" ).slider( "values")[0];
-	loudness_max = $( "#slider-range-loudness" ).slider( "values")[1];
-	danceability_min = $( "#slider-range-danceability" ).slider( "values")[0];
-	danceability_max = $( "#slider-range-danceability" ).slider( "values")[1];
-	tempo_min = $( "#slider-range-tempo" ).slider( "values")[0];
-	tempo_max = $( "#slider-range-tempo" ).slider( "values")[1];
-    $.get('/party/index?friend_tokens='+token_ids, { type: 'grid', tempo_min: tempo_min, tempo_max: tempo_max, danceability_min: danceability_min, danceability_max: danceability_max, energy_min: energy_min, energy_max: energy_max, loudness_min: loudness_min, loudness_max: loudness_max});
-}
+        token_ids = "";
+        $.each($("#friend_tokens").tokenInput("get"),function(index,value) {
+          token_ids += value.id + ",";
+        });
+        token_ids=token_ids.substr(0,token_ids.length-1)
+        tempo_min = 0.0;
+        tempo_max = 300.0;
+        danceability_min = 0.0;
+        danceability_max = 1.0;
+        energy_min = 0.0;
+        energy_max = 1.0
+        loudness_min = -100.0;
+        loudness_max = 1.0;
+        energy_min = $( "#slider-range-energy" ).slider( "values")[0];
+        energy_max = $( "#slider-range-energy" ).slider( "values")[1];
+        loudness_min = $( "#slider-range-loudness" ).slider( "values")[0];
+        loudness_max = $( "#slider-range-loudness" ).slider( "values")[1];
+        danceability_min = $( "#slider-range-danceability" ).slider( "values")[0];
+        danceability_max = $( "#slider-range-danceability" ).slider( "values")[1];
+        tempo_min = $( "#slider-range-tempo" ).slider( "values")[0];
+        tempo_max = $( "#slider-range-tempo" ).slider( "values")[1];
+        $.get('/party/index?friend_tokens='+token_ids, { type: 'grid', tempo_min: tempo_min, tempo_max: tempo_max, danceability_min: danceability_min, danceability_max: danceability_max, energy_min: energy_min, energy_max: energy_max, loudness_min: loudness_min, loudness_max: loudness_max});
+      }
 
-$(document).endlessScroll({
-  bottomPixels: 400,
-  fireOnce: true,
-  fireDelay: 500,
-  ceaseFire: function(){
-    return $('#cease_fire_on_scroll').attr('value') == 'true';
-  },
-  callback: function(){
-    $(document).unbind('scroll', unlimited_scroll);
-    $.get("/song/hot_songs", { type: "grid", page: 2 } );
-    $('body').addClass('appending');
-  }
-});
+      $(document).endlessScroll({
+        bottomPixels: 400,
+        fireOnce: true,
+        fireDelay: 500,
+        ceaseFire: function(){
+          return $('#cease_fire_on_scroll').attr('value') == 'true';
+        },
+        callback: function(){
+          $(document).unbind('scroll', unlimited_scroll);
+          $.get("/song/hot_songs", { type: "grid", page: 2 } );
+          $('body').addClass('appending');
+        }
+      });
