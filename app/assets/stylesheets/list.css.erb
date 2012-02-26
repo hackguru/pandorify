@@ -8,6 +8,7 @@
   left: 0;
   right: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   background: url(<%= asset_path 'list/bg.png' %>) repeat;
 }
 
@@ -78,7 +79,6 @@
   margin: 4px 2px 0 0;
   text-indent: 0;
   line-height: 0;
-  overflow: hidden;
 }
 
 .row .thumbs li:last-child {
@@ -108,22 +108,18 @@
   left: 87%;
 }
 
-.row .thumbs li:hover {
-  overflow: visible;
-}
-
 .row .thumbs li:hover .popover {
   visibility: visible;
   -webkit-transition: visibility 150ms ease-in-out;
-  -webkit-transition-delay: 400ms;
+  -webkit-transition-delay: 250ms;
   -moz-transition: visibility 150ms ease-in-out;
-  -moz-transition-delay: 400ms;
+  -moz-transition-delay: 250ms;
   -o-transition: visibility 150ms ease-in-out;
-  -o-transition-delay: 400ms;
+  -o-transition-delay: 250ms;
   -ms-transition: visibility 150ms ease-in-out;
-  -ms-transition-delay: 400ms;
+  -ms-transition-delay: 250ms;
   transition: visibility 150ms ease-in-out;
-  transition-delay: 400ms;
+  transition-delay: 250ms;
 }
 
 .row .thumbs li .popover p {
