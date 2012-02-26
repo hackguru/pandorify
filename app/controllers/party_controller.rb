@@ -11,6 +11,7 @@ class PartyController < ApplicationController
     @energy_max = params[:energy_max] || 1.0
     @loudness_min = params[:loudness_min] || -100.0
     @loudness_max = params[:loudness_max] || 1.0
+    @tokens = params[:friend_tokens]
 
     if current_user
       @host = current_user

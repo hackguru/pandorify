@@ -17,7 +17,7 @@ $(document).endlessScroll({
   },
   callback: function(){
     $(document).unbind('scroll', unlimited_scroll);
-    $.get("<%= party_index_path %>", { type: view_type, page: nextPage, before: beforeTime, tempo_min: <%= @tempo_min %>, tempo_max: <%= @tempo_max %>, danceability_min: <%= @danceability_min %>, danceability_max: <%= @danceability_max %>, energy_min: <%= @energy_min %>, energy_max: <%= @energy_max %>, loudness_min: <%= @loudness_min %>, loudness_max: <%= @loudness_max %>} );
+    $.get("<%= party_index_path %>", { type: view_type, page: nextPage, before: beforeTime, friend_tokens: <%= @tokens %>, tempo_min: <%= @tempo_min %>, tempo_max: <%= @tempo_max %>, danceability_min: <%= @danceability_min %>, danceability_max: <%= @danceability_max %>, energy_min: <%= @energy_min %>, energy_max: <%= @energy_max %>, loudness_min: <%= @loudness_min %>, loudness_max: <%= @loudness_max %>} );
     $('body').addClass('appending');
   }
 });
