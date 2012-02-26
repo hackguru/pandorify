@@ -67,7 +67,7 @@
         <% friends.each do |fri| %>
         <li id="<%= fri.id %>"><a href="/profile"><img src="<%=fri.pic_url %>?type=square" /></a></li>
         
-        <div id="my-popover" style="display:none">
+        <div id="my-popover" class="popover">
           <div class="header"></div>
           <div class="content" id="<%= fri.id %>content_for_popup">
             <img src="<%=fri.pic_url %>?type=square" />
@@ -101,12 +101,4 @@ $('a.add').each(function(index){
   var id = $(this).attr('id');
   $(this).popover({header: '', content: '#'+id+'content_for_popup'});
 });
-
-// $('.thumbs li').each(function(index) {
-//   var id = $(this).attr('id');
-//   console.log('opennn');
-//   console.log(id);
-//   $(this).popover({header: '', content: '#'+id+'content_for_popup', openEvent: 'hover'});
-// });
-
 </script>
