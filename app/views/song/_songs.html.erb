@@ -67,11 +67,6 @@
     <div class="song"><%= obj.title %></div>
     <div class="artist"><%= obj.artist.name if obj.artist!=nil and obj.artist.name!=nil %></div>
     <div class="album"><%= obj.album.name if obj.album!=nil and obj.album.name != nil %></div>
-    <div class="genre">Dubstep</div>
-    <% duration = obj.duration %>
-    <% mins = duration ? (duration/60.0).to_i : nil %>
-    <% secs = duration ? (duration-(mins*60)).to_i : nil %>
-    <div class="duration"><%=mins%>m <%=secs%>s</div>
   </div>
   <div class="static">
     <div class="friends">
