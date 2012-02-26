@@ -67,14 +67,50 @@ header {
   text-align: center;
 }
 
+#header-right-container {
+  position: absolute;
+  top: 0;
+  left: 233px;
+  right: 0;
+  bottom: 0;
+  background: url(<%= asset_path 'divider.png' %>) left bottom no-repeat;
+}
+
+#controls {
+  float: left;
+  line-height: 41px;
+}
+
+#controls .control {
+  display: inline-block;
+  height: 31px;
+  width: 31px;
+  background: url(<%= asset_path 'buttons-sprite.png' %>) no-repeat;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+#controls .control.prev {
+  background-position: 0 0;
+}
+
+#controls .control.next {
+  background-position: 0 0;
+}
+
+#controls .control.play {
+  height: 37px;
+  width: 37px;
+  background-position: 0;
+}
+
 #player {
   display: inline-block;
   position: absolute;
   top: 4px;
-  left: 233px;
+  left: 50%;
+  margin-left: -8px;
   z-index: 2;
-  background: url(<%= asset_path 'divider.png' %>) no-repeat;
-  padding-left: 6px;
 }
 
 .logo {

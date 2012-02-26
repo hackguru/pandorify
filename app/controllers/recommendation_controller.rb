@@ -9,7 +9,7 @@ class RecommendationController < ApplicationController
       @user = current_user
     end
     @recoms = @user.recommendations.paginate(:page => @page ).find(:all,:conditions=>["listened is not true"], :order => "common_rank DESC")
-    @type = params[:type] || "grid"
+    @type = params[:type] || "taste"
     @songs = []
     @recoms.each do |recom|
       @songs << recom.song

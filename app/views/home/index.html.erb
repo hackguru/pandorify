@@ -9,18 +9,25 @@
     <header>
       <div id="header-container">
         <a class="logo" href="/">soundbook</a>
-        <div id="player">
-          <object width="250" height="40">
-            <param name="movie" value="http://listen.grooveshark.com/songWidget.swf">
-            <param name="wmode" value="window">
-            <param name="allowScriptAccess" value="always">
-            <param name="flashvars" value="hostname=cowbell.grooveshark.com&amp;widgetID=&amp;style=metal&amp;p=0">
-            <embed src="http://listen.grooveshark.com/songWidget.swf" type="application/x-shockwave-flash" width="250" height="40" flashvars="hostname=cowbell.grooveshark.com&amp;widgetID=&amp;style=metal&amp;p=0" allowscriptaccess="always" wmode="window">
-            </object>
+        <div id="header-container">
+          <div id="controls">
+            <button class="control prev"></button>
+            <button class="control play"></button>
+            <button class="control next"></button>
           </div>
-          <div class="view-toggle">
-            <button class="detail">detail</button>
-            <button class="grid active">grid</button>
+          <div id="player">
+            <object width="250" height="40">
+              <param name="movie" value="http://listen.grooveshark.com/songWidget.swf">
+              <param name="wmode" value="window">
+              <param name="allowScriptAccess" value="always">
+              <param name="flashvars" value="hostname=cowbell.grooveshark.com&amp;widgetID=&amp;style=metal&amp;p=0">
+              <embed src="http://listen.grooveshark.com/songWidget.swf" type="application/x-shockwave-flash" width="250" height="40" flashvars="hostname=cowbell.grooveshark.com&amp;widgetID=&amp;style=metal&amp;p=0" allowscriptaccess="always" wmode="window">
+              </object>
+            </div>
+            <div class="view-toggle">
+              <button class="detail">detail</button>
+              <button class="grid active">grid</button>
+            </div>
           </div>
         </div>
       </div>
@@ -31,7 +38,7 @@
         <ul>
           <li class="hot active"><%= link_to content_tag(:span, nil, :class=>'icon') + "What's Hot", song_hot_songs_path, :method => :get, :remote => true %></li>
           <li class="match"><%= link_to content_tag(:span, nil, :class=>'icon') + "Taste Match", recommendation_recommended_path, :method => :get, :remote => true %></a></li>
-          <li class="shuffle"><a href="#"><span class="icon"></span>Shuffle</a></li>
+          <!-- <li class="shuffle"><a href="#"><span class="icon"></span>Shuffle</a></li> -->
           <li class="party"><a onclick = "party()"><span class="icon"></span>Party DJ</a></a></li>
         </ul>
       </section>
