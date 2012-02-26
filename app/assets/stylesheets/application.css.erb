@@ -131,13 +131,18 @@ body.playing #controls .control.play:active {
 #player {
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: 3px;
   left: 50%;
-  height: 44px;
+  height: 43px;
   width: 240px;
   margin-left: -120px;
   z-index: 2;
-  background: url(<%= asset_path 'player-bg.png' %>) repeat-x;
+  background: -webkit-linear-gradient(top, #95A0A5, #A0AAAF);
+  background: -moz-linear-gradient(top, #95A0A5, #A0AAAF);
+  background: -o-linear-gradient(top, #95A0A5, #A0AAAF);
+  background: -ms-linear-gradient(top, #95A0A5, #A0AAAF);
+  background: linear-gradient(top, #95A0A5, #A0AAAF);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 0 1px rgba(0, 0, 0, 0.9);
   border-radius: 3px;
 }
 
@@ -153,27 +158,34 @@ body.playing #controls .control.play:active {
 #player .album img {
   height: 100%;
   width: 100%;
-  border-radius: 2px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
 }
 
 #player .info {
-  margin: 0 40px;
-  height: 100%;
+  margin: 6px 40px 0 50px;
+  text-align: left;
 }
 
 #player .info p {
   color: #fff;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-  font-size: 12px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 #player .info .song {
   font-size: 13px;
-  font-weight: bold;
+  font-weight: normal;
+}
+
+#player .info .artist {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 200;
 }
 
 #player .current_playlist {
