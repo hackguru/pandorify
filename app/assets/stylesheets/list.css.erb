@@ -82,6 +82,13 @@
   margin-right: 0;
 }
 
+.row .thumbs img {
+  height: 33px;
+  width: 33px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 #fff;
+  border-radius: 2px;
+}
+
 .row .thumbs li .popover {
   display: block;
   position: absolute;
@@ -89,12 +96,12 @@
   left: -93px;
   margin: 0;
   z-index: 9;
-  opacity: 0;
-  -webkit-transition: opacity 200ms ease-in-out;
-  -moz-transition: opacity 200ms ease-in-out;
-  -o-transition: opacity 200ms ease-in-out;
-  -ms-transition: opacity 200ms ease-in-out;
-  transition: opacity 200ms ease-in-out;
+  visibility: hidden;
+  -webkit-transition: visibility 200ms ease-in-out;
+  -moz-transition: visibility 200ms ease-in-out;
+  -o-transition: visibility 200ms ease-in-out;
+  -ms-transition: visibility 200ms ease-in-out;
+  transition: visibility 200ms ease-in-out;
 }
 
 .row .thumbs li .popover .triangle {
@@ -103,14 +110,12 @@
 }
 
 .row .thumbs li:hover .popover {
-  opacity: 1;
+  visibility: visible;
 }
 
-.row .thumbs img {
-  height: 33px;
-  width: 33px;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 #fff;
-  border-radius: 2px;
+.row .thumbs li:hover .popover img {
+  height: auto;
+  width: 100%;
 }
 
 .row .actions {
