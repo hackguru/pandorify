@@ -67,7 +67,7 @@
 .row .thumbs {
   text-align: right;
   padding-left: 6px;	
-  overflow: hidden;
+  overflow: visible;
   white-space: nowrap;
 }
 
@@ -80,6 +80,30 @@
 
 .row .thumbs li:last-child {
   margin-right: 0;
+}
+
+.row .thumbs li .popover {
+  display: block;
+  position: absolute;
+  top: 30px;
+  left: -93px;
+  margin: 0;
+  z-index: 9;
+  opacity: 0;
+  -webkit-transition: opacity 200ms ease-in-out;
+  -moz-transition: opacity 200ms ease-in-out;
+  -o-transition: opacity 200ms ease-in-out;
+  -ms-transition: opacity 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out;
+}
+
+.row .thumbs li .popover .triangle {
+  left: 50%;
+  margin-left: -7px;
+}
+
+.row .thumbs li:hover .popover {
+  opacity: 1;
 }
 
 .row .thumbs img {
@@ -123,15 +147,4 @@
 
 .row .actions .add:active {
   background-position: -72px -73px;
-}
-
-.row .thumbs li .popover {
-  opacity: 0;
-}
-
-.row .thumbs li:hover .popover {
-  opacity: 1;
-  position: absolute;
-  top: 10px;
-  left: 10px;
 }

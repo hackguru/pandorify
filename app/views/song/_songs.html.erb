@@ -65,17 +65,17 @@
         <% friends = Facebook.users_listen_to(obj) %>
         <% count = 0 %>
         <% friends.each do |fri| %>
-        <li id="<%= fri.id %>"><a href="/profile"><img src="<%=fri.pic_url %>?type=square" /></a></li>
-        
-        <div id="my-popover" class="popover">
-          <div class="header"></div>
-          <div class="content" id="<%= fri.id %>content_for_popup">
-            <img src="<%=fri.pic_url %>?type=square" />
-            <p><%= fri.name %></p>
-            <p>133 listens</p>
+        <li id="<%= fri.id %>">
+          <a href="/profile"><img src="<%=fri.pic_url %>?type=square" /></a>
+          <div class="popover">
+            <div class="triangle"></div>
+            <div class="content" id="<%= fri.id %>content_for_popup">
+              <img src="<%=fri.pic_url %>?type=square" />
+              <p><%= fri.name %></p>
+              <p>133 listens</p>
+            </div>
           </div>
-        </div>
-        
+        </li>
         <% count += 1%>
         <% break if count == 10%>
         <% end %>
