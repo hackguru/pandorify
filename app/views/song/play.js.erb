@@ -4,4 +4,4 @@ $("#player").append('<object width="250" height="40" classid="clsid:D27CDB6E-AE6
 $("#player img").attr('src', 'http://o.scdn.co/image/f153d9201208842ef7f8d37dc8af2f33b84a9ce0');
 $("#player .song").text(<%= rand(9999999999) %>);
 $("#player .artist").text(<%= rand(9999999999) %>);
-$("#player .current_playlist").attr('href', 'Song Src');
+$("#player .current_playlist").attr('href', $('.playlist.active_playlist').attr('href'));
