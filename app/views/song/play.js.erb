@@ -4,6 +4,8 @@ $("#player").append('<object width="250" height="40" classid="clsid:D27CDB6E-AE6
 $("#player img").src('');
 $("#player .song").text('adf');
 $("#player .artist").text('asdf');
+$("#player .current_playlist").attr('href', $('.playlist.active_playlist').attr('href'));
+console.log($("#player .current_playlist"));
 console.log('set current playlist');
 console.log(@song);
 console.log(@artist);

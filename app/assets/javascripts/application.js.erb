@@ -9,7 +9,7 @@
 //= require jquery-ui
 //= require_tree .
 
-$(document).ready(function(){	
+$(document).ready(function(){
   $('.playlist.add a').click(function() {
     $('.playlist.add').before("<li class='playlist' style='display: none;' ><a href='#'><span class='icon'></span><form id='new_playlist'  style='display: inline;'><input type='text'/></form></a></li>");
     $('.playlist.add').prev().slideDown("fast").find('input').focus();
@@ -66,6 +66,10 @@ $(document).ready(function(){
     $('.popover').remove();
     $('#side_bar li.active').removeClass('active');
     $(this).addClass('active');
+    if ($(this).hasClass('playlist') && !$(this).hasClass('add')) {
+      $('.playlist.active_playlist').removeClass('active_playlist');
+      $(this).addClass('active_playlist');
+    }
     $('body').addClass('loading');
   });
 
