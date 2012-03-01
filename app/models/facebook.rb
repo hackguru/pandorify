@@ -235,8 +235,12 @@ class Facebook < ActiveRecord::Base
   end
   
   def perform
-    self.update_me
-    self.update_recommendations if !self.is_friend_access
+    begin
+      self.update_me
+      self.update_recommendations if !self.is_friend_access
+    rescue
+      return
+    end
   end
   
   class << self

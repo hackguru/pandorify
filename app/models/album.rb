@@ -16,7 +16,11 @@ class Album < ActiveRecord::Base
   end
   
   def perform
-    self.update_album_cover
+    begin
+      self.update_album_cover
+    rescue
+      return
+    end
   end
   
   class << self

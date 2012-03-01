@@ -160,7 +160,11 @@ class Song < ActiveRecord::Base
   end
 
   def perform
-    self.update_popularity_and_duration
+    begin
+      self.update_popularity_and_duration
+    rescue
+      return
+    end
   end
     
   def get_uri
