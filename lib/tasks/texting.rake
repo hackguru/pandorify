@@ -133,3 +133,9 @@ task :deleting_errors_from_job_q => :environment do
     err.destroy
   end
 end
+
+task :deleting_songs_from_job_q => :environment do
+  Delayed::Job.find(:conditions => "handler like '%Song%'").each do |song|
+    song.destroy
+  end
+end
